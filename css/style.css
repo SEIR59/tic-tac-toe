@@ -40,7 +40,8 @@ button{
 }
 
 .cell{
+  display: grid;
   border: 2px solid black ;
   text-align: center;
-  line-height: 12vh;
+  align-items: center;
 }
