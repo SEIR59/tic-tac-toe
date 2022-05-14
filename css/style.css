@@ -157,6 +157,9 @@ input:hover {
 input.active {
   background-color: white;
 }
+input.computer {
+  background-color: #d5ff61;
+}
 
 
 #endGameText {

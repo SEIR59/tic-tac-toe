@@ -1,6 +1,7 @@
 let playCount = 0
 let xWinsCount = 0
 let oWinsCount = 0
+let xWinsGameOver = false;
 
 const displayWins = () => {
     let xScoreDisplay = document.getElementById('xScore')
@@ -30,16 +31,30 @@ const nine = document.getElementById('nine')
 
 const rulesPopup = document.getElementById('rulesPopup')
 const playLocalBtn = document.getElementById('playLocal')
+const playComputerBtn = document.getElementById('playComputer')
 const endGameText = document.getElementById('endGameText')
 const endGameText2 = document.getElementById('endGameText2')
 const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 
-
-for (let i = 0; i < buttonsArr.length; i++) {
-    buttonsArr[i].addEventListener("click", changeBtn)
+//This assigns button even listeners to play locally
+//and removes the other event listeners so there aren't both
+const playLocally = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].addEventListener("click", changeBtn)
+        buttonsArr[i].removeEventListener('click', changeBtnWithComputer)
+    }
 }
+// This assigns event listeners to grid buttons to play with computer
+//and removes the other event listeners so there aren't both
+const playWithComputer = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].removeEventListener('click', changeBtn)
+        buttonsArr[i].addEventListener("click", changeBtnWithComputer)
+    }
+}
+
 
 function changeBtn() {
     currentBtn = event.target
@@ -52,48 +67,52 @@ function changeBtn() {
         playCount++
     } else {
         currentBtn.value = "O"
+        currentBtn.classList.add('computer')
         playCount++
     }
     currentBtn.classList.add('active')
     playGame()
+    if (xWinsGameOver)
+            player1Wins()
     showTurn()
 }
 
-// function changeBtn() {
-//     currentBtn = event.target
+function changeBtnWithComputer() {
+    currentBtn = event.target
 
-//     if (currentBtn.value){
-//         currentBtn.value == null
-//     } else {
-//         currentBtn.value = "X"
-//         playCount++
-//     } 
-//     currentBtn.classList.add('active')
-//     playGame()
-//     showTurn()
+    if (currentBtn.value){
+        currentBtn.value == null
+    } else {
+        currentBtn.value = "X"
+        playCount++
+        showTurn()
+    } 
+    currentBtn.classList.add('active')
+    showTurn()
+    playGame()
 
-//     computerChoice = Math.floor(Math.random() * buttonsArr.length)
-//     computerBtn = buttonsArr[computerChoice]
-//     if (computerBtn.value){
-//         while (computerBtn.value){
-//         computerBtn.value == null
-//         computerChoice = Math.floor(Math.random() * buttonsArr.length)
-//         computerBtn = buttonsArr[computerChoice]
-//         console.log('continue loop')
-//         continue
-//         }
-//     } 
-//     computerBtn.value = "O"
-//     playCount ++;
-//     playGame()
-//     showTurn()
-// }
-
-    
-    
-   
-   
-
+    // made this a bool to make sure computer doesn't go after x wins
+    if (!xWinsGameOver){
+    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+    computerBtn = buttonsArr[computerChoice]
+    if (playCount <= 7){
+        if (computerBtn.value){
+            while (computerBtn.value){
+            computerBtn.value == null
+            computerChoice = Math.floor(Math.random() * buttonsArr.length)
+            computerBtn = buttonsArr[computerChoice]
+            continue
+            }
+            }
+    } 
+    computerBtn.value = "O"
+    computerBtn.classList.add('computer')
+    } else
+    player1Wins()
+    playCount ++;
+    playGame()
+    showTurn()
+}
 
 
 
@@ -148,8 +167,9 @@ function playGame() {
         ((three.value == "X") && (six.value == "X") && (nine.value == "X")) ||
         ((one.value == "X") && (five.value == "X") && (nine.value == "X")) ||
         ((three.value == "X") && (five.value == "X") && (seven.value == "X"))) 
-        player1Wins()
-
+        // player1Wins()
+        return xWinsGameOver = true;
+        else
     if (((one.value == "O") && (two.value == "O") && (three.value == "O")) ||
         ((four.value == "O") && (five.value == "O") && (six.value == "O")) ||
         ((seven.value == "O") && (eight.value == "O") && (nine.value == "O")) ||
@@ -158,9 +178,9 @@ function playGame() {
         ((three.value == "O") && (six.value == "O") && (nine.value == "O")) ||
         ((one.value == "O") && (five.value == "O") && (nine.value == "O")) ||
         ((three.value == "O") && (five.value == "O") && (seven.value == "O"))) 
-        player2Wins()
-    
-    if (playCount == 9) {
+        player2Wins();
+        else
+    if (playCount >= 9) {
         endGameText.innerText = `DRAW`
         setTimeout(changeClasses, 3000) 
         disableBtns()
@@ -172,8 +192,9 @@ function playGame() {
 function resetGame() {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].value = ""
-        buttonsArr[i].classList.remove('active')
+        buttonsArr[i].className = ''
         buttonsArr[i].disabled = false
+        xWinsGameOver = false;
         rulesPopup.classList.remove('active')
         endGameText.classList.remove('active')
         //display:none for any fallingXs that havent reached bottom yet
@@ -187,7 +208,14 @@ function resetGame() {
 }
 
 
-playLocalBtn.addEventListener('click', resetGame)
+playLocalBtn.addEventListener('click', () => {
+    resetGame()
+    playLocally()
+})
+playComputerBtn.addEventListener('click', () => {
+    resetGame()
+    playWithComputer()
+})
 
 
 
