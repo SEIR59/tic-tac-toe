@@ -31,6 +31,7 @@ const rulesPopup = document.getElementById('rulesPopup')
 const playLocalBtn = document.getElementById('playLocal')
 const endGameText = document.getElementById('endGameText')
 const endGameText2 = document.getElementById('endGameText2')
+const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine];
 
@@ -56,29 +57,37 @@ function changeBtn() {
     showTurn();
 }
 
-
-
+//this will be to change active on and off
+function changeClasses() {
+    endGameText.classList.add('active')
+    rulesPopup.classList.add('active')
+    for (let i=0; i<smallGameBoardPic.length; i++){
+        smallGameBoardPic.classList.add('active')
+    }
+    endGameText.style.color = '#d5ff61'
+}
 const player1Wins = () => {
     xWinsCount++
-    rulesPopup.classList.add('active')
     endGameText.innerText = `X WINS!!`
-    endGameText.style.color = '#d5ff61'
+    changeClasses()
     displayWins()
 }
 
 const player2Wins = () => {
     oWinsCount++
-    rulesPopup.classList.add('active')
     endGameText.innerText = `O WINS!!`
-    endGameText.style.color = '#d5ff61'
+    changeClasses()
     displayWins()
 }
 
+
+//this resets the playing board and resets playcount 
 function resetGame() {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].value = "";
         buttonsArr[i].classList.remove('active')
         rulesPopup.classList.remove('active')
+        endGameText.classList.remove('active')
         playCount = 0;
         showTurn()
     }
@@ -106,9 +115,8 @@ function playGame() {
         player2Wins()
     
     if (playCount == 9) {
-        rulesPopup.classList.add('active')
         endGameText.innerText = `DRAW`
-        endGameText.style.color = '#d5ff61'
+        changeClasses()
     }
 }
 
