@@ -262,7 +262,7 @@ input.computer {
   position: fixed;
   top: -1vh;
   transform: translateY(0);
-  animation: fall 3s linear forwards;
+  animation: fall ease-out forwards;
 }
 .fallingX.active {
   display: none;

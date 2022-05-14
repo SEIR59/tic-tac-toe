@@ -38,7 +38,18 @@ const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 
-//This assigns button even listeners to play locally
+const enableButtons = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].disabled = false;
+    }
+}
+const disableBtns = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].disabled = true;
+    }
+}
+
+//This assigns button event listeners to play locally
 //and removes the other event listeners so there aren't both
 const playLocally = () => {
     for (let i = 0; i < buttonsArr.length; i++) {
@@ -98,10 +109,7 @@ const computerChooses = () => {
     playCount ++;
     playGame()
     showTurn()
-
-    for (let i = 0; i < buttonsArr.length; i++) {
-        buttonsArr[i].disabled = false;
-    }
+    setTimeout(enableButtons, 300)
 }
 
 function changeBtnWithComputer() {
@@ -118,7 +126,8 @@ function changeBtnWithComputer() {
     
     // made this condition to make sure computer doesn't still choose after x wins
     //also make sure playCount isn't over 7, otherwise computer still chooses even after board is full
-    !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : xWinsGameOver ? player1Wins() : null
+    !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : (xWinsGameOver ? player1Wins() : null)
+    ()
 }
 
 
@@ -135,12 +144,6 @@ const changeClasses = () => {
     endGameText.style.color = '#d5ff61'
 }
 
-//this disables all buttons before changeClasses() runs
-const disableBtns = () => {
-    for (let i = 0; i < buttonsArr.length; i++) {
-        buttonsArr[i].disabled = true;
-    }
-}
 
 const player1Wins = () => {
     xWinsCount++
@@ -189,7 +192,7 @@ function playGame() {
         else
     if (playCount >= 9) {
         endGameText.innerText = `DRAW`
-        setTimeout(changeClasses, 3000) 
+        setTimeout(changeClasses, 1000) 
         disableBtns()
     }
 }
@@ -236,10 +239,10 @@ function makeRainingXs (){
     fallingX.classList.add('fallingX')
     fallingX.style.left = Math.random() * 100 + 'vw'
     fallingX.style.zIndex = 1    
-    fallingX.style.animationDuration = Math.random() * 1 + 4 + 's'
-    fallingX.style.fontSize = Math.random() * 34 + 34 + 'px'
+    fallingX.style.animationDuration = Math.random() * 5 + 2 + 's'
+    fallingX.style.fontSize = Math.random() * 95 + 35 + 'px'
     fallingX.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
-    fallingX.innerText = 'X WINS!!'
+    fallingX.innerText = 'X'
     document.body.appendChild(fallingX)
   }
   let XRain;
@@ -250,10 +253,10 @@ function makeRainingXs (){
     fallingO.classList.add('fallingX')
     fallingO.style.left = Math.random() * 100 + 'vw'
     fallingO.style.zIndex = 1    
-    fallingO.style.animationDuration = Math.random() * 1 + 4 + 's'
-    fallingO.style.fontSize = Math.random() * 34 + 34 + 'px'
+    fallingO.style.animationDuration = Math.random() * 5 + 2 + 's'
+    fallingO.style.fontSize = Math.random() * 95 + 35 + 'px'
     fallingO.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
-    fallingO.innerText = 'O WINS!!'
+    fallingO.innerText = 'O'
     document.body.appendChild(fallingO)
   }
   let ORain;
