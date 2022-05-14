@@ -77,7 +77,31 @@ function changeBtn() {
     showTurn()
 }
 
+
+
+const computerChooses = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].disabled = false;
+    }
+    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+    computerBtn = buttonsArr[computerChoice]
+        if (playCount <= 7){
+            if (computerBtn.value){
+                while (computerBtn.value){
+                    computerBtn.value == null
+                    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+                    computerBtn = buttonsArr[computerChoice]
+                    continue
+                }
+            }
+        } 
+        computerBtn.value = "O"
+        computerBtn.classList.add('computer')
+}
+
 function changeBtnWithComputer() {
+    //calling this prevents choosing other buttons before setTimeout calls computer choice. buttons reenabled when computer chooses
+    disableBtns()
     currentBtn = event.target
 
     if (currentBtn.value){
@@ -93,21 +117,9 @@ function changeBtnWithComputer() {
 
     // made this a bool to make sure computer doesn't go after x wins
     if (!xWinsGameOver){
-    computerChoice = Math.floor(Math.random() * buttonsArr.length)
-    computerBtn = buttonsArr[computerChoice]
-    if (playCount <= 7){
-        if (computerBtn.value){
-            while (computerBtn.value){
-            computerBtn.value == null
-            computerChoice = Math.floor(Math.random() * buttonsArr.length)
-            computerBtn = buttonsArr[computerChoice]
-            continue
-            }
-            }
-    } 
-    computerBtn.value = "O"
-    computerBtn.classList.add('computer')
+        setTimeout(computerChooses, 500)     
     } else
+    //add this to computer Chooses?
     player1Wins()
     playCount ++;
     playGame()
