@@ -1,3 +1,24 @@
-h1 {
-  color: purple;
+body{
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+.container{
+  height: 40vh;
+  width: 40vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+div{
+  border: 2px solid black ;
+  text-align: center;
+  line-height: 12vh;
+}
+
+.restart-btn{
+  margin-bottom: 20px;
 }
