@@ -14,11 +14,21 @@
 </head>
 
 <body>
-  <img
+  <img id="backgroundPic"
     src="https://images.pexels.com/photos/355321/pexels-photo-355321.jpeg?cs=srgb&dl=pexels-pixabay-355321.jpg&fm=jpg">
   <h1> Tic-Tac-Toe </h1>
   <div class="active" id="rulesPopup">
-    <div id="endGameText">WELCOME TO TIC-TAC-TOE!!</div>
+    <figure id="endGameText">
+      <div id="first" class="smallGameBoardPic"></div>
+      <div id="second" class="smallGameBoardPic">0</div>
+      <div id="third" class="smallGameBoardPic"></div>
+      <div id="fourth" class="smallGameBoardPic">X</div>
+      <div id="fifth" class="smallGameBoardPic">X</div>
+      <div id="sixth" class="smallGameBoardPic">0</div>
+      <div id="seventh" class="smallGameBoardPic"></div>
+      <div id="eighth" class="smallGameBoardPic">X</div>
+      <div id="ninth" class="smallGameBoardPic"></div>
+    </figure>
     <section id="buttonContainer">
       <button class="popupBtn" id="playLocal">Click me to play locally with a friend</button>
       <button class="popupBtn" id="playComputer">Click me to against the computer</button>

@@ -61,16 +61,16 @@ function changeBtn() {
 const player1Wins = () => {
     xWinsCount++
     rulesPopup.classList.add('active')
-    endGameText.innerText = `X WINS!!
-        Please play again`
+    endGameText.innerText = `X WINS!!`
+    endGameText.style.color = '#d5ff61'
     displayWins()
 }
 
 const player2Wins = () => {
     oWinsCount++
     rulesPopup.classList.add('active')
-    endGameText.innerText = `O WINS!!
-        Please play again`
+    endGameText.innerText = `O WINS!!`
+    endGameText.style.color = '#d5ff61'
     displayWins()
 }
 
@@ -107,8 +107,8 @@ function playGame() {
     
     if (playCount == 9) {
         rulesPopup.classList.add('active')
-        endGameText.innerText = `This game was a DRAW!!
-        Please play again`
+        endGameText.innerText = `DRAW`
+        endGameText.style.color = '#d5ff61'
     }
 }
 
@@ -116,11 +116,6 @@ function playGame() {
 
 
 playLocalBtn.addEventListener('click', resetGame)
-
-
-// ******** TO-DO LIST **********
-
-//settimeout() to add and remove class. i want to see the board once the game is complete before the reset screen comes on. 
 
 
 
@@ -158,3 +153,18 @@ playLocalBtn.addEventListener('click', resetGame)
 // }
 // playWithComputer()
 
+
+
+
+// ******** TO-DO LIST **********
+
+//change top div to round image. tic tac toe board to start
+
+//media query stuff
+
+
+//settimeout() to add and remove class. i want to see the board once the game is complete before the reset screen comes on. 
+
+// change the top text when someone wins to a picture of an x or o or draw
+
+// animations -- flip grid buttons    do some cool hover effects
