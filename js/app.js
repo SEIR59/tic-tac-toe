@@ -83,10 +83,10 @@ function changeBtn() {
         playCount++
     }
     currentBtn.classList.add('active')
+    showTurn()
     playGame()
     if (xWinsGameOver)
             player1Wins()
-    showTurn()
 }
 
 
@@ -109,7 +109,7 @@ const computerChooses = () => {
     playCount ++;
     playGame()
     showTurn()
-    setTimeout(enableButtons, 300)
+    setTimeout(enableButtons, 500)
 }
 
 function changeBtnWithComputer() {
@@ -141,7 +141,6 @@ const changeClasses = () => {
         // need to check this, i'm not using i
         smallGameBoardPic.classList.add('active')
     }
-    endGameText.style.color = '#d5ff61'
 }
 
 
@@ -156,6 +155,10 @@ const player1Wins = () => {
     setTimeout(changeClasses, 4000) 
 }
 
+
+
+//**** BUG ALERT -- if O wins, x can still push a button before screen resets if fast enough
+// also if by doing so it puts the playcount to 9, then it also thinks it's a draw and keeps raining elements down infinitely
 const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS!!`
@@ -271,6 +274,12 @@ function makeRainingXs (){
 
 
 // ******** TO-DO LIST **********
+
+
+
+//add new color, pinkish or purple?
+//have main buttons shimmer
+//hover effects
 
 
 //media query stuff
