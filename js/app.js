@@ -8,6 +8,11 @@ let board = [];
 const playHum = document.querySelector(".play-hum");
 const playComp = document.querySelector(".play-comp");
 let possiblePicks = [0,1,2,3,4,5,6,7,8]
+const score1 = document.querySelector(".score1")
+const score2 = document.querySelector(".score2")
+
+let s1 = 0;
+let s2 = 0
 
 console.log(cellsarr)
 
@@ -58,27 +63,34 @@ function play(a){
 //Allows user to click cell and leave either an x or an o
 function playHuman() {
   for (const cell of cells) {
+    console.log(cell.classList)
     cell.addEventListener("click", function (e) {
       //console.log(e.target.classList)
       //console.log(`this is the board before move: ${board}`);
       isMovesLeft();
       //isMovesLeft();
-      if (letter === 1) {
-        cell.innerHTML = "X";
-        letter = 0;
-        //console.log(letter)
-        board = [];
-        updateBoard();
-        checkforWin();
-        console.log(board)
-      } else {
-        cell.innerHTML = "O";
-        letter = 1;
-        console.log(letter);
-        board = [];
-        updateBoard();
-        checkforWin();
-        console.log(board)
+      if(!cell.classList.contains("picked")){
+        if (letter === 1) {
+          cell.innerHTML = "X";
+          letter = 0;
+          //console.log(letter)
+          board = [];
+          updateBoard();
+          checkforWin();
+          addPickedClass(cell)
+          console.log(cell.classList)
+          console.log(board)
+        } else {
+          cell.innerHTML = "O";
+          letter = 1;
+          console.log(letter);
+          board = [];
+          updateBoard();
+          checkforWin();
+          addPickedClass(cell)
+          console.log(cell.classList)
+          console.log(board)
+        }
       }
       //console.log(letter)
       displayNextUpMessage(letter);
@@ -94,6 +106,7 @@ function playComputer(){
             if(letter === 1){
                 cell.innerHTML = "X";
                 board = [];
+                addPickedClass(cell);
                 //updateBoard();
                 //console.log(board);
                 console.log(possiblePicks.splice(Math.floor(Math.random() * 9)))
@@ -115,62 +128,79 @@ function checkforWin() {
     //check rows
     if (board[0] === board[1] && board[0] === board[2]) {
       if (board[0] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[0] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     else if (board[3] === board[4] && board[3] === board[5]) {
       if (board[3] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[3] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     if (board[6] === board[7] && board[6] === board[8]) {
       if (board[6] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[6] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     //check columns
     else if (board[0] === board[3] && board[0] === board[6]) {
       if (board[0] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[0] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     else if (board[1] === board[4] && board[1] === board[7]) {
       if (board[1] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[1] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     else if (board[2] === board[5] && board[2] === board[8]) {
       if (board[2] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[2] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     //check diagonalls
     else if (board[0] === board[4] && board[0] === board[8]) {
       if (board[0] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[0] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     }
     else if (board[2] === board[4] && board[2] === board[6]) {
       if (board[2] === "X") {
+        gameIsOver();
         console.log("Player X wins!");
       } else if (board[2] === "O") {
+        gameIsOver();
         console.log("Player O wins!");
       }
     } else if(!isMovesLeft()){
+        gameIsOver();
         console.log("it was a tie")
     }
   }
@@ -190,6 +220,9 @@ function restart() {
   nxtUp.innerHTML = "Next up: X";
   playHum.innerHTML = "Play Human"
   playComp.innerHTML = "Play Computer"
+  for(const cell of cells){
+    cell.classList.remove("picked")
+  }
 }
 //checks for if movesLeft
 function isMovesLeft() {
@@ -200,5 +233,21 @@ function isMovesLeft() {
         return false;
     }
   }
+}
+
+//what should happen when game is over
+function gameIsOver(){
+  let gameOver=true;
+  if(gameOver){
+    for(const cell of cells){
+      addPickedClass(cell)
+      console.log(cell.classList)
+    }
+  }
+}
+
+//updates cell to picked class
+function addPickedClass(a){
+  a.classList.add("picked");
 }
 
