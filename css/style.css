@@ -90,6 +90,7 @@ gap: calc(var(--dimension)*.05)
 }
 .slider{
   display: flex;
+  justify-content: left;
   border-radius: calc(var(--dimension)*.1);
   background: grey;
   width: auto;
