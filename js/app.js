@@ -36,6 +36,7 @@ const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 
+
 for (let i = 0; i < buttonsArr.length; i++) {
     buttonsArr[i].addEventListener("click", changeBtn)
 }
@@ -57,6 +58,44 @@ function changeBtn() {
     playGame()
     showTurn()
 }
+
+// function changeBtn() {
+//     currentBtn = event.target
+
+//     if (currentBtn.value){
+//         currentBtn.value == null
+//     } else {
+//         currentBtn.value = "X"
+//         playCount++
+//     } 
+//     currentBtn.classList.add('active')
+//     playGame()
+//     showTurn()
+
+//     computerChoice = Math.floor(Math.random() * buttonsArr.length)
+//     computerBtn = buttonsArr[computerChoice]
+//     if (computerBtn.value){
+//         while (computerBtn.value){
+//         computerBtn.value == null
+//         computerChoice = Math.floor(Math.random() * buttonsArr.length)
+//         computerBtn = buttonsArr[computerChoice]
+//         console.log('continue loop')
+//         continue
+//         }
+//     } 
+//     computerBtn.value = "O"
+//     playCount ++;
+//     playGame()
+//     showTurn()
+// }
+
+    
+    
+   
+   
+
+
+
 
 //this will be to change active on and off
 const changeClasses = () => {
@@ -137,7 +176,7 @@ function resetGame() {
         buttonsArr[i].disabled = false
         rulesPopup.classList.remove('active')
         endGameText.classList.remove('active')
-
+        //display:none for any fallingXs that havent reached bottom yet
         fallingX = document.getElementsByClassName('fallingX')
         for (let i=0; i<fallingX.length; i++){
             fallingX[i].classList.add('active')
@@ -161,7 +200,7 @@ function makeRainingXs (){
     const fallingX = document.createElement('div')
     fallingX.classList.add('fallingX')
     fallingX.style.left = Math.random() * 100 + 'vw'
-    fallingX.style.zIndex = 1     //Math.random() * 20 + 50
+    fallingX.style.zIndex = 1    
     fallingX.style.animationDuration = Math.random() * 1 + 4 + 's'
     fallingX.style.fontSize = Math.random() * 34 + 34 + 'px'
     fallingX.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
@@ -175,7 +214,7 @@ function makeRainingXs (){
     const fallingO = document.createElement('div')
     fallingO.classList.add('fallingX')
     fallingO.style.left = Math.random() * 100 + 'vw'
-    fallingO.style.zIndex = 1     //Math.random() * 20 + 50
+    fallingO.style.zIndex = 1    
     fallingO.style.animationDuration = Math.random() * 1 + 4 + 's'
     fallingO.style.fontSize = Math.random() * 34 + 34 + 'px'
     fallingO.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
@@ -190,35 +229,6 @@ function makeRainingXs (){
 
 
 // ****** PLAY WITH THE COMPUTER MODE ******
-
-
-//     function changeBtn() {
-//         currentBtn = event.target
-    
-//         if (currentBtn.value){
-//             currentBtn.value == null;
-//         } else 
-//         if (playCount % 2 === 0) {
-//             currentBtn.value = "X";
-//             playCount++;
-//         } else {
-//             ComputerChooses()
-//             playCount++
-//         }
-//         playGame();
-//         showTurn();
-//     }
-
-//         function ComputerChooses(){
-//             let computerChoice = Math.floor(Math.random() * buttonsArr.length)
-//             while (playCount % 2 === 1){
-//                 currentBtn = buttonsArr[computerChoice]
-//                 if
-//             }
-//         }
-// }
-// playWithComputer()
-
 
 
 
