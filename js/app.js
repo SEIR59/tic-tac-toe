@@ -93,7 +93,7 @@ function checkforWin() {
         console.log("Player O wins!");
       }
     }
-    if (board[3] === board[4] && board[3] === board[5]) {
+    else if (board[3] === board[4] && board[3] === board[5]) {
       if (board[3] === "X") {
         console.log("Player X wins!");
       } else if (board[3] === "O") {
@@ -108,21 +108,21 @@ function checkforWin() {
       }
     }
     //check columns
-    if (board[0] === board[3] && board[0] === board[6]) {
+    else if (board[0] === board[3] && board[0] === board[6]) {
       if (board[0] === "X") {
         console.log("Player X wins!");
       } else if (board[0] === "O") {
         console.log("Player O wins!");
       }
     }
-    if (board[1] === board[4] && board[1] === board[7]) {
+    else if (board[1] === board[4] && board[1] === board[7]) {
       if (board[1] === "X") {
         console.log("Player X wins!");
       } else if (board[1] === "O") {
         console.log("Player O wins!");
       }
     }
-    if (board[2] === board[5] && board[2] === board[8]) {
+    else if (board[2] === board[5] && board[2] === board[8]) {
       if (board[2] === "X") {
         console.log("Player X wins!");
       } else if (board[2] === "O") {
@@ -130,19 +130,21 @@ function checkforWin() {
       }
     }
     //check diagonalls
-    if (board[0] === board[4] && board[0] === board[8]) {
+    else if (board[0] === board[4] && board[0] === board[8]) {
       if (board[0] === "X") {
         console.log("Player X wins!");
       } else if (board[0] === "O") {
         console.log("Player O wins!");
       }
     }
-    if (board[2] === board[4] && board[2] === board[6]) {
+    else if (board[2] === board[4] && board[2] === board[6]) {
       if (board[2] === "X") {
         console.log("Player X wins!");
       } else if (board[2] === "O") {
         console.log("Player O wins!");
       }
+    } else if(!isMovesLeft()){
+        console.log("it was a tie")
     }
   }
 }
@@ -164,9 +166,9 @@ function restart() {
 function isMovesLeft() {
   for (let i = 0; i < board.length; i++) {
     if (board.includes("")){
-        console.log(true)
+        return true
     } else{
-        console.log(false);
+        return false;
     }
   }
 }
