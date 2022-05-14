@@ -1,5 +1,6 @@
 const cells = document.querySelectorAll('.cell')
 const restart = document.querySelector('.restart-btn')
+const nxtUp = document.querySelector('.next-up')
 
 //Allows user to click cell and leave either an x or an o
 let letter = 1;
@@ -8,11 +9,13 @@ for (const cell of cells){
         if(letter === 1){
             cell.innerHTML = "X";
             letter = letter - 1;
+            console.log(letter)
         } else {
             cell.innerHTML = "O"
             letter = letter + 1
-            console.log("add letter")
+            console.log(letter)
         }
+    displayNextUpMessage(letter)
     })
 }
 
@@ -21,4 +24,15 @@ restart.addEventListener('click',function(){
     cells.forEach(function(cell){
         cell.innerHTML = ""
     })
+    letter = 1;
+    nxtUp.innerHTML = "Next up: X"
 })
+
+function displayNextUpMessage(num){
+    if(num === 0){
+        nxtUp.innerHTML = "Next up: O"
+    } else {
+        nxtUp.innerHTML = "Next up: X"
+    }
+}
+

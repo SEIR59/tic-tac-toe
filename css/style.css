@@ -5,6 +5,13 @@ body{
   height: 100vh;
 }
 
+.info-container{
+  height: 10vh;
+  width: 60vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .container{
   height: 40vh;
   width: 40vw;
@@ -13,7 +20,7 @@ body{
   grid-template-rows: 1fr 1fr 1fr;
 }
 
-div{
+.cell{
   border: 2px solid black ;
   text-align: center;
   line-height: 12vh;
@@ -21,4 +28,5 @@ div{
 
 .restart-btn{
   margin-bottom: 20px;
+  width: 40vw;
 }
