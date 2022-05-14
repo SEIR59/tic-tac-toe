@@ -51,19 +51,32 @@ const playerMove = (location) => {
 
 //function to see if somebody won
 const winnerFound = (winner) => {
+    const sb = document.getElementById
     if (winner === 'X' || winner === 'O') {
         console.log(`${winner}'s win!`)
         document.getElementById('title').innerText = `${winner} wins!`
+        if(winner === 'X'){
+            currentScore[0]++
+        }else{
+            currentScore[1]++
+        }
     } else {
         console.log('Tie')
         document.getElementById('title').innerText = `Booo. Tie.`
+        currentScore[2]++
     }
     boardClickOn(false)
     for (let i = 0; i < allSquares.length; i++) {
         allSquares[i].style.background = 'purple'
     }
+    updateScoreboard()
 }
 
+const updateScoreboard = () =>{
+    document.getElementById('sbX').innerText = `Player X: ${currentScore[0]}`
+    document.getElementById('sbO').innerText = `Player O: ${currentScore[1]}`
+    document.getElementById('sbT').innerText = `Ties: ${currentScore[2]}`
+}
 //function to reset the gameboard
 const clearMoves = () => {
     //console.log('in clearMoves')
@@ -83,28 +96,19 @@ const clearMoves = () => {
 
 //toggle board click listening. true = on, false = off.
 const boardClickOn = (bool) => {
-
+    //bridge to connect playerMove with syntax of event listener activation
     const playerMoveBridge = () => {
         const target = event.target
         playerMove(target)
     }
-
     if (bool === true) {
-        for (let i = 0; i < allSquares.length; i++) {
-            allSquares[i].addEventListener('click', playerMoveBridge)
+        $('#gameboard').on('click' , playerMoveBridge)
+    } else {
+        $('#gameboard').off()
         }
-
-    } /* else {
-        for (let i = 0; i < allSquares.length; i++) {
-            console.log('remove tried')
-            $(allSquares[i]).off();
-        }
-    } */
-}
+    }
 
 // #endregion 
-
-
 //initialize button(s) and listeners
 document.getElementById('resetbtn').addEventListener('click', function () { clearMoves() })
 const allSquares = document.getElementsByClassName('square') //global variable for all the game squares.
@@ -115,3 +119,4 @@ let currentTurn = 0
 let X = [0, 0, 0, 0, 0, 0, 0, 0]
 let O = [0, 0, 0, 0, 0, 0, 0, 0]
 let tieCheck = 0;
+const currentScore = [0,0,0]
