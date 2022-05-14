@@ -10,6 +10,7 @@ const displayWins = () => {
 }
 displayWins()
 
+
 const showTurn = () => { 
     const playerTurn = document.getElementById('playerTurn')
     playerTurn.innerText =  `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
@@ -62,6 +63,8 @@ const changeClasses = () => {
     endGameText.classList.add('active')
     rulesPopup.classList.add('active')
     for (let i=0; i<smallGameBoardPic.length; i++){
+        
+        // need to check this, i'm not using i
         smallGameBoardPic.classList.add('active')
     }
     endGameText.style.color = '#d5ff61'
@@ -77,20 +80,22 @@ const disableBtns = () => {
 const player1Wins = () => {
     xWinsCount++
     endGameText.innerText = `X WINS!!`
+    playerTurn.innerText = 'X WINS!!'
     displayWins()
     disableBtns()
-    XRain = setInterval(makeRainingXs, 200)
-    setTimeout(() => clearInterval(XRain), 3000)
+    XRain = setInterval(makeRainingXs, 100)
+    setTimeout(() => clearInterval(XRain), 5000)
     setTimeout(changeClasses, 5000) 
 }
 
 const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS!!`
+    playerTurn.innerText = 'O WINS!!'
     displayWins()
     disableBtns()
-    ORain = setInterval(makeRainingOs, 200)
-    setTimeout(() => clearInterval(ORain), 3000)
+    ORain = setInterval(makeRainingOs, 100)
+    setTimeout(() => clearInterval(ORain), 5000)
     setTimeout(changeClasses, 5000) 
 }
 
@@ -124,7 +129,7 @@ function playGame() {
 }
 
 
-//this resets the playing board and resets playcount 
+//this resets the playing board and resets playcount. This is called when pushing button on main
 function resetGame() {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].value = ""
@@ -132,6 +137,11 @@ function resetGame() {
         buttonsArr[i].disabled = false
         rulesPopup.classList.remove('active')
         endGameText.classList.remove('active')
+
+        fallingX = document.getElementsByClassName('fallingX')
+        for (let i=0; i<fallingX.length; i++){
+            fallingX[i].classList.add('active')
+        }
         playCount = 0;
         showTurn()
     }
@@ -151,7 +161,7 @@ function makeRainingXs (){
     const fallingX = document.createElement('div')
     fallingX.classList.add('fallingX')
     fallingX.style.left = Math.random() * 100 + 'vw'
-    fallingX.style.zIndex = Math.random() * 20 + 50
+    fallingX.style.zIndex = 1     //Math.random() * 20 + 50
     fallingX.style.animationDuration = Math.random() * 1 + 4 + 's'
     fallingX.style.fontSize = Math.random() * 34 + 34 + 'px'
     fallingX.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
@@ -165,7 +175,7 @@ function makeRainingXs (){
     const fallingO = document.createElement('div')
     fallingO.classList.add('fallingX')
     fallingO.style.left = Math.random() * 100 + 'vw'
-    fallingO.style.zIndex = Math.random() * 20 + 50
+    fallingO.style.zIndex = 1     //Math.random() * 20 + 50
     fallingO.style.animationDuration = Math.random() * 1 + 4 + 's'
     fallingO.style.fontSize = Math.random() * 34 + 34 + 'px'
     fallingO.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
