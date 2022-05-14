@@ -1,6 +1,6 @@
-let playCount = 0;
-let xWinsCount = 0;
-let oWinsCount = 0;
+let playCount = 0
+let xWinsCount = 0
+let oWinsCount = 0
 
 const displayWins = () => {
     let xScoreDisplay = document.getElementById('xScore')
@@ -14,18 +14,18 @@ const showTurn = () => {
     const playerTurn = document.getElementById('playerTurn')
     playerTurn.innerText =  `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
 }
-showTurn();
+showTurn()
 
 //assign variables to HTML button inputs
-const btnOne = document.getElementById('one');
-const two = document.getElementById('two');
-const three = document.getElementById('three');
-const four = document.getElementById('four');
-const five = document.getElementById('five');
-const six = document.getElementById('six');
-const seven = document.getElementById('seven');
-const eight = document.getElementById('eight');
-const nine = document.getElementById('nine');
+const btnOne = document.getElementById('one')
+const two = document.getElementById('two')
+const three = document.getElementById('three')
+const four = document.getElementById('four')
+const five = document.getElementById('five')
+const six = document.getElementById('six')
+const seven = document.getElementById('seven')
+const eight = document.getElementById('eight')
+const nine = document.getElementById('nine')
 
 const rulesPopup = document.getElementById('rulesPopup')
 const playLocalBtn = document.getElementById('playLocal')
@@ -33,32 +33,32 @@ const endGameText = document.getElementById('endGameText')
 const endGameText2 = document.getElementById('endGameText2')
 const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
-const buttonsArr = [one, two, three, four, five, six, seven, eight, nine];
+const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 
 for (let i = 0; i < buttonsArr.length; i++) {
-    buttonsArr[i].addEventListener("click", changeBtn);
+    buttonsArr[i].addEventListener("click", changeBtn)
 }
 
 function changeBtn() {
     currentBtn = event.target
 
     if (currentBtn.value){
-        currentBtn.value == null;
+        currentBtn.value == null
     } else 
     if (playCount % 2 === 0) {
-        currentBtn.value = "X";
-        playCount++;
+        currentBtn.value = "X"
+        playCount++
     } else {
-        currentBtn.value = "O";
-        playCount++;
+        currentBtn.value = "O"
+        playCount++
     }
     currentBtn.classList.add('active')
-    playGame();
-    showTurn();
+    playGame()
+    showTurn()
 }
 
 //this will be to change active on and off
-function changeClasses() {
+const changeClasses = () => {
     endGameText.classList.add('active')
     rulesPopup.classList.add('active')
     for (let i=0; i<smallGameBoardPic.length; i++){
@@ -66,32 +66,34 @@ function changeClasses() {
     }
     endGameText.style.color = '#d5ff61'
 }
+
+//this disables all buttons before changeClasses() runs
+const disableBtns = () => {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].disabled = true;
+    }
+}
+
 const player1Wins = () => {
     xWinsCount++
     endGameText.innerText = `X WINS!!`
-    changeClasses()
     displayWins()
+    disableBtns()
+    XRain = setInterval(makeRainingXs, 200)
+    setTimeout(() => clearInterval(XRain), 3000)
+    setTimeout(changeClasses, 5000) 
 }
 
 const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS!!`
-    changeClasses()
     displayWins()
+    disableBtns()
+    ORain = setInterval(makeRainingOs, 200)
+    setTimeout(() => clearInterval(ORain), 3000)
+    setTimeout(changeClasses, 5000) 
 }
 
-
-//this resets the playing board and resets playcount 
-function resetGame() {
-    for (let i = 0; i < buttonsArr.length; i++) {
-        buttonsArr[i].value = "";
-        buttonsArr[i].classList.remove('active')
-        rulesPopup.classList.remove('active')
-        endGameText.classList.remove('active')
-        playCount = 0;
-        showTurn()
-    }
-}
 
 function playGame() {
     if (((one.value == "X") && (two.value == "X") && (three.value == "X")) ||
@@ -116,11 +118,24 @@ function playGame() {
     
     if (playCount == 9) {
         endGameText.innerText = `DRAW`
-        changeClasses()
+        setTimeout(changeClasses, 3000) 
+        disableBtns()
     }
 }
 
 
+//this resets the playing board and resets playcount 
+function resetGame() {
+    for (let i = 0; i < buttonsArr.length; i++) {
+        buttonsArr[i].value = ""
+        buttonsArr[i].classList.remove('active')
+        buttonsArr[i].disabled = false
+        rulesPopup.classList.remove('active')
+        endGameText.classList.remove('active')
+        playCount = 0;
+        showTurn()
+    }
+}
 
 
 playLocalBtn.addEventListener('click', resetGame)
@@ -129,6 +144,39 @@ playLocalBtn.addEventListener('click', resetGame)
 
 
 
+
+const colorsArr = ['#242c10', '#d5ff61', 'white']
+
+function makeRainingXs (){
+    const fallingX = document.createElement('div')
+    fallingX.classList.add('fallingX')
+    fallingX.style.left = Math.random() * 100 + 'vw'
+    fallingX.style.zIndex = Math.random() * 20 + 50
+    fallingX.style.animationDuration = Math.random() * 1 + 4 + 's'
+    fallingX.style.fontSize = Math.random() * 34 + 34 + 'px'
+    fallingX.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
+    fallingX.innerText = 'X WINS!!'
+    document.body.appendChild(fallingX)
+  }
+  let XRain;
+  
+
+  function makeRainingOs (){
+    const fallingO = document.createElement('div')
+    fallingO.classList.add('fallingX')
+    fallingO.style.left = Math.random() * 100 + 'vw'
+    fallingO.style.zIndex = Math.random() * 20 + 50
+    fallingO.style.animationDuration = Math.random() * 1 + 4 + 's'
+    fallingO.style.fontSize = Math.random() * 34 + 34 + 'px'
+    fallingO.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
+    fallingO.innerText = 'O WINS!!'
+    document.body.appendChild(fallingO)
+  }
+  let ORain;
+  
+  
+  
+  
 
 
 // ****** PLAY WITH THE COMPUTER MODE ******
@@ -166,12 +214,9 @@ playLocalBtn.addEventListener('click', resetGame)
 
 // ******** TO-DO LIST **********
 
-//change top div to round image. tic tac toe board to start
 
 //media query stuff
 
-
-//settimeout() to add and remove class. i want to see the board once the game is complete before the reset screen comes on. 
 
 // change the top text when someone wins to a picture of an x or o or draw
 

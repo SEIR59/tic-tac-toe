@@ -241,3 +241,24 @@ input.active {
 .smallGameBoardPic.active {
   display: none;
 }
+
+
+
+.fallingX {
+  display: inline-block;
+  position: fixed;
+  top: -1vh;
+  transform: translateY(0);
+  animation: fall 3s linear forwards;
+}
+.fallingX .active {
+  display: none;
+}
+
+
+
+@keyframes fall {
+  to {
+    transform: translateY(105vh);
+  }
+}
