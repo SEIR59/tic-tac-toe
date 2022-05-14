@@ -55,6 +55,7 @@ const playWithComputer = () => {
     }
 }
 
+// *** The following function is to play locally
 
 function changeBtn() {
     currentBtn = event.target
@@ -78,25 +79,29 @@ function changeBtn() {
 }
 
 
+//*** The following two functions are used to play against computer
 
 const computerChooses = () => {
+    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+    computerBtn = buttonsArr[computerChoice]
+        if (computerBtn.value){
+            while (computerBtn.value){
+                computerBtn.value == null
+                computerChoice = Math.floor(Math.random() * buttonsArr.length)
+                computerBtn = buttonsArr[computerChoice]
+                continue
+            }
+        }
+    computerBtn.value = "O"
+    computerBtn.classList.add('computer')
+
+    playCount ++;
+    playGame()
+    showTurn()
+
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].disabled = false;
     }
-    computerChoice = Math.floor(Math.random() * buttonsArr.length)
-    computerBtn = buttonsArr[computerChoice]
-        if (playCount <= 7){
-            if (computerBtn.value){
-                while (computerBtn.value){
-                    computerBtn.value == null
-                    computerChoice = Math.floor(Math.random() * buttonsArr.length)
-                    computerBtn = buttonsArr[computerChoice]
-                    continue
-                }
-            }
-        } 
-        computerBtn.value = "O"
-        computerBtn.classList.add('computer')
 }
 
 function changeBtnWithComputer() {
@@ -104,26 +109,16 @@ function changeBtnWithComputer() {
     disableBtns()
     currentBtn = event.target
 
-    if (currentBtn.value){
-        currentBtn.value == null
-    } else {
-        currentBtn.value = "X"
-        playCount++
-        showTurn()
-    } 
+    currentBtn.value ? currentBtn.value == null : currentBtn.value = "X"
+        
     currentBtn.classList.add('active')
+    playCount++
     showTurn()
     playGame()
-
-    // made this a bool to make sure computer doesn't go after x wins
-    if (!xWinsGameOver){
-        setTimeout(computerChooses, 500)     
-    } else
-    //add this to computer Chooses?
-    player1Wins()
-    playCount ++;
-    playGame()
-    showTurn()
+    
+    // made this condition to make sure computer doesn't still choose after x wins
+    //also make sure playCount isn't over 7, otherwise computer still chooses even after board is full
+    !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : xWinsGameOver ? player1Wins() : null
 }
 
 
@@ -154,8 +149,8 @@ const player1Wins = () => {
     displayWins()
     disableBtns()
     XRain = setInterval(makeRainingXs, 100)
-    setTimeout(() => clearInterval(XRain), 5000)
-    setTimeout(changeClasses, 5000) 
+    setTimeout(() => clearInterval(XRain), 4000)
+    setTimeout(changeClasses, 4000) 
 }
 
 const player2Wins = () => {
@@ -165,8 +160,8 @@ const player2Wins = () => {
     displayWins()
     disableBtns()
     ORain = setInterval(makeRainingOs, 100)
-    setTimeout(() => clearInterval(ORain), 5000)
-    setTimeout(changeClasses, 5000) 
+    setTimeout(() => clearInterval(ORain), 4000)
+    setTimeout(changeClasses, 4000) 
 }
 
 
