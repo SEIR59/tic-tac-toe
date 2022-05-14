@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Tic Tac Toe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
-  <h1>Hello Front-End</h1>
 
+<body>
+  <header>
+    <h1 class="title">Tic Tac Toe</h1>
+  </header>
+  <main>
+    <div id="flex-container">
+      <p class="content">Welcome to Tic Tac Toe! This game takes place on a three-by-three grid between two players. Players place their marker (represented by either an X or O) in one of the nine available spaces on the grid. A player is considered a winner when they successfully place three of their markers in a horizontal, vertical, or diagonal row. The game is considered a draw if all the available spaces have been filled but no declared winner.</p>
+      <div id="ttt-grid">
+        <div id="col1-row1" class="square"></div>
+        <div id="col1-row2" class="square"></div>
+        <div id="col1-row3" class="square"></div>
+        <div id="col2-row1" class="square"></div>
+        <div id="col2-row2" class="square"></div>
+        <div id="col2-row3" class="square"></div>
+        <div id="col3-row1" class="square"></div>
+        <div id="col3-row2" class="square"></div>
+        <div id="col3-row3" class="square"></div>
+      </div>
+    </div>
+  </main>
   <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

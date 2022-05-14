@@ -1,3 +1,54 @@
-h1 {
-  color: purple;
+body {
+  margin: 8% 15% 0% 15%;
+  background-color: #e5e5e5;
+  font-family: 'Roboto Flex', sans-serif;
+  line-height: 2.5vh;
+  letter-spacing: 0.1vw;
+}
+
+.title {
+  color: #09222f;
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+#flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.content {
+  margin: 0% 5% 0% 0%;
+}
+
+#ttt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.square {
+  background-color: #98c3e1;
+  border: 0.75px solid #09222f;
+  padding: 75px;
+}
+
+@media screen and (max-width: 1000px){
+  .square {
+    padding: 50px;
+  }
+  .content {
+    font-size: 10pt;
+  }
+}
+
+@media screen and (max-width: 800px){
+  #flex-container {
+    flex-wrap: wrap;
+  }
+  .content {
+    margin: 0% 0% 10% 0%;
+  }
+  
 }
