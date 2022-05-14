@@ -1,3 +1,48 @@
 h1 {
-  color: purple;
+  color: blue;
+  font-size: xx-large;
+ display: inline-block;
+}
+body {
+
+
+}
+#button {
+  color: yellow;
+  background-color: darkblue;
+  width: 100px;
+  padding: 14px 28px;
+  border-radius: 50% 20%;
+  display: center;
+   
+}
+
+.container {
+  height: 90vh;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  
+}
+#board {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 4px;
+  grid-auto-flow: au;
+  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.box {
+  height: 150px;
+  width: 150px;
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+  
 }
