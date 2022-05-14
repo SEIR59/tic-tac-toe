@@ -7,7 +7,7 @@ body{
 }
 main{
   margin:0;
-  background:black;
+  background:white;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -15,26 +15,40 @@ main{
   align-items: center;
 }
 #gamecontainer{
-  background: yellow;
+  border-radius: calc(var(--dimension)*.01);
+  background: blue;
   display: flex;
   flex-flow: column;
   align-items: center;
   width: calc(var(--dimension)*.8);
   height: calc(var(--dimension)*.8);
+
 }
 #gametitle{
+  border-radius: calc(var(--dimension)*.01);
   background:blue;
   width:calc(var(--dimension)*.8);
   height: calc(var(--dimension)*.1);
+  font-size:calc(var(--dimension)*.075);
+  text-align: center;
+  font-weight:bold;
 }
 #gameboard{
-  background: red;
+  background: black;
   display: grid;
   grid-template-columns: repeat(3,calc(var(--dimension)*.2));
   grid-template-rows: repeat(3,calc(var(--dimension)*.2));
-
+  gap: calc(var(--dimension)*.01);
+  font-size:calc(var(--dimension)*.15);
+  font-weight: bolder;
+  text-align: center;
+  color: white;
 }
-#scoreboard{
+#gamefooter{
+  border-radius: calc(var(--dimension)*.01);
+  display:flex;
+  justify-content: center;
+  align-items: center;
   background: blue;
   width:calc(var(--dimension)*.8);
   height: calc(var(--dimension)*.1);
@@ -46,4 +60,21 @@ main{
   font-size:calc(var(--dimension)*.17);
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bolder;
+  text-align: center;
+  color: black;
+}
+#scoreboard{
+  position: fixed;
+  top: 5vh;
+  right: 5vh;
+}
+#scoreboard h1{
+  text-decoration: underline;
+}
+#resetbtn{
+  width:calc(var(--dimension)*.5);
+  height: calc(var(--dimension)*.09);
+  border-radius: calc(var(--dimension)*.01);
+  font-size: calc(var(--dimension)*.05);
+  font-weight: bold;
 }
