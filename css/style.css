@@ -48,13 +48,10 @@ body {
 }
 
 .button {
-  margin: auto;
+margin: auto;
 display: flex;
 flex-wrap: wrap;
-background-color:teal;
-position: sticky;
-bottom: 100px;
-left: 500px;
+background-color:rgb(0, 170, 170);
 font-family: 'Orbitron', sans-serif;
 }
 
