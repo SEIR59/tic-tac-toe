@@ -1,3 +1,104 @@
-h1 {
-  color: purple;
+body{
+  width:50%;
+  height:100%;
+  margin:auto;
+
 }
+
+h1 {
+  font-size: 50px;
+  margin-top: 50px;
+  color: purple;
+  text-align: center;
+}
+.greeting{
+  font-size: 18px;
+  margin: 50px  auto;
+  max-width: 500px;
+  color: black;
+  text-align: center;
+}
+.commentary{
+  font-size: 24px;
+  margin:auto;
+  text-align: center;
+}
+
+.grid{
+  background-color: black;
+  margin: 100px auto;
+  width:600px;
+  height:600px;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(3,1fr);
+  grid-column-gap:5px;
+  grid-row-gap:5px;
+
+}
+.rectangle{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  
+  display: flex;
+ 
+  background-color:white;
+}
+img{
+  margin:auto;
+  width:120px;
+  height:120px;
+}
+
+.rectangle{
+  border:0px;
+}
+
+
+.reset{
+  width:200px;
+  height:45px;
+  font-size: 22px;
+  text-align: center;
+  display: block;
+  margin:100px auto;
+  border: 0.5px solid black;
+  border-radius: 15px;
+}
+
+/* #rec01{
+
+  grid-column: 1/1;
+  grid-row: 1/1;
+  margin: 5px 5px 5px 5px;
+  background-color: white;
+} */
+
+
+/* .grid{
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-flow: row wrap;
+  width: 630px;
+  height: 630px;
+  background-color: black;
+  margin: 100px auto;
+  padding: 0px auto;
+  border: 5px solid white;
+} */
+
+/* .rectangle{
+
+width: 200px;
+height: 200px;
+margin: 5px 5px 5px 5px;
+background-color: white;
+
+} */
+
+
+
+
+
