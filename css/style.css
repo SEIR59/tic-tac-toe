@@ -66,16 +66,17 @@ body {
 }
 
 section button {
-  font-size: 40px;
-  font-weight: bold;
+  font-size: 48px;
+  font-weight: bolder;
   height: 150px;
   width: 275px;
   border-radius: 20px;
   margin: 10px;
   background: linear-gradient(90deg, #242c10, #e6b800, #242c10);
-  color:#d5ff61;
+  color:white;
   border: 3px solid #242c10;
   -webkit-text-stroke:1px #242c10;
+  box-shadow: 0px 20px 40px rgba(36, 44, 16, .8);
 }
 section button:hover {
   color: white;
@@ -148,7 +149,7 @@ main {
     "4 5 6"
     "7 8 9";
     z-index: 3;
-    border: 5px solid #e6b800;
+    border: 5px solid white;
     border-radius: 40px;
 }
 
@@ -166,7 +167,7 @@ input.hover:hover {
   background-color: white;
 }
 input.active {
-  background-color: white;
+  background-color: #e6b800;
 }
 input.computer {
   background-color: #d5ff61;
@@ -210,7 +211,7 @@ input.computer {
     background-color: rgba(36, 44, 16, .7);
     padding: 30px 20px;
     border-radius: 30px;
-    border: 3px solid #e6b800;
+    border: 3px solid #d5ff61;
   }
 span {
   color: #d5ff61;
@@ -268,7 +269,7 @@ span {
   background-color: #d5ff61;
 }
 #fourth, #fifth, #eighth, #ninth {
-  background-color: white;
+  background-color: #e6b800;
 }
 /* #first, #sixth {
   background-color: rgba(255,255,255, 0.3);

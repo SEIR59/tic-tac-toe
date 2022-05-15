@@ -6,16 +6,16 @@ let yWinsGameOver = false
 
 const displayWins = () => {
     let xScoreDisplay = document.getElementById('xScore')
-        xScoreDisplay.innerText = `Number of games X has won: ${xWinsCount}`
+    xScoreDisplay.innerText = `Number of games X has won: ${xWinsCount}`
     let oScoreDisplay = document.getElementById('oScore')
-        oScoreDisplay.innerText = `Number of games O has won: ${oWinsCount}`
+    oScoreDisplay.innerText = `Number of games O has won: ${oWinsCount}`
 }
 displayWins()
 
 
-const showTurn = () => { 
+const showTurn = () => {
     const playerTurn = document.getElementById('playerTurn')
-    playerTurn.innerText =  `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
+    playerTurn.innerText = `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
 }
 showTurn()
 
@@ -42,7 +42,9 @@ const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 const enableButtons = () => {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].disabled = false;
-        buttonsArr[i].classList.add('hover')
+        if (!buttonsArr[i].value) {
+            buttonsArr[i].classList.add('hover')
+        }
     }
 }
 
@@ -77,24 +79,27 @@ const playWithComputer = () => {
 function changeBtn() {
     currentBtn = event.target
 
-    if (currentBtn.value){
+    if (currentBtn.value) {
         currentBtn.value == null
-    } else 
-    if (playCount % 2 === 0) {
-        currentBtn.value = "X"
-        playCount++
-    } else {
-        currentBtn.value = "O"
-        currentBtn.classList.add('computer')
-        playCount++
-    }
+    } else
+        if (playCount % 2 === 0) {
+            currentBtn.value = "X"
+            playCount++
+        } else {
+            currentBtn.value = "O"
+            currentBtn.classList.add('computer')
+            playCount++
+        }
     currentBtn.classList.add('active')
+    currentBtn.classList.remove('hover')
+
     showTurn()
     playGame()
-    if (xWinsGameOver){
+
+    if (xWinsGameOver) {
         player1Wins()
     }
-    if (yWinsGameOver){
+    if (yWinsGameOver) {
         player2Wins()
     }
 }
@@ -105,18 +110,18 @@ function changeBtn() {
 const computerChooses = () => {
     computerChoice = Math.floor(Math.random() * buttonsArr.length)
     computerBtn = buttonsArr[computerChoice]
-        if (computerBtn.value){
-            while (computerBtn.value){
-                computerBtn.value == null
-                computerChoice = Math.floor(Math.random() * buttonsArr.length)
-                computerBtn = buttonsArr[computerChoice]
-                continue
-            }
+    if (computerBtn.value) {
+        while (computerBtn.value) {
+            computerBtn.value == null
+            computerChoice = Math.floor(Math.random() * buttonsArr.length)
+            computerBtn = buttonsArr[computerChoice]
+            continue
         }
+    }
     computerBtn.value = "O"
     computerBtn.classList.add('computer')
 
-    playCount ++;
+    playCount++;
     playGame()
     showTurn()
 
@@ -132,18 +137,17 @@ function changeBtnWithComputer() {
         enableButtons()
         return null
     }
-    
-    currentBtn.value = "X"
-        
+    currentBtn.value = 'X'
+
     currentBtn.classList.add('active')
     playCount++
     showTurn()
     playGame()
-    
+
     // made this condition to make sure computer doesn't still choose after x wins
     //also make sure playCount isn't over 7, otherwise computer still chooses even after board is full
     !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : (xWinsGameOver ? player1Wins() : null)
-    ()
+        ()
 }
 
 
@@ -152,11 +156,6 @@ function changeBtnWithComputer() {
 const changeClasses = () => {
     endGameText.classList.add('active')
     rulesPopup.classList.add('active')
-    for (let i=0; i<smallGameBoardPic.length; i++){
-        
-        // need to check this, i'm not using i
-        // smallGameBoardPic.classList.add('active')
-    }
 }
 
 
@@ -164,29 +163,27 @@ const player1Wins = () => {
     xWinsCount++
     endGameText.innerText = `X WINS`
     playerTurn.innerText = 'X WINS!!'
-    endGameText2.innerText = `Number of games X has won: ${xWinsCount}
-    Number of games O has won: ${oWinsCount}`
+    // endGameText2.innerText = `Number of games X has won: ${xWinsCount}
+    // Number of games O has won: ${oWinsCount}`
     displayWins()
     disableBtns()
     XRain = setInterval(makeRainingXs, 100)
     setTimeout(() => clearInterval(XRain), 4000)
-    setTimeout(changeClasses, 4000) 
+    setTimeout(changeClasses, 4000)
 }
 
-
-//disable hover when computer is choosing and when game is over
 
 const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS`
     playerTurn.innerText = 'O WINS!!'
-    endGameText2.innerText = `Number of games X has won: ${xWinsCount}
-    Number of games O has won: ${oWinsCount}`
+    // endGameText2.innerText = `Number of games X has won: ${xWinsCount}
+    // Number of games O has won: ${oWinsCount}`
     displayWins()
     disableBtns()
     ORain = setInterval(makeRainingOs, 100)
     setTimeout(() => clearInterval(ORain), 4000)
-    setTimeout(changeClasses, 4000) 
+    setTimeout(changeClasses, 4000)
 }
 
 
@@ -198,10 +195,9 @@ function playGame() {
         ((two.value == "X") && (five.value == "X") && (eight.value == "X")) ||
         ((three.value == "X") && (six.value == "X") && (nine.value == "X")) ||
         ((one.value == "X") && (five.value == "X") && (nine.value == "X")) ||
-        ((three.value == "X") && (five.value == "X") && (seven.value == "X"))) 
-        // player1Wins()
+        ((three.value == "X") && (five.value == "X") && (seven.value == "X")))
         return xWinsGameOver = true
-       
+
     if (((one.value == "O") && (two.value == "O") && (three.value == "O")) ||
         ((four.value == "O") && (five.value == "O") && (six.value == "O")) ||
         ((seven.value == "O") && (eight.value == "O") && (nine.value == "O")) ||
@@ -210,14 +206,14 @@ function playGame() {
         ((three.value == "O") && (six.value == "O") && (nine.value == "O")) ||
         ((one.value == "O") && (five.value == "O") && (nine.value == "O")) ||
         ((three.value == "O") && (five.value == "O") && (seven.value == "O"))) {
-            disableBtns()
-            return yWinsGameOver = true
-        }
-        
+        disableBtns()
+        return yWinsGameOver = true
+    }
+
     if (playCount >= 9) {
-            endGameText.innerText = `DRAW`
-            setTimeout(changeClasses, 1000) 
-            disableBtns()
+        endGameText.innerText = `DRAW`
+        setTimeout(changeClasses, 1000)
+        disableBtns()
     }
 }
 
@@ -234,7 +230,7 @@ function resetGame() {
         endGameText.classList.remove('active')
         //display:none for any fallingXs that havent reached bottom yet
         fallingX = document.getElementsByClassName('fallingX')
-        for (let i=0; i<fallingX.length; i++){
+        for (let i = 0; i < fallingX.length; i++) {
             fallingX[i].classList.add('active')
         }
         playCount = 0;
@@ -259,36 +255,36 @@ playComputerBtn.addEventListener('click', () => {
 
 const colorsArr = ['#d5ff61', 'white', '#e6b800']
 
-function makeRainingXs (){
+function makeRainingXs() {
     const fallingX = document.createElement('div')
     fallingX.classList.add('fallingX')
     fallingX.style.left = Math.random() * 100 + 'vw'
-    fallingX.style.zIndex = 1    
+    fallingX.style.zIndex = 1
     fallingX.style.animationDuration = Math.random() * 5 + 2 + 's'
     fallingX.style.fontSize = Math.random() * 95 + 35 + 'px'
     fallingX.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
     fallingX.innerText = 'X'
     document.body.appendChild(fallingX)
-  }
-  let XRain;
-  
+}
+let XRain;
 
-  function makeRainingOs (){
+
+function makeRainingOs() {
     const fallingO = document.createElement('div')
     fallingO.classList.add('fallingX')
     fallingO.style.left = Math.random() * 100 + 'vw'
-    fallingO.style.zIndex = 1    
+    fallingO.style.zIndex = 1
     fallingO.style.animationDuration = Math.random() * 5 + 2 + 's'
     fallingO.style.fontSize = Math.random() * 95 + 35 + 'px'
     fallingO.style.color = colorsArr[Math.floor(Math.random() * colorsArr.length)]
     fallingO.innerText = 'O'
     document.body.appendChild(fallingO)
-  }
-  let ORain;
-  
-  
-  
-  
+}
+let ORain;
+
+
+
+
 
 
 // ****** PLAY WITH THE COMPUTER MODE ******
