@@ -3,11 +3,19 @@ let gameBoard = document.querySelector(".square");
 let squareArr = ["", "", "", "", "", "", "", "", ""];
 let firstPlayer = "X";
 let secondPlayer = "O";
-// let turn = 0;
+let turn;
 // let lastClicked;
 
 // length of turns
 // for (i = 0; i <= 9; i++) {}
+
+let playerTurn = [firstPlayer, secondPlayer];
+function currentTurn() {
+  for (i = 0; i < playerTurn.length; i += 1) {
+    return playerTurn[i];
+  }
+  return result;
+}
 
 document.getElementById("box1").addEventListener("click", () => {
   //   let currentPlayer = [firstPlayer, secondPlayer];
