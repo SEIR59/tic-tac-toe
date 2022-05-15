@@ -62,7 +62,8 @@ const player2orComputer = document.querySelector("#player2orComputer");
 //new game(initialize) button
 const newGameButton = document.querySelector("#newGame");
 
-const gridItem = document.querySelector(".grid-item");
+///multiple gridItems
+const gridItem = document.querySelectorAll(".grid-item");
 
 const g1 = document.getElementById("grid-1");
 const g2 = document.getElementById("grid-2");
@@ -176,39 +177,23 @@ g9.addEventListener("click", function () {
   switchPlayer(g9, "9");
 });
 
-/** Remove Grid Content */
+/** Clean Grid Content */
 const removeGridContent = function () {
-  //remove elements in the grid
-  //is there a smarter way??
-  while (g1.firstChild) {
-    g1.removeChild(g1.firstChild);
-  }
-  while (g2.firstChild) {
-    g2.removeChild(g2.firstChild);
-  }
-  while (g3.firstChild) {
-    g3.removeChild(g3.firstChild);
-  }
-  while (g4.firstChild) {
-    g4.removeChild(g4.firstChild);
-  }
-  while (g5.firstChild) {
-    g5.removeChild(g5.firstChild);
-  }
-  while (g6.firstChild) {
-    g6.removeChild(g6.firstChild);
-  }
-  while (g7.firstChild) {
-    g7.removeChild(g7.firstChild);
-  }
-  while (g8.firstChild) {
-    g8.removeChild(g8.firstChild);
-  }
-  while (g9.firstChild) {
-    g9.removeChild(g9.firstChild);
+  for (let i in gridItem) {
+    //remove elements in the grid
+    while (gridItem[i].firstChild) {
+      gridItem[i].removeChild(gridItem[i].firstChild);
+    }
   }
 
   //remove player class
+  // NOT WORK
+  // console.log(gridItem[i]);
+  // gridItem[i].classList.contains("player1") &&
+  // gridItem[i].classList.remove("player1");
+  // gridItem[i].classList.contains("player2") &&
+  // gridItem[i].classList.remove("player2");
+
   //how to DRY??/
   g1.classList.contains("player1") && g1.classList.remove("player1");
   g1.classList.contains("player2") && g1.classList.remove("player2");
