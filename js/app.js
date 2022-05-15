@@ -65,6 +65,8 @@ function gameBegins() {
     document.getElementById('tile7').innerHTML = " ";
     document.getElementById('tile8').innerHTML = " ";
     document.getElementById('tile9').innerHTML = " ";
+    document.getElementById('player-turn').innerHTML = "Player O Goes";
+    document.getElementById('win-state').innerHTML = " ";
 };
   function correctBoard() {
     //Vertical check
