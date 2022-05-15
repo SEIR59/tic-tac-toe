@@ -27,8 +27,29 @@ h1 {
   margin-bottom: 100px;
   color: purple;
 }
-
+.wrapper-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.area-score {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 250px 50px;
+  grid-template-rows: 50px 50px;
+  border: 1px solid black;
+}
+.scoreTracker {
+  grid-column: 1;
+  text-align: right;
+  border: 1px solid black;
+}
+.score {
+  grid-column: 2;
+  text-align: right;
+  border: 1px solid black;
+}
 .gameboard-grid-template {
+  grid-column: 2/3;
   display: grid;
   justify-content: center;
   align-content: center;

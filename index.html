@@ -11,20 +11,32 @@
     <h1>Hello Front-End</h1>
   </header>
   <main class="main-contnent">
-    <div class="gameboard-grid-template">
-      <div id="square1" class="gameboard-square square-hover" ></div>
-      <div id="square2" class="gameboard-square square-hover" ></div>
-      <div id="square3" class="gameboard-square square-hover" ></div>
-      <div id="square4" class="gameboard-square square-hover" ></div>
-      <div id="square5" class="gameboard-square square-hover" ></div>
-      <div id="square6" class="gameboard-square square-hover" ></div>
-      <div id="square7" class="gameboard-square square-hover" ></div>
-      <div id="square8" class="gameboard-square square-hover" ></div>
-      <div id="square9" class="gameboard-square square-hover" ></div>
+
+    <div class="wrapper-grid">
+      <div class="area-score">
+        <p class="scoreTracker" id="player1">Player Score:</p>
+        <p class="score" id="player1Score">0</p>
+        <p class="scoreTracker" id="player2">AI Score:</p>
+        <p class="score" id="player2Score">0</p>
+      </div>
+
+      <div class="gameboard-grid-template">
+        <div id="square1" class="gameboard-square square-hover" ></div>
+        <div id="square2" class="gameboard-square square-hover" ></div>
+        <div id="square3" class="gameboard-square square-hover" ></div>
+        <div id="square4" class="gameboard-square square-hover" ></div>
+        <div id="square5" class="gameboard-square square-hover" ></div>
+        <div id="square6" class="gameboard-square square-hover" ></div>
+        <div id="square7" class="gameboard-square square-hover" ></div>
+        <div id="square8" class="gameboard-square square-hover" ></div>
+        <div id="square9" class="gameboard-square square-hover" ></div>
+      </div>
     </div>
+
 
     <div class="game-Info">
       <h2 id="turn-status">It's player 1's turn!</h2>
+      <button id="reset-btn" class="button">Reset board and Scores</button>
     </div>
   </main>
   <footer class="footer">

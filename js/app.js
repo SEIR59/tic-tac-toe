@@ -15,17 +15,61 @@ let playerWins = 0;
 let aiWins = 0;
 let currentSymbol = 'X';
 
-// create reset function?
-function gameboard_reset() {
-    turnCounter = 0;
-    currentSymbol = 'X';
+const square_1 = document.getElementById('square1');
+const square_2 = document.getElementById('square2');
+const square_3 = document.getElementById('square3');
+const square_4 = document.getElementById('square4');
+const square_5 = document.getElementById('square5');
+const square_6 = document.getElementById('square6');
+const square_7 = document.getElementById('square7');
+const square_8 = document.getElementById('square8');
+const square_9 = document.getElementById('square9');
+
+
+function checkWinCondition() {
+    // check if there are three of the same symbol in a row anywhere
+    console.log("checking win conditions")
+    if (square_1.innerHTML === currentSymbol && square_2.innerHTML === currentSymbol && square_3.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_5.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_6.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_7.innerHTML === currentSymbol && square_8.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_1.innerHTML === currentSymbol && square_4.innerHTML === currentSymbol && square_7.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_2.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_8.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_3.innerHTML === currentSymbol && square_6.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_1.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } else if (square_3.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_7.innerHTML === currentSymbol) {
+        alert('Player Won!');
+    } 
 }
 
+// funciton that removes all event listeners, dsplayes winner and updates score
+function someoneWon() {
+    //update score of player that one, remove remaining event listeners.
+    if (turnCounter % 2 === 0) {
+        playerWins++;
+    } else {
+        aiWins++;
+    }
+    currentSymbol = 'X';
+}
+function gameboard_reset() {
+    // reset game but keep scores
+    turnCounter = 0;
+ }
 
 const gameboard_squares = document.getElementsByClassName('gameboard-square');
 const turn_status = document.getElementById('turn-status');
 
 function gameboard_click(e) {
+    // changes the classes of the div that is clicked,
+    // removes the event listener 
+    // and sets up for the next players turn.
     console.log('calling gameboard_click')
     currentSquare = e.target;
     currentSquare.innerHTML = currentSymbol;
@@ -35,11 +79,19 @@ function gameboard_click(e) {
     turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
     console.log(turnCounter)
     
+    // check win condition
+    checkWinCondition();
+
     if (currentSymbol === 'X') {
         currentSymbol = 'O';
     } else {
         currentSymbol = 'X';
     }
+
+    // if you did not win, allow the compute to check and then check win condition again.
+    // computer move -- random for now
+
+    // check win condition
 
 
 }
@@ -47,15 +99,3 @@ function gameboard_click(e) {
 for (let i = 0; i < gameboard_squares.length; i++) {
     gameboard_squares[i].addEventListener('click', gameboard_click);
 }
-
-
-
-
-
-// for (let i = 0; i < gameboard_squares.length; i++) {
-//     gameboard_squares[i].addEventListener('click', function(){
-//     }); 
-// }
-
-
-// 2. set while loop to keep track of game while current session is Active?
