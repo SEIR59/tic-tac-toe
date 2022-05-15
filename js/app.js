@@ -39,7 +39,7 @@ const player2_img =
 const markerO = '<img src="image/circle.png" width="175px" height="175px">';
 const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
 
-const newGame = document.getElementById("button");
+const newGame = document.getElementById("newGame");
 
 const gridItem = document.querySelector(".grid-item");
 

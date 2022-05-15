@@ -27,9 +27,14 @@ h3 {
   margin: 10px;
 }
 
-.grid-container {
+.display {
+  margin: 0;
   color: white;
+}
+
+.grid-container {
   display: grid;
+  border: 0 solid white;
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
   justify-content: center;
@@ -37,12 +42,37 @@ h3 {
 }
 
 .grid-item {
-  color: white;
-  border-style: solid;
+  border: 2px solid white;
   display: grid;
   justify-content: center;
 }
 
-.display {
-  margin: 0;
+/*Id */
+#grid-1 {
+  border-top: 0;
+  border-left: 0;
+}
+#grid-2 {
+  border-top: 0;
+}
+#grid-3 {
+  border-top: 0;
+  border-right: 0;
+}
+#grid-4 {
+  border-left: 0;
+}
+#grid-6 {
+  border-right: 0;
+}
+#grid-7 {
+  border-bottom: 0;
+  border-left: 0;
+}
+#grid-8 {
+  border-bottom: 0;
+}
+#grid-9 {
+  border-bottom: 0;
+  border-right: 0;
 }
