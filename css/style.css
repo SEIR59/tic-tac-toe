@@ -15,6 +15,11 @@ p {
   color: purple;
   text-align: center;
 }
+.result {
+  color: purple;
+  text-align: center;
+
+}
 
 /* for the restart button I can't get to work */
 /* button {
