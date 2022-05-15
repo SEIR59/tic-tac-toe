@@ -1,3 +1,52 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  text-align: center;
+}
+
 h1 {
   color: purple;
+}
+
+.button {
+  display: inline;
+  background: lightgray;
+  padding: 10px 25px;
+  border: 1px solid black;
+  border-radius: 5%;
+}
+
+.button:hover, .box:hover {
+  cursor: pointer;
+}
+
+#xButton, #oButton {
+  display: none
+}
+
+.box-container {
+  background-color: white;
+  margin: 5% 20%;
+  display: grid;
+  /* min-height: 100%; */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.box {
+  /* border: 3px solid black; */
+  color: white;
+  font-size: 13vw;
+  
+}
+
+#two, #five, #eight {
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+
+#four, #five, #six {
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
 }
