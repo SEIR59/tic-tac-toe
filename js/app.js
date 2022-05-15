@@ -91,8 +91,12 @@ function changeBtn() {
     currentBtn.classList.add('active')
     showTurn()
     playGame()
-    if (xWinsGameOver)
-            player1Wins()
+    if (xWinsGameOver){
+        player1Wins()
+    }
+    if (yWinsGameOver){
+        player2Wins()
+    }
 }
 
 
@@ -153,7 +157,7 @@ const changeClasses = () => {
 
 const player1Wins = () => {
     xWinsCount++
-    endGameText.innerText = `X WINS!!`
+    endGameText.innerText = `X WINS`
     playerTurn.innerText = 'X WINS!!'
     displayWins()
     disableBtns()
@@ -167,7 +171,7 @@ const player1Wins = () => {
 
 const player2Wins = () => {
     oWinsCount++
-    endGameText.innerText = `O WINS!!`
+    endGameText.innerText = `O WINS`
     playerTurn.innerText = 'O WINS!!'
     displayWins()
     disableBtns()
@@ -244,7 +248,7 @@ playComputerBtn.addEventListener('click', () => {
 
 
 
-const colorsArr = ['#242c10', '#d5ff61', 'white']
+const colorsArr = ['#d5ff61', 'white', '#e6b800']
 
 function makeRainingXs (){
     const fallingX = document.createElement('div')
