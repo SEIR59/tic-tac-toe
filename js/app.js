@@ -7,14 +7,11 @@ let computer = false;
 let board = [];
 const playHum = document.querySelector(".play-hum");
 const playComp = document.querySelector(".play-comp");
-let possiblePicks = [0,1,2,3,4,5,6,7,8]
-const score1 = document.querySelector(".score1")
-const score2 = document.querySelector(".score2")
-
+// let possiblePicks = [0,1,2,3,4,5,6,7,8]
+const score1 = document.querySelector(".scoreX")
+const score2 = document.querySelector(".scoreO")
 let s1 = 0;
 let s2 = 0
-
-console.log(cellsarr)
 
 //creates board at start of game
 for (let i = 0; i < cells.length; i++) {
@@ -75,9 +72,10 @@ function playHuman() {
           letter = 0;
           //console.log(letter)
           board = [];
+          addPickedClass(cell)
+          setUser(cell)
           updateBoard();
           checkforWin();
-          addPickedClass(cell)
           console.log(cell.classList)
           console.log(board)
         } else {
@@ -85,9 +83,10 @@ function playHuman() {
           letter = 1;
           console.log(letter);
           board = [];
+          addPickedClass(cell)
+          setComp(cell)
           updateBoard();
           checkforWin();
-          addPickedClass(cell)
           console.log(cell.classList)
           console.log(board)
         }
@@ -130,27 +129,33 @@ function checkforWin() {
       if (board[0] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     else if (board[3] === board[4] && board[3] === board[5]) {
       if (board[3] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[3] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     if (board[6] === board[7] && board[6] === board[8]) {
       if (board[6] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[6] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     //check columns
@@ -158,27 +163,33 @@ function checkforWin() {
       if (board[0] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     else if (board[1] === board[4] && board[1] === board[7]) {
       if (board[1] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[1] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     else if (board[2] === board[5] && board[2] === board[8]) {
       if (board[2] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[2] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     //check diagonalls
@@ -186,15 +197,18 @@ function checkforWin() {
       if (board[0] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
         console.log("Player O wins!");
+        addScore(score2)
       }
     }
     else if (board[2] === board[4] && board[2] === board[6]) {
       if (board[2] === "X") {
         gameIsOver();
         console.log("Player X wins!");
+        addScore(score1)
       } else if (board[2] === "O") {
         gameIsOver();
         console.log("Player O wins!");
@@ -202,6 +216,7 @@ function checkforWin() {
     } else if(!isMovesLeft()){
         gameIsOver();
         console.log("it was a tie")
+        addScore(score2)
     }
   }
 }
@@ -251,3 +266,24 @@ function addPickedClass(a){
   a.classList.add("picked");
 }
 
+//add score
+function addScore(el){
+  if(el === "Score1"){
+    s1 = s1 + 1;
+    el.innerHTML = s1;
+  } else {
+    s2 = s2 + 1;
+    el.innerHTML = s2;
+  }
+  console.log(s1)
+}
+
+//create and add user class
+function setUser(a){
+  a.classList.add("user");
+}
+
+//create and add computer class
+function setComp(a){
+  a.classList.add("comp");
+}
