@@ -13,3 +13,13 @@ const box = Array.from(document.getElementsByClassName('box'))
  let spaces = Array(9).fill(null)
 
  console.log(spaces)
+
+const startGame = () => (
+    box.forEach(box => box.addEventListener('click', boxClicked))
+)
+
+function boxClicked(e) {
+    console.log(e.target)
+}
+
+startGame()
