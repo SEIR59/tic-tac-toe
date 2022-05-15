@@ -30,4 +30,17 @@ h1 {
 }
 
 /*Make grid items have background and proper spacing */
+.grid-item{
+  box-sizing: border-box;
+  border: 2px solid black;
+  font-size: 100px;
+  width: 100px;
+  height: 100px;
+  background-color: rgb(47, 141, 196);
+  justify-items: center;
+  justify-self: center;
+  text-align: center;
+  cursor:pointer
+}
+
 /*Format win, reset, and players turn properly*/
