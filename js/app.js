@@ -6,8 +6,8 @@ const restartBtn = document.getElementsByClassName('button')
 //but make js do it for us//
 const box = Array.from(document.getElementsByClassName('box'))
 
-
- const O_TEXT = "O"
+let winner = "You've won!"
+const O_TEXT = "O"
  const X_TEXT = "X"
  let currentPlayer = X_TEXT
  let spaces = Array(9).fill(null)
@@ -25,9 +25,11 @@ function boxClicked(e) {
         spaces[id] = currentPlayer
         e.target.innerText = currentPlayer
         
-        if(playerHasWon()){
-            playerText = `${currentplayer} has won`
-
+        if(playerHasWon() !==false){
+            playerText = `${currentPlayer} has won!`
+            let winning_blocks = playerHasWon()
+            alert (winner)
+            
         }
         
         // Statement to change between X and O. if current player == X_TEXT
@@ -38,18 +40,26 @@ function boxClicked(e) {
 }
 
 const winningCombos = [
-    [0,1,2]
-    [3,4,5]
-    [6,7,8]
-    [0,3,6]
-    [1,4,7]
-    [2,5,8]
-    [0,4,8]
-    [2,4,6]
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6],
 ]
 
-function playerHasWon () {
+function playerHasWon() {
+    for (const condition of winningCombos) {
+        let [a, b, c] = condition
 
+        if(spaces[a] && (spaces[a] == spaces[b] && spaces[a] == spaces[c])) {
+            return[a,b,c]
+        }
+    
+    }
+    return false
 }
 
 button.addEventListener('click', restart)

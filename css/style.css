@@ -54,10 +54,11 @@ body {
 #id {
   margin: auto;
   text-align: center;
-
-
 }
 
+:root {
+  --winning-blocks: #E0E1DD;
+}
 #button {
 margin: auto;
 display: flex;
