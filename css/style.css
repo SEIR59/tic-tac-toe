@@ -5,21 +5,94 @@ h1 {
 
 .grid-container {
   display: grid;
-  grid-template-rows: 200px 200px 200px;
   grid-template-columns: 200px 200px 200px;
-  justify-content: center;
-  padding-bottom: 50px;
-  font-size: 50px;
+  grid-template-rows: 200px 200px 200px;
+  position: relative;
+  margin-bottom: 50px;
 }
 
 .box {
   border: 2px solid black;
+  justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
 }
 
 body {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 }
 
 input {
   font-size: 25px;
+
 }
+
+.strike {
+  position: absolute;
+  background-color: red;
+
+}
+
+#row-1 {
+  width: 100%;
+  height: 5px;
+  top: 15.5%;
+
+}
+
+#row-2 {
+  width: 100%;
+  height: 5px;
+  top: 47.5%;
+
+}
+
+#row-3 {
+  width: 100%;
+  height: 5px;
+  top: 79.5%;
+
+}
+
+#column-1 {
+  width: 4.25px;
+  height: 100%;
+  left: 16.5%;
+
+}
+
+#column-2 {
+  width: 4.25px;
+  height: 100%;
+  left: 49.75%;
+
+}
+
+#column-3 {
+  width: 4.25px;
+  height: 100%;
+  left: 83.2%;
+
+}
+
+#diagonal-1 {
+  width: 100%;
+  height: 4.25px;
+  top: 50%;
+  left: 0%;
+  transform: skewY(45deg);
+}
+
+#diagonal-2 {
+  width: 100%;
+  height: 4.25px;
+  top: 50%;
+  left: 0%;
+  transform: skewY(-45deg);
+}
+
