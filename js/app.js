@@ -8,14 +8,13 @@
  * not sure - Upon marking of an individual cell, use JavaScript to add a class to each cell to display the separate players.
  * DONE - Display a message to indicate which turn is about to be played.
  * DONE - detect draw condition
- * detect winner
+ * DONE - detect winner
  */
 
 /** Players click string*/
 const player1 = [];
 const player2 = [];
-let temp1 = "";
-let temp2 = "";
+
 /** Winning combinations - any better way??*/
 const winCodes = ["123", "456", "789", "147", "258", "369", "159", "357"];
 
@@ -52,29 +51,18 @@ const displayPlayer = function (grid_item) {
   grid_item.innerHTML += `<p class="display">${switcher}</p>`;
 };
 /** check result - if ties */
-const result = function (playerData) {
-  console.log(clickTimes);
+const result = function () {
+  //if meet one of eight winCodes
+  const isInWinCode = (currentValue) =>
+    (switcher === "player1" ? player1 : player2).indexOf(currentValue) > -1;
 
-  //only consider win when one player clicked at least 3 times
-  //exclude if the 9th clicked win
-  //TODO
-  temp1 = player1.sort().join("");
-  console.log(temp1);
-  temp2 = player2.sort().join("");
-  console.log(temp2);
-
-  // 3457 didn't catch the winCodes
-  for (let i = 0; i <= winCodes.length; i++) {
-    if (temp1.includes(winCodes[i])) {
-      msg.innerText = `Winner is ... ${switcher}`;
-      break; // or return... still can clicked and replace winner
-    } else if (temp2.includes(winCodes[i])) {
-      msg.innerText = `Winner is ... ${switcher}`;
-      break;
-    }
-  }
-
-  if (clickTimes === 9) {
+  if (
+    winCodes.some((winCode) => {
+      return winCode.split("").every(isInWinCode);
+    })
+  ) {
+    msg.innerText = `${switcher} Won!`;
+  } else if (clickTimes === 9) {
     msg.innerText = "Cat's game!";
   }
 };
@@ -83,7 +71,7 @@ const result = function (playerData) {
 const switchPlayer = function (grid_item, grid_num) {
   console.log("clicked");
   ++clickTimes;
-  //   console.log(clickTimes);
+
   if (switcher === "player1") {
     if (!grid_item.classList.contains("player2")) {
       grid_item.innerHTML = markerO;
@@ -118,31 +106,31 @@ const switchPlayer = function (grid_item, grid_num) {
 };
 
 g1.addEventListener("click", function () {
-  switchPlayer(g1, 1);
+  switchPlayer(g1, "1");
 });
 g2.addEventListener("click", function () {
-  switchPlayer(g2, 2);
+  switchPlayer(g2, "2");
 });
 g3.addEventListener("click", function () {
-  switchPlayer(g3, 3);
+  switchPlayer(g3, "3");
 });
 g4.addEventListener("click", function () {
-  switchPlayer(g4, 4);
+  switchPlayer(g4, "4");
 });
 g5.addEventListener("click", function () {
-  switchPlayer(g5, 5);
+  switchPlayer(g5, "5");
 });
 g6.addEventListener("click", function () {
-  switchPlayer(g6, 6);
+  switchPlayer(g6, "6");
 });
 g7.addEventListener("click", function () {
-  switchPlayer(g7, 7);
+  switchPlayer(g7, "7");
 });
 g8.addEventListener("click", function () {
-  switchPlayer(g8, 8);
+  switchPlayer(g8, "8");
 });
 g9.addEventListener("click", function () {
-  switchPlayer(g9, 9);
+  switchPlayer(g9, "9");
 });
 
 button.addEventListener("click", function () {
