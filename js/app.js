@@ -18,28 +18,42 @@
  *
  */
 
-/** Players click string*/
+/****** Elements for Computer Mode ********************************************* */
+//Computer mode Button
+const computerMode = document.getElementById("computer");
+const player2orComputer = document.getElementById("player2orComputer");
+
+/****** Elements for Two Players ********************************************* */
+//Players Win counts
 let player1WinCount = 0;
 let player2WinCount = 0;
-
+//store player data
 const player1 = [];
 const player2 = [];
 //default: player 1
 let switcher = "player1";
+//total click times
 let clickTimes = 0;
-
-/** Winning combinations - any better way??*/
-const winCodes = ["123", "456", "789", "147", "258", "369", "159", "357"];
-
+//players image
 const player1_img =
   '<img class="player" src="image/batman.png" width="60px" height="60px">';
 const player2_img =
   '<img class="player" src="image/hulk.png" width="60px" height="60px">';
 
+//two players mode Button
+const twoPlayers = document.getElementById("twoPlayers");
+
+const player1_class = document.querySelector(".player1");
+const player2_class = document.querySelector(".player2");
+const player1_wins_count = document.querySelector("#player1_wins");
+const player2_wins_count = document.querySelector("#player2_wins");
+
+/******** Common Elements ********************************************************** */
 const markerO = '<img src="image/circle.png" width="175px" height="175px">';
 const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
+const msg = document.querySelector(".message");
 
-const newGame = document.getElementById("newGame");
+const playersTrack = document.querySelector(".track");
 
 const gridItem = document.querySelector(".grid-item");
 
@@ -53,11 +67,10 @@ const g7 = document.getElementById("grid-7");
 const g8 = document.getElementById("grid-8");
 const g9 = document.getElementById("grid-9");
 
-const msg = document.querySelector(".message");
-const player1_class = document.querySelector(".player1");
-const player2_class = document.querySelector(".player2");
-const player1_wins_count = document.querySelector("#player1_wins");
-const player2_wins_count = document.querySelector("#player2_wins");
+/** Winning combinations - any better way??*/
+const winCodes = ["123", "456", "789", "147", "258", "369", "159", "357"];
+
+/****** Functions ********************************************************************* */
 
 /** Display players in each cell */
 const displayPlayer = function (grid_item) {
@@ -150,12 +163,19 @@ g9.addEventListener("click", function () {
   switchPlayer(g9, "9");
 });
 
-newGame.addEventListener("click", function () {
+/** *******************TWO PLAYERS MODE***************************************** */
+twoPlayers.addEventListener("click", function () {
   //initialize
-  msg.innerText = "Game Begins!";
+  console.log("Start Two Players Mode");
+  msg.innerText = "Two Players Game Begins!";
   clickTimes = 0;
   player1.length = 0;
   player2.length = 0;
+  //update player2
+  player2orComputer.innerText = "Player2";
+  //show the players win track - use toggle?
+  playersTrack.classList.contains("hide") &&
+    playersTrack.classList.remove("hide");
 
   //remove elements in the grid
   //is there a smarter way??
@@ -206,4 +226,16 @@ newGame.addEventListener("click", function () {
   g8.classList.contains("player2") && g8.classList.remove("player2");
   g9.classList.contains("player1") && g9.classList.remove("player1");
   g9.classList.contains("player2") && g9.classList.remove("player2");
+});
+
+/*** Computer MODE************************************************************ */
+computerMode.addEventListener("click", () => {
+  //initialize
+  console.log("Start Computer Mode");
+  msg.innerText = "Computer Mode Begins!";
+  clickTimes = 0;
+  //update player2 to Computer
+  player2orComputer.innerText = "Computer";
+  playersTrack.classList.contains("hide") &&
+    playersTrack.classList.remove("hide");
 });

@@ -20,11 +20,22 @@ h3 {
 }
 
 /* ******Class******** */
-/* change the position later */
+.hide {
+  opacity: 0;
+}
+.track {
+  text-align: center;
+  position: relative;
+}
+
+/* Buttons */
 .button {
   text-align: center;
   position: relative;
   margin: 10px;
+}
+.btn {
+  margin: 10px 5px 5px 10px;
 }
 
 .display {
