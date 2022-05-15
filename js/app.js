@@ -20,40 +20,47 @@
 
 /****** Elements for Computer Mode ********************************************* */
 //Computer mode Button
-const computerMode = document.getElementById("computer");
-const player2orComputer = document.getElementById("player2orComputer");
+const computerButton = document.getElementById("computer");
+const computerData = [];
+let computerWinCount = 0;
 
 /****** Elements for Two Players ********************************************* */
-//Players Win counts
-let player1WinCount = 0;
-let player2WinCount = 0;
-//store player data
-const player1 = [];
-const player2 = [];
+
+//store player2 data
+const player2Data = [];
 //default: player 1
 let switcher = "player1";
 //total click times
 let clickTimes = 0;
 //players image
-const player1_img =
-  '<img class="player" src="image/batman.png" width="60px" height="60px">';
-const player2_img =
-  '<img class="player" src="image/hulk.png" width="60px" height="60px">';
+// const player1_img =
+//   '<img class="player" src="image/batman.png" width="60px" height="60px">';
+// const player2_img =
+//   '<img class="player" src="image/hulk.png" width="60px" height="60px">';
 
 //two players mode Button
-const twoPlayers = document.getElementById("twoPlayers");
+const twoPlayersButton = document.getElementById("twoPlayers");
 
 const player1_class = document.querySelector(".player1");
 const player2_class = document.querySelector(".player2");
-const player1_wins_count = document.querySelector("#player1_wins");
-const player2_wins_count = document.querySelector("#player2_wins");
+const player1_wins_count = document.querySelector("#player1_wins_count");
 
 /******** Common Elements ********************************************************** */
 const markerO = '<img src="image/circle.png" width="175px" height="175px">';
 const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
 const msg = document.querySelector(".message");
 
+const player1Data = [];
 const playersTrack = document.querySelector(".track");
+
+//Players Win counts
+let player1WinCount = 0;
+let secondWinCount = 0;
+const second_wins_count = document.querySelector("#second_wins_count");
+const player2orComputer = document.querySelector("#player2orComputer");
+
+//new game(initialize) button
+const newGameButton = document.querySelector("#newGame");
 
 const gridItem = document.querySelector(".grid-item");
 
@@ -80,20 +87,26 @@ const displayPlayer = function (grid_item) {
 const result = function () {
   //if meet one of eight winCodes
   const isInWinCode = (currentValue) =>
-    (switcher === "player1" ? player1 : player2).indexOf(currentValue) > -1;
+    (switcher === "player1" ? player1Data : player2Data).indexOf(currentValue) >
+    -1;
 
   if (
     winCodes.some((winCode) => {
       return winCode.split("").every(isInWinCode);
     })
   ) {
-    switcher === "player1" ? player1WinCount++ : player2WinCount++;
+    switcher === "player1" ? player1WinCount++ : secondWinCount++;
+    //update button "Two Players" to "One More"
+    twoPlayersButton.textContent = "One More";
     //update message and win counts
-    msg.innerText = `${switcher} Won!`;
+    msg.innerText = `${
+      switcher === "player1" ? "Player1" : "Player2"
+    } Won! Click One More`;
     player1_wins_count.textContent = player1WinCount;
-    player2_wins_count.textContent = player2WinCount;
+    second_wins_count.textContent = secondWinCount;
   } else if (clickTimes === 9) {
-    msg.innerText = "Cat's game!";
+    twoPlayersButton.textContent = "One More";
+    msg.innerText = "Cat's game! Click One More";
   }
 };
 
@@ -108,12 +121,12 @@ const switchPlayer = function (grid_item, grid_num) {
       grid_item.classList.add("player1");
       displayPlayer(grid_item);
       //store the grid number
-      player1.push(grid_num);
+      player1Data.push(grid_num);
     }
     //update message
     msg.innerText = "Next: Player2";
     //checking results
-    result(player1);
+    result(player1Data);
 
     //switch player
     switcher = "player2";
@@ -122,13 +135,13 @@ const switchPlayer = function (grid_item, grid_num) {
       grid_item.innerHTML = markerX;
       grid_item.classList.add("player2");
       displayPlayer(grid_item);
-      player2.push(grid_num);
+      player2Data.push(grid_num);
     }
 
     //update message
     msg.innerText = "Next: Player1";
     //checking results
-    result(player2);
+    result(player2Data);
 
     //switch player
     switcher = "player1";
@@ -163,20 +176,8 @@ g9.addEventListener("click", function () {
   switchPlayer(g9, "9");
 });
 
-/** *******************TWO PLAYERS MODE***************************************** */
-twoPlayers.addEventListener("click", function () {
-  //initialize
-  console.log("Start Two Players Mode");
-  msg.innerText = "Two Players Game Begins!";
-  clickTimes = 0;
-  player1.length = 0;
-  player2.length = 0;
-  //update player2
-  player2orComputer.innerText = "Player2";
-  //show the players win track - use toggle?
-  playersTrack.classList.contains("hide") &&
-    playersTrack.classList.remove("hide");
-
+/** Remove Grid Content */
+const removeGridContent = function () {
   //remove elements in the grid
   //is there a smarter way??
   while (g1.firstChild) {
@@ -206,6 +207,7 @@ twoPlayers.addEventListener("click", function () {
   while (g9.firstChild) {
     g9.removeChild(g9.firstChild);
   }
+
   //remove player class
   //how to DRY??/
   g1.classList.contains("player1") && g1.classList.remove("player1");
@@ -226,16 +228,59 @@ twoPlayers.addEventListener("click", function () {
   g8.classList.contains("player2") && g8.classList.remove("player2");
   g9.classList.contains("player1") && g9.classList.remove("player1");
   g9.classList.contains("player2") && g9.classList.remove("player2");
+};
+
+/*** New Game - clean all the data ******************************************************* */
+newGameButton.addEventListener("click", function () {
+  msg.innerText = "Please Choose Mode";
+  clickTimes = 0;
+  player1Data.length = 0;
+  player2Data.length = 0;
+  computerData.length = 0;
+  //clean wins count
+  player1_wins_count.textContent = 0;
+  second_wins_count.textContent = 0;
+  //reset button names
+  twoPlayersButton.textContent = "Two Players";
+  computerButton.textContent = "Computer";
+
+  //hide wins track
+  playersTrack.classList.contains("hide") || playersTrack.classList.add("hide");
+
+  //clean Grid content
+  removeGridContent();
+});
+
+/** *******************TWO PLAYERS MODE***************************************** */
+twoPlayersButton.addEventListener("click", function () {
+  //initialize
+  console.log("Start Two Players Mode");
+  twoPlayersButton.textContent = "Two Players";
+  msg.innerText = "Two Players Game Begins!";
+  clickTimes = 0;
+  player1Data.length = 0;
+  player2Data.length = 0;
+
+  //update second player
+  player2orComputer.innerText = "Player2";
+  //show the players win track
+  playersTrack.classList.contains("hide") &&
+    playersTrack.classList.remove("hide");
+
+  //clean Grid content
+  removeGridContent();
 });
 
 /*** Computer MODE************************************************************ */
-computerMode.addEventListener("click", () => {
+computerButton.addEventListener("click", () => {
   //initialize
   console.log("Start Computer Mode");
   msg.innerText = "Computer Mode Begins!";
   clickTimes = 0;
-  //update player2 to Computer
+
+  //update second player
   player2orComputer.innerText = "Computer";
+  //reveal wins
   playersTrack.classList.contains("hide") &&
     playersTrack.classList.remove("hide");
 });

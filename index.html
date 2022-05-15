@@ -14,15 +14,19 @@
   </head>
   <body>
     <h1>Tic Tac Toe</h1>
-    <!-- New Game Button -->
+    <!-- Buttons -->
     <div class="button">
-      <button id="twoPlayers" class="btn btn-primary btn-lg" type="reset">
+      <button id="newGame" class="btn btn-warning btn-lg" type="reset">
+        New Game
+      </button>
+
+      <button id="twoPlayers" class="btn btn-primary btn-lg">
         Two Players
       </button>
       <button id="computer" class="btn btn-danger btn-lg">Computer</button>
     </div>
     <!-- message -->
-    <h2 class="message">Have Fun! Please Choose Mode</h2>
+    <h2 class="message">Click New Game to Start</h2>
 
     <!-- Players Input names -->
     <!-- <input type="text" id="player1" name="Player 1" />
@@ -30,10 +34,10 @@
 
     <!-- Track Player's wins -->
     <div class="track hide">
-      <h3>Player1 Wins: <span id="player1_wins">0</span></h3>
+      <h3>Player1 Wins: <span id="player1_wins_count">0</span></h3>
       <h3>
         <span id="player2orComputer">Player2</span> Wins:
-        <span id="player2_wins">0</span>
+        <span id="second_wins_count">0</span>
       </h3>
     </div>
 
