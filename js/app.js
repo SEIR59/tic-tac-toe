@@ -1,8 +1,8 @@
 let squares = document.querySelectorAll(".square");
+let message = document.querySelector(".message");
 squares = Array.from(squares);
 console.log(squares);
 
-let squareArr = ["", "", "", "", "", "", "", "", ""];
 let firstPlayer = "X";
 let secondPlayer = "O";
 
@@ -25,6 +25,7 @@ squares.forEach(function (square) {
     function () {
       square.innerHTML = firstPlayer;
       firstPlayer = firstPlayer == "X" ? secondPlayer : "X";
+      message.innerHTML = `${firstPlayer}'s turn!`;
     },
     { once: true }
   );
@@ -40,6 +41,20 @@ const winCombo = [
   [1, 4, 7],
   [2, 5, 8],
 ];
+
+for (i = 0; i < winCombo.length; i++) {
+  let winner = winCombo[i];
+  let a = squares[winner[0]];
+  let b = squares[winner[1]];
+  let c = squares[winner[2]];
+
+  if (a == "" || b == "" || c == "") {
+    console.log("Player won!");
+  }
+  if (a == b && b == c) {
+    message.innerHTML = `Player ${a} won!`;
+  }
+}
 
 // Repetitive Code
 // document.getElementById("box1").addEventListener("click", () => {
