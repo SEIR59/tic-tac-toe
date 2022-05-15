@@ -6,7 +6,7 @@
 const playerMove = (location) => {
     let title = document.getElementById('title')
     let gameOptionExit = 0
-    //X's moves
+    //function to mark a move and respond to that marking.
     const markMove = (spot) => {
         let id = spot.id.split('').map(function (x) { return Number(x) })
         if (currentTurn === 0) {
@@ -24,7 +24,7 @@ const playerMove = (location) => {
                 }
             }
             if (tieCheck === 9) {
-                winnerFound()
+                winnerFound('')
                 gameOptionExit++
                 return
             }
@@ -34,63 +34,66 @@ const playerMove = (location) => {
                     availableSquares.splice(i, 1)
                     break
                 }
-            } 
+            }
         } else {
             spot.innerText = 'O'
             tieCheck += 1;
             currentTurn = 0
             title.innerText = `X's turn`
             //digest the event id and add it to player array to check for wins.
-                for (let i = 0; i < id.length; i++) {
-                    O[i] += id[i];
-                    if (O[i] === 3) {
+            for (let i = 0; i < id.length; i++) {
+                O[i] += id[i];
+                if (O[i] === 3) {
+                    if (gameOption === 0) {
                         winnerFound('O')
-                        gameOptionExit++
-                        return
+                    } else {
+                        winnerFound('Computer')
                     }
-                }
-
-            }
-            //remove square from availableSquares list for computers
-            for (let i = 0; i < availableSquares.length; i++) {
-                if (availableSquares[i] === location.id) {
-                    availableSquares.splice(i, 1)
-                    break
+                    gameOptionExit++
+                    return
                 }
             }
-
         }
-    
+        //remove square from availableSquares list for computers
+        for (let i = 0; i < availableSquares.length; i++) {
+            if (availableSquares[i] === location.id) {
+                availableSquares.splice(i, 1)
+                break
+            }
+        }
+    }
+    //if a player clicks an available square, do stuff based off game option
     if (location.innerText === '') {
+        //mark player move
         markMove(location)
-
-        //#region gameOption 1 - vs Computer
+        //if game option is 0, proceed with standard game flow.
+        // gameOption 1 - vs Computer
         if (gameOption === 1 && gameOptionExit === 0) {
             //simple computer move, which removes its move from available squares
             markMove(document.getElementById(simpleComputerMoveID()))
-            currentTurn = 0
         }
-        // End of gameOption 1 - O's moves
     }
 }
 
-
 //function to see if somebody won
 const winnerFound = (winner) => {
-    const sb = document.getElementById
-    if (winner === 'X' || winner === 'O') {
+    document.getElementById('title').innerText = `${winner} wins!`
+    //check who won, log a message, and update scores.
+    if (winner === 'X') {
         console.log(`${winner}'s win!`)
-        document.getElementById('title').innerText = `${winner} wins!`
-        if (winner === 'X') {
-            currentScore[0]++
-        } else {
-            currentScore[1]++
-        }
+        currentScore[0]++
+    } else if (winner === 'O') {
+        console.log(`${winner}'s win!`)
+        currentScore[1]++
+    } else if (winner === 'Computer') {
+        console.log(`${winner}'s win!`)
+        currentScore[1]++
     } else {
         console.log('Tie')
         document.getElementById('title').innerText = `Booo. Tie.`
         currentScore[2]++
     }
+
     boardClickOn(false)
     for (let i = 0; i < allSquares.length; i++) {
         allSquares[i].style.background = 'purple'
@@ -128,15 +131,11 @@ const clearMoves = () => {
 
 //function to toggle board click listening. true = on, false = off.
 const boardClickOn = (bool) => {
-    //bridge to connect playerMove with syntax of event listener activation
-    const playerMoveBridge = () => {
-        const target = event.target
-        playerMove(target)
-    }
+    let board = document.getElementById('gameboard')
     if (bool === true) {
-        $('#gameboard').on('click', playerMoveBridge)
+        board.classList.remove('clickOff')
     } else {
-        $('#gameboard').off()
+        board.classList.add('clickOff')
     }
 }
 //function to shift the clicked slider button right and all others left.
@@ -160,21 +159,31 @@ const moveSliderButton = () => {
     if (gameOption !== 0 && (target === 'PvPbtn' || target === 'PvPSlider')) {
         toggleDirection('PvPSlider')
         gameOption = 0
+        clearMoves()
     } else if (gameOption !== 1 && (target === 'PvCbtn' || target === 'PvCSlider')) {
         toggleDirection('PvCSlider')
         gameOption = 1
+        clearMoves()
     } else if (gameOption !== 2 && (target === 'PvAbtn' || target === 'PvASlider')) {
         toggleDirection('PvASlider')
         gameOption = 2
+        clearMoves()
     }
 }
 
 //function to run on game startup. Start listeners and input default settings.
 const initializeGame = () => {
+    let board = document.getElementById('gameboard')
     document.getElementById('PvPSlider').style.justifyContent = 'right'
-    $('#resetbtn').on('click', clearMoves)
-    $('#gameOptions').on('click', moveSliderButton)
-    boardClickOn(true)
+    document.getElementById('resetbtn').addEventListener('click', clearMoves)
+    document.getElementById('gameOptions').addEventListener('click', moveSliderButton)
+    board.addEventListener('click' , () =>{
+        if (board.classList.contains('clickOff')){
+            return
+        }else{
+            playerMove(event.target)
+        } 
+    })
     for (let i = 0; i < allSquares.length; i++) {
         availableSquares.push(allSquares[i].id)
     }
