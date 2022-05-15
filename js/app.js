@@ -9,11 +9,21 @@
  * DONE - Display a message to indicate which turn is about to be played.
  * DONE - detect draw condition
  * DONE - detect winner
+ *
+ * Bonuses:
+ * Implement your reset button without refreshing the whole page
+ * Track player's wins over time
+ * Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
+ * Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
+ *
  */
 
 /** Players click string*/
 const player1 = [];
 const player2 = [];
+//default: player 1
+let switcher = "player1";
+let clickTimes = 0;
 
 /** Winning combinations - any better way??*/
 const winCodes = ["123", "456", "789", "147", "258", "369", "159", "357"];
@@ -25,10 +35,10 @@ const player2_img =
 
 const markerO = '<img src="image/circle.png" width="175px" height="175px">';
 const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
-//default: player 1
-let switcher = "player1";
 
 const button = document.getElementById("button");
+
+const gridItem = document.querySelector(".grid-item");
 
 const g1 = document.getElementById("grid-1");
 const g2 = document.getElementById("grid-2");
@@ -41,8 +51,6 @@ const g8 = document.getElementById("grid-8");
 const g9 = document.getElementById("grid-9");
 
 const msg = document.querySelector(".message");
-let clickTimes = 0;
-
 const player1_class = document.querySelector(".player1");
 const player2_class = document.querySelector(".player2");
 
@@ -135,8 +143,58 @@ g9.addEventListener("click", function () {
 
 button.addEventListener("click", function () {
   //initialize
-  msg.innerText = "Have Fun!";
+  msg.innerText = "Game Begins!";
   clickTimes = 0;
+  player1.length = 0;
+  player2.length = 0;
 
   //remove elements in the grid
+  //is there a smarter way??
+  while (g1.firstChild) {
+    g1.removeChild(g1.firstChild);
+  }
+  while (g2.firstChild) {
+    g2.removeChild(g2.firstChild);
+  }
+  while (g3.firstChild) {
+    g3.removeChild(g3.firstChild);
+  }
+  while (g4.firstChild) {
+    g4.removeChild(g4.firstChild);
+  }
+  while (g5.firstChild) {
+    g5.removeChild(g5.firstChild);
+  }
+  while (g6.firstChild) {
+    g6.removeChild(g6.firstChild);
+  }
+  while (g7.firstChild) {
+    g7.removeChild(g7.firstChild);
+  }
+  while (g8.firstChild) {
+    g8.removeChild(g8.firstChild);
+  }
+  while (g9.firstChild) {
+    g9.removeChild(g9.firstChild);
+  }
+  //remove player class
+  //how to DRY??/
+  g1.classList.contains("player1") && g1.classList.remove("player1");
+  g1.classList.contains("player2") && g1.classList.remove("player2");
+  g2.classList.contains("player1") && g2.classList.remove("player1");
+  g2.classList.contains("player2") && g2.classList.remove("player2");
+  g3.classList.contains("player1") && g3.classList.remove("player1");
+  g3.classList.contains("player2") && g3.classList.remove("player2");
+  g4.classList.contains("player1") && g4.classList.remove("player1");
+  g4.classList.contains("player2") && g4.classList.remove("player2");
+  g5.classList.contains("player1") && g5.classList.remove("player1");
+  g5.classList.contains("player2") && g5.classList.remove("player2");
+  g6.classList.contains("player1") && g6.classList.remove("player1");
+  g6.classList.contains("player2") && g6.classList.remove("player2");
+  g7.classList.contains("player1") && g7.classList.remove("player1");
+  g7.classList.contains("player2") && g7.classList.remove("player2");
+  g8.classList.contains("player1") && g8.classList.remove("player1");
+  g8.classList.contains("player2") && g8.classList.remove("player2");
+  g9.classList.contains("player1") && g9.classList.remove("player1");
+  g9.classList.contains("player2") && g9.classList.remove("player2");
 });
