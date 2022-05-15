@@ -13,5 +13,21 @@ h1 {
 }
 
 /*Align grid in a 3x3 pattern */
+.grid-contained{
+  margin-top: -90px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  height: 600px;
+  grid-template-columns: 10% 10% 10%;
+  grid-template-rows: 20% 20% 20%;
+  gap: 2px;
+  align-items: center;
+  align-content: center;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+}
+
 /*Make grid items have background and proper spacing */
 /*Format win, reset, and players turn properly*/
