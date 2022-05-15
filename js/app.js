@@ -21,6 +21,7 @@ function currentTurn() {
 squares.forEach(function (square) {
   square.addEventListener("click", function () {
     square.innerText = firstPlayer;
+    firstPlayer = firstPlayer == "X" ? secondPlayer : "X";
   });
 });
 
