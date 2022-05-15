@@ -5,7 +5,7 @@ const restartBtn = document.getElementsByClassName('button')
 //write the null spaces one by one 
 //but make js do it for us//
 const box = Array.from(document.getElementsByClassName('box'))
- console.log (box)
+
 
  const O_TEXT = "O"
  const X_TEXT = "X"
@@ -19,7 +19,39 @@ const startGame = () => (
 )
 
 function boxClicked(e) {
-    console.log(e.target)
+    const id = e.target.id
+
+    if(!spaces[id]){
+        spaces[id] = currentPlayer
+        e.target.innerText = currentPlayer
+        
+        if(playerHasWon()){
+            playerText = `${currentplayer} has won`
+
+        }
+        
+        // Statement to change between X and O. if current player == X_TEXT
+        // then change it to 0_text or else change it to X_TEXT 
+        // this also overrides the null space to any od the two options
+        currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
+    }
 }
 
+function playerHasWon () {
+    
+}
+
+button.addEventListener('click', restart)
+
+function restart() {
+    spaces.fill(null)
+
+    box.forEach(box => {
+        box.innerText = ''
+    })
+
+    playerText = 'Tic Tac Toe'
+
+    currentPlayer = X_TEXT
+}
 startGame()
