@@ -67,21 +67,19 @@ function gameBegins() {
   }
   //Select player based on turn
   let i = 0;
-  function playerTurn(){
-    if(i % 2 === 0){
+  function playerTurn() {
+    if (i % 2 === 0) {
         i++;
-        document.getElementById('player-turn').innerHTML = "Player X Goes";
+        document.getElementById("player-turn").innerHTML = "Player X Goes";
         console.log(i);
         return players[1];
-
-    }else if(i % 2 !== 0){
-        document.getElementById('player-turn').innerHTML = "Player O Goes";
+    } else if (i % 2 !== 0) {
+        document.getElementById("player-turn").innerHTML = "Player O Goes";
         i--;
         console.log(i);
-        return players[0];
+      return players[0];
     }
-}
-
+  }
 }
 
 //Makes the game begin
