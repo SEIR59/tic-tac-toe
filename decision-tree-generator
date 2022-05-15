@@ -1,0 +1,71 @@
+let squares = {}
+let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
+
+for (let i = 0; i < ids.length ; i++){
+    squares[i+1] = ids[i].split('')
+}
+//console.log(squares) works
+
+const allSquares = [1,2,3,4,5]
+//[1,2,3,4,5,6,7,8,9]
+const allVariations = []
+//generate list of next moves
+const nextMove = (treeNode) =>{
+  //console.log( `I'm the tree node path` )
+  //console.log(treeNode[0])
+  //console.log(treeNode)
+  if(treeNode[1].length === 0){
+    //console.log('Pushing variation...')
+    allVariations.push(treeNode[0])
+    return
+  }
+  //console.log('Passed array length test')
+  
+  let path = treeNode[0].slice()
+  let rSq = treeNode[1].slice()
+  let xScore = treeNode[2]
+  let oScore = treeNode[3]
+  let nodeScore = treeNode[4]
+  
+  //generate array of next moves from remaining squares
+  let nextNodes = []
+  while (rSq.length>0){
+    nextNodes.push([path+rSq.shift()])
+  }
+  //take the list of newly generated pathes and construct nodes
+  for (let i = 0; i < nextNodes.length;i++){
+    let tempSq = treeNode[1].slice()
+    //console.log('im the temp squares')
+    //console.log(tempSq)
+    let tempX = 'X'
+    let tempO = 'O'
+    let nodeScore = 0
+    //iterate through each [path] and generate remaining squares for that node.
+    tempSq.splice(tempSq.indexOf(Number(nextNodes[i][0][nextNodes[i][0].length-1])),1)
+    //push temp squares to the node after path values have been spliced out.
+      nextNodes[i].push(tempSq)
+      nextNodes[i].push('X')
+      nextNodes[i].push('O')
+      nextNodes[i].push('nodeSc')
+      //console.log('This new node is')
+      //console.log(nextNodes[i])
+    }
+  //once all nodes are made, apply same method to newly generated nodes.
+      //console.log(nextNodes)
+    treeNode.push(nextNodes)
+    //console.log('Next nodes are:')
+    //console.log(treeNode[5])
+  //if children exist (further nodes to explore), apply same method to them.
+    if (treeNode[5] !== undefined){
+      for (let k = 0 ; k<nextNodes.length;k++){
+        //console.log('Starting next function call')
+        //console.log(treeNode[5][k])
+        nextMove(treeNode[5][k])
+      }
+    }
+}
+
+let treeBase = ['', allSquares, '', '', 0 ]
+nextMove(treeBase)
+console.log('All variations are... Should be a factorial')
+console.log(allVariations.length)
