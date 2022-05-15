@@ -40,11 +40,11 @@ playHum.addEventListener("click", function(){
 })
 
 //Set Computer to true and run play computer
-// playComp.addEventListener("click", function () {
-//   computer = true;
-//   playComp.innerHTML = "You are currently playing Computer"
-//   play(computer);
-// });
+playComp.addEventListener("click", function () {
+  computer = true;
+  playComp.innerHTML = "You are currently playing Computer"
+  play(computer);
+});
 
 function play(a){
     if (a){
@@ -102,26 +102,42 @@ function playComputer(){
     for (const cell of cells){
         cell.addEventListener("click", function(){
             isMovesLeft();
-            if(letter === 1){
-                cell.innerHTML = "X";
-                board = [];
-                addPickedClass(cell);
-                //updateBoard();
-                //console.log(board);
-                console.log(possiblePicks.splice(Math.floor(Math.random() * 9)))
-                // compPickedCell = Math.floor(Math.random() * 9);
-                //console.log(compPickedCell)
-                //board[compPickedCell] = "O"
-                console.log(board)
-                //cellsarr[possiblePicks.splice(Math.floor(Math.random() * possiblePicks.length))].innerHTML = "O"
-                updateBoard();
-                checkforWin();
-            }
+            if(!cell.classList.contains("picked")){
+              if(letter === 1){
+                  cell.innerHTML = "X";
+                  board = [];
+                  addPickedClass(cell);
+                  //console.log(board)
+                  let compPickCell = 0
+                  function randomNumAndSet(){
+                    compPickCell = Math.floor(Math.random() * 9)
+                    if(!cells[compPickCell].classList.contains("picked")){
+                      setComp(cellsarr[compPickCell])
+                    } else {
+                      randomNumAndSet();
+                    }
+                  }
+                  randomNumAndSet();
+                  console.log(compPickCell)
+                  addPickedClass(cellsarr[compPickCell])
+                  //cellsarr[possiblePicks.splice(Math.floor(Math.random() * possiblePicks.length))].innerHTML = "O"
+                  //console.log(cellsarr[compPickCell])
+                  for(let i = 0; i<cells.length; i++){
+                    if(cells[i].classList.contains("comp")){
+                      cells[i].innerHTML = "O"
+                      cells[i].classList.add("picked")
+                    } else {
+                      //console.log("not getting classList")
+                    }
+                  }
+                  updateBoard();
+                  checkforWin();
+                  console.log(cellsarr)
+              }
+            } 
         })
-    }
-  
+      }
 }
-
 function checkforWin() {
   for (let i = 0; i < board.length; i++) {
     //check rows
