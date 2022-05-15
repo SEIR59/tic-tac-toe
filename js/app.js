@@ -132,10 +132,10 @@ const computerChooses = () => {
         //this loops through until computer chooses another option. I can call computerChoosesWisely() here over and over to make the computer smarter
         //not calling choosesWisely makes the computer beatable
         while (computerBtn.value) {
-            computerBtn.value == null
-            computerChoice = Math.floor(Math.random() * buttonsArr.length)
-            computerBtn = buttonsArr[computerChoice]
-            // computerChoosesWisely()
+            // computerBtn.value == null
+            // computerChoice = Math.floor(Math.random() * buttonsArr.length)
+            // computerBtn = buttonsArr[computerChoice]
+            computerChoosesWisely()
             continue
         }
     }
@@ -304,41 +304,74 @@ let ORain;
 
 
 
+// //this function is called when playing computer. it makes the computer try to keep player from winning
+// function computerChoosesWisely() {
+//     //loop through whole array
+//     for (let i = 0; i < gameWinningCombos.length; i++) {
+//         //loop through each item of smaller arrays
+//         for (let j = 0; j < gameWinningCombos[i].length; j++) {
+//             if (gameWinningCombos[i][j].value === 'O') {
+//                 oCounter++
+//             } else if (gameWinningCombos[i][j].value === 'X') {
+//                 xCounter++
+//             }
+//         }
+//         //if 2/3 of smaller array are "Os" (I put this first so that the computer will choose to win before choosing to block X)
+//         if (oCounter === 2) {
+//             for (let k = 0; k < gameWinningCombos[i].length; k++) {
+//                 if (gameWinningCombos[i][k].value !== 'O') {
+//                     computerBtn = gameWinningCombos[i][k]
+//                 }
+//             }
+//             return computerBtn
+//         } else if (xCounter === 2) {
+//             //re-loop through smaller array
+//             for (let k = 0; k < gameWinningCombos[i].length; k++) {
+//                 if (gameWinningCombos[i][k].value !== 'X') {
+//                     computerBtn = gameWinningCombos[i][k]
+//                 }
+//             }
+//             return computerBtn
+//         }
+//         xCounter = 0
+//         oCounter = 0
+//     }
+// }
+
+
 //this function is called when playing computer. it makes the computer try to keep player from winning
 function computerChoosesWisely() {
     //loop through whole array
     for (let i = 0; i < gameWinningCombos.length; i++) {
         //loop through each item of smaller arrays
         for (let j = 0; j < gameWinningCombos[i].length; j++) {
-            //if smaller array value is X:
-            if (gameWinningCombos[i][j].value === 'X') {
-                //increase the counter by 1
-                xCounter++
-                //if xcounter reaches 2
-                if (xCounter === 2) {
-                    //re-loop through smaller array
-                    for (let k = 0; k < gameWinningCombos[i].length; k++) {
-                        if (gameWinningCombos[i][k].value !== 'X') {
-                            return computerBtn = gameWinningCombos[i][k]
-                        }
-                    }
-                }
-            } else if (gameWinningCombos[i][j].value === 'O') {
+            if (gameWinningCombos[i][j].value === 'O') {
                 oCounter++
-                if (oCounter === 2) {
-                    for (let k = 0; k < gameWinningCombos[i].length; k++) {
-                        if (gameWinningCombos[i][k].value !== 'O') {
-                            return computerBtn = gameWinningCombos[i][k]
-                        }
-                    } 
-                }
+            } else if (gameWinningCombos[i][j].value === 'X') {
+                xCounter++
+            }
+        }
+        //if 2/3 of smaller array are "Os" (I put this first so that the computer will choose to win before choosing to block X)
+        if (oCounter === 2) {
+            for (let k = 0; k < gameWinningCombos[i].length; k++) {
+                if (!gameWinningCombos[i][k].value){
+                    return computerBtn = gameWinningCombos[i][k]
+                } else continue
+            }
+        } else if (xCounter === 2) {
+            //re-loop through smaller array
+            for (let k = 0; k < gameWinningCombos[i].length; k++) {
+                if (!gameWinningCombos[i][k].value){
+                    return computerBtn = gameWinningCombos[i][k]
+                } else continue
             }
         }
         xCounter = 0
         oCounter = 0
     }
+    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+    computerBtn = buttonsArr[computerChoice]
 }
-
 
 // ******** TO-DO LIST **********
 
