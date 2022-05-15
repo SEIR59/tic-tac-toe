@@ -5,6 +5,7 @@
 //ID example: X chooses top left, middle, and bottom right. ID[6:7] for the divs are top left '10', middle '11, bottom right '10'. After all moves, X[6] === 3, which is a win, diagonal.
 const playerMove = (location) => {
     let title = document.getElementById('title')
+    let board = document.getElementById('gameboard')
     let gameOptionExit = 0
     //function to mark a move and respond to that marking.
     const markMove = (spot) => {
@@ -70,7 +71,13 @@ const playerMove = (location) => {
         // gameOption 1 - vs Computer
         if (gameOption === 1 && gameOptionExit === 0) {
             //simple computer move, which removes its move from available squares
-            markMove(document.getElementById(simpleComputerMoveID()))
+            const theMove = () => {
+                boardClickOn(true)
+                markMove(document.getElementById(simpleComputerMoveID()))
+            }
+            boardClickOn(false)
+            gameOptionClickOn(false)
+            setTimeout(theMove, 1000)
         }
     }
 }
@@ -156,24 +163,28 @@ const moveSliderButton = () => {
     }
 
     // conditions for when to move the button and update game option
-    if (gameOption !== 0 && (target === 'PvPbtn' || target === 'PvPSlider')) {
-        toggleDirection('PvPSlider')
-        gameOption = 0
-        clearMoves()
-        currentScore = [0, 0, 0]
-        updateScoreboard()
-    } else if (gameOption !== 1 && (target === 'PvCbtn' || target === 'PvCSlider')) {
-        toggleDirection('PvCSlider')
-        gameOption = 1
-        clearMoves()
-        currentScore = [0, 0, 0]
-        updateScoreboard()
-    } else if (gameOption !== 2 && (target === 'PvAbtn' || target === 'PvASlider')) {
-        toggleDirection('PvASlider')
-        gameOption = 2
-        clearMoves()
-        currentScore = [0, 0, 0]
-        updateScoreboard()
+    if (document.getElementById('gameOptions').classList.contains('clickOff')) {
+        return
+    } else {
+        if (gameOption !== 0 && (target === 'PvPbtn' || target === 'PvPSlider')) {
+            toggleDirection('PvPSlider')
+            gameOption = 0
+            clearMoves()
+            currentScore = [0, 0, 0]
+            updateScoreboard()
+        } else if (gameOption !== 1 && (target === 'PvCbtn' || target === 'PvCSlider')) {
+            toggleDirection('PvCSlider')
+            gameOption = 1
+            clearMoves()
+            currentScore = [0, 0, 0]
+            updateScoreboard()
+        } else if (gameOption !== 2 && (target === 'PvAbtn' || target === 'PvASlider')) {
+            toggleDirection('PvASlider')
+            gameOption = 2
+            clearMoves()
+            currentScore = [0, 0, 0]
+            updateScoreboard()
+        }
     }
 }
 
@@ -184,12 +195,12 @@ const initializeGame = () => {
     document.getElementById('PvPSlider').style.justifyContent = 'right'
     document.getElementById('resetbtn').addEventListener('click', clearMoves)
     document.getElementById('gameOptions').addEventListener('click', moveSliderButton)
-    board.addEventListener('click' , () =>{
-        if (board.classList.contains('clickOff')){
+    board.addEventListener('click', () => {
+        if (board.classList.contains('clickOff')) {
             return
-        }else{
+        } else {
             playerMove(event.target)
-        } 
+        }
     })
     for (let i = 0; i < allSquares.length; i++) {
         availableSquares.push(allSquares[i].id)
@@ -200,7 +211,14 @@ const initializeGame = () => {
 const simpleComputerMoveID = () => {
     return availableSquares.splice(Math.floor(Math.random() * availableSquares.length), 1)
 }
-
+const gameOptionClickOn = (bool) => {
+    let board = document.getElementById('gameOptions')
+    if (bool === false) {
+        board.classList.add('clickOff')
+    } else {
+        board.classList.remove('clickOff')
+    }
+}
 // #endregion 
 
 //#region Variables to track turns of players and their movements
