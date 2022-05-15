@@ -1,3 +1,64 @@
-h1 {
-  color: purple;
+body {
+  text-align: center;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  
+}
+
+#gameboard {
+  display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(3, 1fr);
+height: 300px;
+width: 300px;
+justify-self: center;
+align-items: center;
+
+
+  
+  } 
+.divgrid {
+  display: grid;
+  border: solid;
+  border-width: 3px;
+  cursor: pointer;
+  height: 90px;
+  width: 90px;
+  background-color: black;
+  font-size: 60px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.divgrid:hover {
+  font-size: 80px;
+  height: 100px;
+  width: 100px;
+  transition: 100ms;
+  overscroll-behavior: auto;
+  background-color: limegreen;
+  color: white;
+}
+
+
+button {
+  background-color: white;
+}
+
+#reset-button { 
+  cursor: pointer;
+  width: 300px;
+  justify-self: center;
+}
+
+button:hover{
+  cursor: pointer;
+  width: 400px;
+  height: 40px;
+  background-color: black;
+  color: white;
 }
