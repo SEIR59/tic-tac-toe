@@ -1,4 +1,17 @@
-/*Create backgroud */
+/*Create backgroud that is black, sets default text color white */
+*{
+  background-color: black;
+  color: white;
+}
+
+/*Align header and make nice color*/
+h1 {
+  margin-top: 10px;
+  padding-top: 100px;
+  color: rgb(47, 141, 196);
+  text-align: center;
+}
+
 /*Align grid in a 3x3 pattern */
-/*Make grid items have background and proper spacing
+/*Make grid items have background and proper spacing */
 /*Format win, reset, and players turn properly*/
