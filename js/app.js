@@ -160,20 +160,27 @@ const moveSliderButton = () => {
         toggleDirection('PvPSlider')
         gameOption = 0
         clearMoves()
+        currentScore = [0, 0, 0]
+        updateScoreboard()
     } else if (gameOption !== 1 && (target === 'PvCbtn' || target === 'PvCSlider')) {
         toggleDirection('PvCSlider')
         gameOption = 1
         clearMoves()
+        currentScore = [0, 0, 0]
+        updateScoreboard()
     } else if (gameOption !== 2 && (target === 'PvAbtn' || target === 'PvASlider')) {
         toggleDirection('PvASlider')
         gameOption = 2
         clearMoves()
+        currentScore = [0, 0, 0]
+        updateScoreboard()
     }
 }
 
 //function to run on game startup. Start listeners and input default settings.
 const initializeGame = () => {
     let board = document.getElementById('gameboard')
+    updateScoreboard()
     document.getElementById('PvPSlider').style.justifyContent = 'right'
     document.getElementById('resetbtn').addEventListener('click', clearMoves)
     document.getElementById('gameOptions').addEventListener('click', moveSliderButton)
@@ -195,12 +202,13 @@ const simpleComputerMoveID = () => {
 }
 
 // #endregion 
+
 //#region Variables to track turns of players and their movements
 let currentTurn = 0
 let X = [0, 0, 0, 0, 0, 0, 0, 0]
 let O = [0, 0, 0, 0, 0, 0, 0, 0]
 let tieCheck = 0;
-const currentScore = [0, 0, 0]
+let currentScore = [0, 0, 0]
 //#endregion 
 
 //#region Initialize button(s) and listeners
