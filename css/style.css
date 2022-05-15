@@ -1,3 +1,45 @@
+body {
+  background-image: url("https://t4.ftcdn.net/jpg/03/95/37/19/360_F_395371923_x2IUqSOYDCQeBCx3auKcK3EbyzNjhlNV.jpg");
+  background-color: aquamarine;
+  background-size: 100%;
+}
+/* need add @media to fix background image */
+
 h1 {
-  color: purple;
+  color: white;
+  text-align: center;
+  font-size: 100px;
+}
+h2 {
+  color: white;
+  text-align: center;
+  font-size: 40px;
+  margin: 20px auto;
+}
+
+/* ******Class******** */
+/* change the position later */
+.button {
+  text-align: center;
+  position: relative;
+  margin: 10px;
+}
+
+.grid-container {
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+  justify-content: center;
+}
+
+.grid-item {
+  color: white;
+  border-style: solid;
+  display: grid;
+  justify-content: center;
+}
+
+.display {
+  margin: 0;
 }
