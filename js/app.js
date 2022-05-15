@@ -20,6 +20,17 @@ function gameBegins(){
     let playerOWin = false;
 
 }
+function whoWins(){
+    if(playerXWin === true){
+        let theWinner = document.getElementById('win-state').innerHTML = "Player X Wins!!!";
+        return theWinner;
+    }
+    if(playerOWin === true){
+        let theWinner = document.getElementById('win-state').innerHTML = "Player O Wins!!!";
+        return theWinner;
+    }
+}
+
 
 //Make game begin
 gameBegins();
