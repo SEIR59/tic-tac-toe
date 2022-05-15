@@ -28,7 +28,7 @@ function nextButtonPhase() {
     vsHumanButton.style.display = "none";
     vsCompButton.style.display = "none";
     hardModeButton.style.display = "none";
-    topPrompt.innerHTML = "Choose X or O";
+    topPrompt.innerHTML = "CHOOSE X OR O";
     xButton.style.display = "inline";
     oButton.style.display = "inline";
 }
@@ -55,9 +55,10 @@ oButton.addEventListener("click", (event) => {
 function gameOn() {
     xButton.style.display = "none";
     oButton.style.display = "none";
-    topPrompt.innerHTML = `Game on! You are ${p1}`
+    topPrompt.innerHTML = `GAME ON!`
     bottomPrompt.style.display = "inline";
     restartButton.style.display = "inline";
+    gameOver = false;
     p1Turn();
 }
 
@@ -83,7 +84,7 @@ boxes.forEach(box => {
                 if (currentValue !== p2) {
                     console.log("empty!") // Test log;
                     document.getElementById(currentBox).innerHTML = p1;
-                    document.getElementById(currentBox).style.color = "black";
+                    document.getElementById(currentBox).style.color = "dodgerblue";
                     p2Turn();
                     checkForWin(p1);
                 }
@@ -92,7 +93,7 @@ boxes.forEach(box => {
                 if (currentValue !== p1) {
                     console.log("empty!") // Test log;
                     document.getElementById(currentBox).innerHTML = p2;
-                    document.getElementById(currentBox).style.color = "black";
+                    document.getElementById(currentBox).style.color = "lightcoral";
                     p1Turn();
                     checkForWin(p2);
                 }
@@ -134,14 +135,16 @@ function checkForWin(p) {
     }
 }
 
-restartButton.addEventListener('click', (event) => {
-    if (gameOver === true) {
-        restart();
-    }
-});
+// restartButton.addEventListener('click', (event) => {
+//     if (gameOver === true) {
+//         restart();
+//     }
+// });
 
-function restart() {
-    topPrompt.innerHTML = "Choose mode:";
+// function restart() {
+restartButton.addEventListener('click', (event) => {
+    gameOver = true;
+    topPrompt.innerHTML = "CHOOSE MODE:";
     restartButton.style.display = "none";
     vsHumanButton.style.display = "inline";
     vsCompButton.style.display = "inline";
@@ -150,7 +153,6 @@ function restart() {
         box.innerHTML = "1";
         box.style.color = "white";
     });
-    gameOver = false;
     turnsTaken = 0;
-    bottomPrompt.innerHTML = "Awaiting match...";
-}
+    bottomPrompt.innerHTML = "AWAITING MATCH...";
+});
