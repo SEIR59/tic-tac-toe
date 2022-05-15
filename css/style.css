@@ -28,27 +28,99 @@ body {
   grid-template-rows: 1fr 1fr 1fr;
 }
 
+
 .square {
   background-color: #98c3e1;
   border: 0.75px solid #09222f;
   padding: 75px;
+  position: relative;
+
+  /* Making sure my markers are in the center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media screen and (max-width: 1000px){
+.square:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1000px) {
   .square {
     padding: 50px;
   }
+
   .content {
     font-size: 10pt;
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   #flex-container {
     flex-wrap: wrap;
   }
+
   .content {
     margin: 0% 0% 10% 0%;
   }
-  
+}
+
+/* Creating the X Marker */
+.x::before, 
+.x::after {
+  position: absolute;
+  content: '';
+  width: 90%;
+  height: 10%;
+  background-color: #09222f;
+}
+
+.x::after {
+  transform: rotate(45deg);
+}
+
+.x::before {
+  transform: rotate(-45deg);
+}
+
+/* Creating the O Marker */
+.o::before, 
+.o::after {
+  position: absolute;
+  content: '';
+  border-radius: 50%;
+  background-color: #09222f;
+}
+
+.o::before {
+  width: 80%;
+  height: 80%;
+  background-color: #09222f;
+}
+
+.o::after {
+  width: 65%;
+  height: 65%;
+  background-color: #98c3e1;
+}
+
+/* Turn Message */
+.turn-message {
+  margin-top: 2%;
+  color: blue;
+  text-align: center;
+}
+
+/* Winning Message */
+.win-message {
+  margin-top: 2%;
+  color: red;
+  text-align: center;
+}
+
+/* Tie Message */
+.tie-message {
+  margin-top: 2%;
+  color: green;
+  text-align: center;
 }
