@@ -5,19 +5,22 @@ const srcZero = "image/Screen Shot 2022-05-14 at 9.00.12 PM.png";
 const srcOne = "image/circle-png.webp";
 const srcTwo = "image/527-5271560_png-file-svg-x-vector.png";
 
-let p1 = 1;
-
-function takeTurn_1() {
+//make a flag variable indicating whose turn it is.
+let p1 = 2;
+//function chaning grid image and the flag variable
+function takeTurn_1(e) {
+     
     if (p1 === 1) {
         document.getElementById("r1").src = srcOne;
         document.getElementById("b1").setAttribute("disabled", "disabled");
         p1 = 0;
-        console.log(p1);
+       
     }
-    else {
+    else if(p1 === 0) {
         document.getElementById("r1").src = srcTwo;
         document.getElementById("b1").setAttribute("disabled", "disabled");
         p1 = 1;
+        
     }
 };
 function takeTurn_2() {
@@ -26,7 +29,7 @@ function takeTurn_2() {
         document.getElementById("b2").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r2").src = srcTwo;
         document.getElementById("b2").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -38,7 +41,7 @@ function takeTurn_3() {
         document.getElementById("b3").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r3").src = srcTwo;
         document.getElementById("b3").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -50,7 +53,7 @@ function takeTurn_4() {
         document.getElementById("b4").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r4").src = srcTwo;
         document.getElementById("b4").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -62,7 +65,7 @@ function takeTurn_5() {
         document.getElementById("b5").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r5").src = srcTwo;
         document.getElementById("b5").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -74,7 +77,7 @@ function takeTurn_6() {
         document.getElementById("b6").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r6").src = srcTwo;
         document.getElementById("b6").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -86,7 +89,7 @@ function takeTurn_7() {
         document.getElementById("b7").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r7").src = srcTwo;
         document.getElementById("b7").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -98,7 +101,7 @@ function takeTurn_8() {
         document.getElementById("b8").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r8").src = srcTwo;
         document.getElementById("b8").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -110,7 +113,7 @@ function takeTurn_9() {
         document.getElementById("b9").setAttribute("disabled", "disabled");
         p1 = 0;
     }
-    else {
+    else if(p1 === 0){
         document.getElementById("r9").src = srcTwo;
         document.getElementById("b9").setAttribute("disabled", "disabled");
         p1 = 1;
@@ -144,9 +147,32 @@ function resetGame(){
     document.getElementById("b9").removeAttribute("disabled");
 }
 
-function call(){
-    console.log("call");
+
+/*-----commentary-----*/
+function saying(){
+
+const commentary = document.getElementById("turn");
+
+if (p1 === 1){
+    commentary.innerText = "O player's turn!";
+}else if(p1 === 0){
+   commentary.innerText = "X player's turn!";
+}else if (p1 === 2){
+    p1 = 1;
+}
 };
+
+
+/*-----FUNCTION__who won???-----*/
+
+
+
+
+
+
+// function call(){
+//     console.log("call");
+// };
 
 
 // photo.setAttribute("src","srcOne")
@@ -180,31 +206,31 @@ function call(){
 
 /*-----ADDING EVENT LISTNER TO GRID BUTTON-----*/
 document.querySelector('#b1').addEventListener('click', (e) => {
-    takeTurn_1();
+    takeTurn_1(); saying();
 });
 document.querySelector('#b2').addEventListener('click', (e) => {
-    takeTurn_2();
+    takeTurn_2(); saying();
 });
 document.querySelector('#b3').addEventListener('click', (e) => {
-    takeTurn_3();
+    takeTurn_3(); saying();
 });
 document.querySelector('#b4').addEventListener('click', (e) => {
-    takeTurn_4();
+    takeTurn_4(); saying();
 });
 document.querySelector('#b5').addEventListener('click', (e) => {
-    takeTurn_5();
+    takeTurn_5(); saying();
 });
 document.querySelector('#b6').addEventListener('click', (e) => {
-    takeTurn_6();
+    takeTurn_6(); saying();
 });
 document.querySelector('#b7').addEventListener('click', (e) => {
-    takeTurn_7();
+    takeTurn_7(); saying();
 });
 document.querySelector('#b8').addEventListener('click', (e) => {
-    takeTurn_8();
+    takeTurn_8(); saying();
 });
 document.querySelector('#b9').addEventListener('click', (e) => {
-    takeTurn_9();
+    takeTurn_9(); saying();
 });
 
 /*-----ADDING EVENT LISTNER TO RESET BUTTON-----*/
