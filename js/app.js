@@ -1,5 +1,5 @@
 
-/*-----CHANGING BOX IMAGES & TAKE TURNS-----*/
+/*-----FUNCTION__CHANGING BOX IMAGES & TAKE TURNS-----*/
 const photo = document.querySelector('img');
 const srcZero = "image/Screen Shot 2022-05-14 at 9.00.12 PM.png";
 const srcOne = "image/circle-png.webp";
@@ -117,11 +117,36 @@ function takeTurn_9() {
     }
 };
 
+/*-----FUNCTION__RESET ALL GRID BUTTONS-----*/
 
+function resetGame(){
+    console.log("rrrr");
+    p1 = 1;
+    //going back to the default white image
+    document.getElementById("r1").src = srcZero;
+    document.getElementById("r2").src = srcZero;
+    document.getElementById("r3").src = srcZero;
+    document.getElementById("r4").src = srcZero;
+    document.getElementById("r5").src = srcZero;
+    document.getElementById("r6").src = srcZero;
+    document.getElementById("r7").src = srcZero;
+    document.getElementById("r8").src = srcZero;
+    document.getElementById("r9").src = srcZero;
+    //make the buttons enabled again
+    document.getElementById("b1").removeAttribute("disabled");
+    document.getElementById("b2").removeAttribute("disabled");
+    document.getElementById("b3").removeAttribute("disabled");
+    document.getElementById("b4").removeAttribute("disabled");
+    document.getElementById("b5").removeAttribute("disabled");
+    document.getElementById("b6").removeAttribute("disabled");
+    document.getElementById("b7").removeAttribute("disabled");
+    document.getElementById("b8").removeAttribute("disabled");
+    document.getElementById("b9").removeAttribute("disabled");
+}
 
-
-
-
+function call(){
+    console.log("call");
+};
 
 
 // photo.setAttribute("src","srcOne")
@@ -183,6 +208,6 @@ document.querySelector('#b9').addEventListener('click', (e) => {
 });
 
 /*-----ADDING EVENT LISTNER TO RESET BUTTON-----*/
-// document.querySelector('#b9').addEventListener('click', (e) => {
-//     takeTurn_9();
-// });
+document.querySelector('.reset').addEventListener('click', () => {
+    resetGame();
+});
