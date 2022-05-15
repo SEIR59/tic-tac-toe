@@ -1,12 +1,13 @@
 
 const gameBoardElement = document.querySelector('gameBoard')
 const boxes = document.querySelectorAll('.square');
-const restartButton = document.querySelector('#restart');
+//Re-start button I can't get to work.
+// const restartButton = document.querySelector('#restart');
 const winningMessageText = document.querySelector('winningMessage')
 
 //declaring the player and computer and winning combinations
-const playerX = 'x';
-const playerO = 'circle';
+const playerX = 'X';
+const playerO = 'O';
 const winningCombinations = [
     //rows
     [0,1,2],
@@ -23,19 +24,30 @@ const winningCombinations = [
 //create game board into array
 let cells = ['', '', '', '', '', '', '', '', '',];
 
+// forces player x to always start
+let playerOTurn = false;
+
 //to start the game
 //if it's a tie
 //to end the game
+
+
+
+//to start the game & add the click element to each box
+
+for (const box of boxes){
+    box.addEventListener("click", function(){
+        box.innerHTML = user;
+        if ( currentPlayer === x )
+
+    })
+}
+
+
 //how to switch turns
-
-
-
-//add the click element to each box
-boxes.addEventListner('click', function(){
-
-
-} )
-
+function swapTurns(){
+    playerOTurn = !playerOTurn
+}
 
 
 
