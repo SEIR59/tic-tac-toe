@@ -5,7 +5,7 @@ Starting Board - done
 Correct Boards - done
 Keep track of moves (game turns) - done
 Pushing choice into board -done
-Reset the game
+Reset the game - done
 Can't change full piece - done
 */
 
@@ -33,6 +33,7 @@ function gameBegins() {
         "Player O Wins!!!");
       return theWinner;
     }else if(b === 9){
+        document.getElementById('player-turn').innerHTML = " ";
         let theWinner = (document.getElementById("win-state").innerHTML =
         "It's a tie!");
         return theWinner;
