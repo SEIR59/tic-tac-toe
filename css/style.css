@@ -159,7 +159,7 @@ input {
   border: none;
   color: #242c10;
 }
-input:hover {
+input.hover:hover {
   background-color: white;
 }
 input.active {
@@ -179,7 +179,7 @@ input.computer {
   border: 6px solid #242c10;
   margin-top: 10px;
   font-size: 80px;
-  background-color: rgba(255,255,255, 0.7);
+  background-color: rgba(255,255,255, 0.6);
   padding: 30px 20px;
   z-index: 5;
   display: grid;
@@ -207,7 +207,10 @@ input.computer {
     border-radius: 30px;
     border: 3px solid white;
   }
-
+span {
+  color: #d5ff61;
+  font-size: 80px;
+}
 
   /* this is creating the 'tic tac toe' lines on the grid and rounds out the corners of the grid */
 #one {

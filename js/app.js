@@ -1,7 +1,8 @@
 let playCount = 0
 let xWinsCount = 0
 let oWinsCount = 0
-let xWinsGameOver = false;
+let xWinsGameOver = false
+let yWinsGameOver = false
 
 const displayWins = () => {
     let xScoreDisplay = document.getElementById('xScore')
@@ -41,17 +42,21 @@ const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 const enableButtons = () => {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].disabled = false;
+        buttonsArr[i].classList.add('hover')
     }
 }
+
 const disableBtns = () => {
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].disabled = true;
+        buttonsArr[i].classList.remove('hover')
     }
 }
 
 //This assigns button event listeners to play locally
 //and removes the other event listeners so there aren't both
 const playLocally = () => {
+    enableButtons()
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].addEventListener("click", changeBtn)
         buttonsArr[i].removeEventListener('click', changeBtnWithComputer)
@@ -60,6 +65,7 @@ const playLocally = () => {
 // This assigns event listeners to grid buttons to play with computer
 //and removes the other event listeners so there aren't both
 const playWithComputer = () => {
+    enableButtons()
     for (let i = 0; i < buttonsArr.length; i++) {
         buttonsArr[i].removeEventListener('click', changeBtn)
         buttonsArr[i].addEventListener("click", changeBtnWithComputer)
@@ -109,7 +115,8 @@ const computerChooses = () => {
     playCount ++;
     playGame()
     showTurn()
-    setTimeout(enableButtons, 500)
+
+    yWinsGameOver ? player2Wins() : setTimeout(enableButtons, 500)
 }
 
 function changeBtnWithComputer() {
@@ -139,7 +146,7 @@ const changeClasses = () => {
     for (let i=0; i<smallGameBoardPic.length; i++){
         
         // need to check this, i'm not using i
-        smallGameBoardPic.classList.add('active')
+        // smallGameBoardPic.classList.add('active')
     }
 }
 
@@ -156,9 +163,8 @@ const player1Wins = () => {
 }
 
 
+//disable hover when computer is choosing and when game is over
 
-//**** BUG ALERT -- if O wins, x can still push a button before screen resets if fast enough
-// also if by doing so it puts the playcount to 9, then it also thinks it's a draw and keeps raining elements down infinitely
 const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS!!`
@@ -181,8 +187,8 @@ function playGame() {
         ((one.value == "X") && (five.value == "X") && (nine.value == "X")) ||
         ((three.value == "X") && (five.value == "X") && (seven.value == "X"))) 
         // player1Wins()
-        return xWinsGameOver = true;
-        else
+        return xWinsGameOver = true
+       
     if (((one.value == "O") && (two.value == "O") && (three.value == "O")) ||
         ((four.value == "O") && (five.value == "O") && (six.value == "O")) ||
         ((seven.value == "O") && (eight.value == "O") && (nine.value == "O")) ||
@@ -190,13 +196,15 @@ function playGame() {
         ((two.value == "O") && (five.value == "O") && (eight.value == "O")) ||
         ((three.value == "O") && (six.value == "O") && (nine.value == "O")) ||
         ((one.value == "O") && (five.value == "O") && (nine.value == "O")) ||
-        ((three.value == "O") && (five.value == "O") && (seven.value == "O"))) 
-        player2Wins();
-        else
+        ((three.value == "O") && (five.value == "O") && (seven.value == "O"))) {
+            disableBtns()
+            return yWinsGameOver = true
+        }
+        
     if (playCount >= 9) {
-        endGameText.innerText = `DRAW`
-        setTimeout(changeClasses, 1000) 
-        disableBtns()
+            endGameText.innerText = `DRAW`
+            setTimeout(changeClasses, 1000) 
+            disableBtns()
     }
 }
 
@@ -207,7 +215,8 @@ function resetGame() {
         buttonsArr[i].value = ""
         buttonsArr[i].className = ''
         buttonsArr[i].disabled = false
-        xWinsGameOver = false;
+        xWinsGameOver = false
+        yWinsGameOver = false
         rulesPopup.classList.remove('active')
         endGameText.classList.remove('active')
         //display:none for any fallingXs that havent reached bottom yet
