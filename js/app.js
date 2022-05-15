@@ -16,6 +16,14 @@ let s1 = 0;
 let s2 = 0
 let winner = ""
 let winarr =[]
+const img = document.createElement("img");
+const packers = "img/pac.png"
+const bears = "img/bears.png"
+
+
+for(const cell of cells){
+  console.log("im a cell")
+}
 
 
 //creates board at start of game
@@ -32,9 +40,9 @@ function updateBoard() {
 //Update Next Up Element
 function displayNextUpMessage(num) {
   if (num === 0) {
-    nxtUp.innerHTML = "Next up: O";
+    nxtUp.innerHTML = `Next up: <img class= "tinyimg" src="img/bears.png">`;
   } else {
-    nxtUp.innerHTML = "Next up: X";
+    nxtUp.innerHTML = `Next up: <img class= "tinyimg" src="img/pac.png">`;
   }
 }
 
@@ -66,13 +74,16 @@ function play(a){
 function playHuman() {
   for (const cell of cells) {
     //console.log(cell.classList)
-    cell.addEventListener("click", function (e) {
+    cell.addEventListener("click", function () {
       //console.log(e.target.classList)
       //console.log(`this is the board before move: ${board}`);
       //isMovesLeft();
       if(!cell.classList.contains("picked")){
         if (letter === 1) {
-          cell.innerHTML = "X";
+          cell.innerHTML = `<img src="img/pac.png">`;
+          // cell.appendChild(img)
+          // img.src = packers
+          console.log(cell.innerHTML)
           letter = 0;
           //console.log(letter)
           board = [];
@@ -82,7 +93,7 @@ function playHuman() {
           console.log(cell.classList)
           console.log(board)
         } else {
-          cell.innerHTML = "O";
+          cell.innerHTML = `<img src="img/bears.png">`;
           letter = 1;
           console.log(letter);
           board = [];
@@ -103,8 +114,10 @@ function playHuman() {
       displayNextUpMessage(letter);
       checkforWin();
       //console.log(winarr[0])
-      if(winner){
-        winnerMsg.innerHTML = `this winner is ${winner}`
+      if(winner === "X"){
+        winnerMsg.innerHTML = `The Packers win! The Bears still suck!`
+      } else if (winner === "O") {
+        winnerMsg.innerHTML = `The Bears win, but they still suck!`
       }
     });
   }
@@ -117,7 +130,7 @@ function playComputer(){
             isMovesLeft();
             if(!cell.classList.contains("picked")){
               if(letter === 1){
-                  cell.innerHTML = "X";
+                  cell.innerHTML = `<img src="img/pac.png">`;
                   board = [];
                   addPickedClass(cell);
                   setUser(cell)
@@ -138,7 +151,7 @@ function playComputer(){
                   //console.log(cellsarr[compPickCell])
                   for(let i = 0; i<cells.length; i++){
                     if(cells[i].classList.contains("comp")){
-                      cells[i].innerHTML = "O"
+                      cells[i].innerHTML = `<img src="img/bears.png">`;
                       cells[i].classList.add("picked")
                     } else {
                       //console.log("not getting classList")

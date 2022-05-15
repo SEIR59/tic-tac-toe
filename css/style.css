@@ -4,6 +4,11 @@ body{
   align-content: center;
   height: 100vh;
   width: 100vw;
+  background-image: url(../img/lambeu.jpeg);
+  background-repeat: no-repeat;
+  background-position: 20% 50%;
+  color: white;
+  font-size: 20px;;
 }
 
 .info-container{
@@ -32,16 +37,37 @@ button{
 }
 
 .container{
-  height: 40vh;
+  height: 48vh;
   width: 40vw;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  background-color:  rgba(0,0,0,.2);
 }
 
 .cell{
   display: grid;
-  border: 2px solid black ;
+  border: 2px solid white;
   text-align: center;
   align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+img{
+  height: 90%;
+  max-height: 80px;
+  width: 90%;
+  padding-left: 5%;
+}
+
+.winner-message{
+  margin-top: 2vh;
+}
+
+.tinyimg{
+  height: 30%;
+  max-height: 80px;
+  width: 30%;
+  padding-left: 25%;
 }
