@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   color:purple;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif;
   box-sizing: border-box;
 }
 
@@ -19,13 +19,21 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 #gameboard {
   width: 450px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .square {
   height: 150px;
   width: 150px;
+  background-color: indigo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
 }
