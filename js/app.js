@@ -19,7 +19,6 @@ let newGameButton = document.querySelector("button");
 
 boxes.forEach((box) =>
   box.addEventListener("click", (event) => {
-    debugger;
     if (!event.target.innerText) {
       if (player === "you") {
         totalMove += 1;
@@ -46,6 +45,7 @@ boxes.forEach((box) =>
 
 function checkWinner(playerMove) {
   for (let i = 0; i < winningCondition.length; i++) {
+    debugger;
     let winning = [];
     for (let j = 0; j < playerMove.length; j++) {
       if (winningCondition[i].includes(playerMove[j])) {
@@ -55,9 +55,11 @@ function checkWinner(playerMove) {
     }
     if (winning[0] === 1 && winning[1] === 1 && winning[2] === 1) {
       newGame();
-    } else if (totalMove === 9) {
+      return;
+    } else if (totalMove === 9 && i === winningCondition.length - 1) {
       h1.style.color = "red";
       h1.innerText = " TIE!!!";
+      return;
     }
   }
 }
