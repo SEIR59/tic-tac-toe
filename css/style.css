@@ -1,5 +1,4 @@
 body {
-  display: grid;
   text-align: center;
   justify-content: center;
   background-color: pink;
@@ -29,21 +28,18 @@ p {
   grid-template-rows: repeat(3, 1fr);
   height: 70px;
   width: 60px;
+  justify-content: center;
   align-items: center;
-  margin-top: 5px;
+  margin: 30px auto;
+  /* margin-top: 5px; */
   /* margin-left: 70px auto; */
-
 }
 
 .square {
-  display: grid;
   border: 2px solid purple;
   background-color: pink;
   border-width: 1px;
   height: 70px;
   width: 70px;
-  /* margin: 5px; */
-  align-content: center;
-  text-align: center;
   cursor: pointer;
 }
