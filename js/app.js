@@ -9,15 +9,22 @@ let grid = document.getElementsByClassName('grid')
 grid = Array.from(grid)
 let currentPlayer = "X"
 let winningOrder = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+const restartButton = document.querySelector('#restart-button')
+
+const showWinScreen = () => {
+    let winScreen = document.getElementsByClassName('win-screen')
+    winScreen[0].style.display = 'flex'
+}
 
 const winnerCheck = () => {
     winningOrder.forEach(function(combination) {
         let check = combination.every(idx => grid[idx].innerText.trim() == currentPlayer)
         if (check){
-            alert(`Player ${currentPlayer} has won!`)
+            showWinScreen()
         }
     }
 )}
+
 grid.forEach(function(grid){
     grid.addEventListener('click', function(){
         if(grid.innerText.trim() != "") return
@@ -26,3 +33,10 @@ grid.forEach(function(grid){
         currentPlayer = currentPlayer == "X" ? "O" : "X"
     })
 })
+
+const restart = () => {
+    restart = location.reload()
+}
+restartButton.addEventListener("click", restart, false)
+
+

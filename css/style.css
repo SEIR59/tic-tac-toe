@@ -88,9 +88,9 @@ button:hover {
 .win-screen {
   justify-content: center;
   position: absolute;
-  display: flex;
   background-color: lavender;
   min-width: 100vw;
+  display: none;
 }
 
 .game-message {
