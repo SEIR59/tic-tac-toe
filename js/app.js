@@ -18,13 +18,13 @@ function gameBegins() {
   //Holds state for who won game
   let playerXWin = false;
   let playerOWin = false;
+  let playerDraw = false;
 
   function whoWins() {
     if (playerXWin === true) {
       let theWinner = (document.getElementById("win-state").innerHTML =
         "Player X Wins!!!");
-        document.getElementById("player-turn").remove();
-      return theWinner;
+        return theWinner;
     }
     if (playerOWin === true) {
       let theWinner = (document.getElementById("win-state").innerHTML =
@@ -36,8 +36,8 @@ function gameBegins() {
   let i = 0;
   function playerTurn() {
     if (i % 2 === 0 && playerOWin === false && playerXWin === false) {
-        i++;
         document.getElementById("player-turn").innerHTML = "Player X Goes";
+        i++;
         console.log(i);
         return players[1];
     } else if(playerOWin === false && playerXWin === false){
@@ -50,11 +50,13 @@ function gameBegins() {
         return " "; 
     }
   }
+  //Makes everything reset
   function doReset(){
     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
     playerXWin = false;
     playerOWin = false;
     i = 0;
+    playerDraw = false;
     console.log(board);
     document.getElementById('tile1').innerHTML = " ";
     document.getElementById('tile2').innerHTML = " ";
