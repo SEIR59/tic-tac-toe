@@ -44,3 +44,17 @@ h1 {
 }
 
 /*Format win, reset, and players turn properly*/
+#win-state{
+  margin-top: -70px;
+  text-align: center;
+}
+
+#reset{
+  margin-top: -70px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#player-turn{
+  text-align: center;
+}
