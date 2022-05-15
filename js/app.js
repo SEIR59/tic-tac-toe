@@ -134,6 +134,23 @@ function checkForWin(p) {
     }
 }
 
+restartButton.addEventListener('click', (event) => {
+    if (gameOver === true) {
+        restart();
+    }
+});
+
 function restart() {
-    
+    topPrompt.innerHTML = "Choose mode:";
+    restartButton.style.display = "none";
+    vsHumanButton.style.display = "inline";
+    vsCompButton.style.display = "inline";
+    hardModeButton.style.display = "inline";
+    boxes.forEach(box => {
+        box.innerHTML = "1";
+        box.style.color = "white";
+    });
+    gameOver = false;
+    turnsTaken = 0;
+    bottomPrompt.innerHTML = "Awaiting match...";
 }
