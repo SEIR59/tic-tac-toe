@@ -1,5 +1,5 @@
 
-let idFirst = document.querySelector("#first");
+let idFirst = document.getElementById("first");
 let idSecond = document.querySelector("#second");
 let idThird = document.querySelector("#third");
 let idFourth = document.querySelector("#fourth");
@@ -9,7 +9,7 @@ let idSeventh = document.querySelector("#seventh");
 let idEighth = document.querySelector("#eighth");
 let idNinth = document.querySelector("#ninth");
 let divGrid = document.querySelector(".divGrid")
-
+let p = document.getElementById('p')
 const board = [idFirst, idSecond, idThird, idFourth, idFifth, idSixth, idSeventh, idEighth, idNinth]
 
 let playerX = null
@@ -39,11 +39,16 @@ let inputX = "❌";
 function markBox1() {
   if(inputX === "❌") {
     idFirst.innerText = "❌";
+    p.innerText = "⭕'s turn"
+    idFirst = idFirst.disabled
     inputX = "⭕"
-  } else {
+    
+  } else if(inputX === "⭕"){
     idFirst.innerText = "⭕";
+    p.innerText = "❌'s turn"
+    idFirst = idFirst.disabled 
     inputX = "❌"
-  }
+   } 
 }
 
 idFirst.addEventListener('click', markBox1)
@@ -52,10 +57,15 @@ idFirst.addEventListener('click', markBox1)
 function markBox2() {
   if(inputX === "❌") {
     idSecond.innerText = "❌";
+    p.innerText = "⭕'s turn"
+    idSecond = idSecond.disabled
     inputX = "⭕";
+    
   } else {
     idSecond.innerText = "⭕";
+    p.innerText = "❌'s turn"
     inputX = "❌";
+    idSecond = idSecond.disabled 
   }
 }
 
@@ -66,10 +76,14 @@ idSecond.addEventListener('click', markBox2)
 function markBox3() {
   if(inputX === "❌") {
     idThird.innerText = "❌";
+    p.innerText = "⭕'s turn"
     inputX = "⭕";
+    idThird = idThird.disabled
   } else {
     idThird.innerText = "⭕";
+    p.innerText = "❌'s turn"
     inputX = "❌";
+    idThird = idThird.disabled
   }
 }
 
@@ -80,10 +94,14 @@ idThird.addEventListener('click', markBox3)
 function markBox4() {
   if(inputX === "❌") {
     idFourth.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idFourth = idFourth.disabled
   } else {
     idFourth.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idFourth = idFourth.disabled
   }
 }
 
@@ -94,10 +112,14 @@ idFourth.addEventListener('click', markBox4)
 function markBox5() {
   if(inputX === "❌") {
     idFifth.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idFifth = idFifth.disabled
   } else {
     idFifth.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idFifth = idFifth.disabled
   }
 }
 
@@ -108,10 +130,15 @@ idFifth.addEventListener('click', markBox5)
 function markBox6() {
   if(inputX === "❌") {
     idSixth.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idSixth = idSixth.disabled
+
   } else {
     idSixth.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idSixth = idSixth.disabled
   }
 }
 
@@ -122,10 +149,14 @@ idSixth.addEventListener('click', markBox6)
 function markBox7() {
   if(inputX === "❌") {
     idSeventh.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idSeventh = idSeventh.disabled
   } else {
     idSeventh.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idSeventh = idSeventh.disabled
   }
 }
 
@@ -136,10 +167,14 @@ idSeventh.addEventListener('click', markBox7)
 function markBox8() {
   if(inputX === "❌") {
     idEighth.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idEighth = idEighth.disabled
   } else {
     idEighth.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idEighth = idEighth.disabled
   }
 }
 
@@ -150,10 +185,14 @@ idEighth.addEventListener('click', markBox8)
 function markBox9() {
   if(inputX === "❌") {
     idNinth.innerText = "❌"
+    p.innerText = "⭕'s turn"
     inputX = "⭕"
+    idNinth = idNinth.disabled
   } else {
     idNinth.innerText = "⭕"
+    p.innerText = "❌'s turn"
     inputX = "❌"
+    idNinth = idNinth.disabled
   }
 }
 
@@ -161,126 +200,11 @@ idNinth.addEventListener('click', markBox9)
 
 
 
+//took away second function for disabling squares
 
 
 
 
-function DisableBox1() {
-    if (inputX === 0) {
-        document.getElementById("first").value = "❌";
-        document.getElementById("first").disabled = true;
-        inputX = 1;
-    }
-    else {
-        document.getElementById("first").value = "⭕";
-        document.getElementById("first").disabled = true;
-        inputX = 0;
-    }
-}
-
-function DisableBox2() {
-  if (inputX === 0) {
-      document.getElementById("second").value = "❌";
-      document.getElementById("second").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("second").value = "⭕";
-      document.getElementById("second").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox3() {
-  if (inputX === 0) {
-      document.getElementById("third").value = "❌";
-      document.getElementById("third").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("third").value = "⭕";
-      document.getElementById("third").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox4() {
-  if (inputX === 0) {
-      document.getElementById("fourth").value = "❌";
-      document.getElementById("fourth").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("fourth").value = "⭕";
-      document.getElementById("fourth").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox5() {
-  if (inputX === 0) {
-      document.getElementById("fifth").value = "❌";
-      document.getElementById("fifth").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("fifth").value = "⭕";
-      document.getElementById("fifth").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox6() {
-  if (inputX === 0) {
-      document.getElementById("sixth").value = "❌";
-      document.getElementById("sixth").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("sixth").value = "⭕";
-      document.getElementById("sixth").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox7() {
-  if (inputX === 0) {
-      document.getElementById("seventh").value = "❌";
-      document.getElementById("seventh").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("seventh").value = "⭕";
-      document.getElementById("seventh").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox8() {
-  if (inputX === 0) {
-      document.getElementById("eighth").value = "❌";
-      document.getElementById("eighth").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("eighth").value = "⭕";
-      document.getElementById("eighth").disabled = true;
-      inputX = 0;
-  }
-}
-
-function DisableBox9() {
-  if (inputX === 0) {
-      document.getElementById("ninth").value = "❌";
-      document.getElementById("ninth").disabled = true;
-      inputX = 1;
-  }
-  else {
-      document.getElementById("ninth").value = "⭕";
-      document.getElementById("ninth").disabled = true;
-      inputX = 0;
-  }
-}
 
 function reset() {
   location.reload();
@@ -298,3 +222,6 @@ function reset() {
 
 document.querySelector('#reset-button').addEventListener('click', reset)
 
+console.log('wtf happened')
+
+//working on solution for checking the answers now
