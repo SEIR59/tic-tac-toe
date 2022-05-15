@@ -1,3 +1,56 @@
+:root {
+  --gameboard-size: 320px;
+  --gameboard-background-grid: #238697;
+  --gameboard-pieces: #2F4858;
+  --gameboard-square-background: #f3f9fa;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 100px 0;
+  font-size: 36px;
+  text-align: center;
+  background-color: rgb(225, 249, 255);
+}
+
 h1 {
+  margin-bottom: 100px;
   color: purple;
 }
+
+
+.gameboard-grid-template {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 6px;
+  margin: 50px auto;
+  width: var(--gameboard-size);
+  height: var(--gameboard-size);
+  color: var(--gameboard-pieces);
+  background-color: var(--gameboard-background-grid);
+  box-shadow: 0 0 4px 2px grey;
+}
+
+.gameboard-square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  background-color: var(--gameboard-square-background);
+}
+
+.gameboard-square:hover {
+  background-color: red;
+}
+
+
