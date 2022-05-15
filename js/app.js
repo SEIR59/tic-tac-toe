@@ -80,6 +80,92 @@ function gameBegins() {
       return players[0];
     }
   }
+  /*Each box listened to, correct player added to tile, 
+  cannot be changed when clicked another time*/
+  function whichBox(){
+    correctBoard();
+    document.getElementById('tile1').addEventListener('click', e => {
+        if(board[0] === ' '){
+            let newArea1 = document.getElementById('tile1').innerHTML = playerTurn();
+            board.splice(0, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea1;
+        }
+    }); 
+    document.getElementById('tile2').addEventListener('click', e => {
+        if(board[1] === ' '){
+            let newArea2 = document.getElementById('tile2').innerHTML = playerTurn();
+            board.splice(1, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea2;
+        }
+    }); 
+    document.getElementById('tile3').addEventListener('click', e => {
+        if(board[2] === ' '){
+            let newArea3 = document.getElementById('tile3').innerHTML = playerTurn();
+            board.splice(2, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea3;
+        }
+    }); 
+    document.getElementById('tile4').addEventListener('click', e => {
+        if(board[3] === ' '){
+            let newArea4 = document.getElementById('tile4').innerHTML = playerTurn();
+            board.splice(3, 1, players[i]);
+            console.log(board);
+            return newArea4;
+        }
+    }); 
+    document.getElementById('tile5').addEventListener('click', e => {
+        if(board[4] === ' '){
+            let newArea5 = document.getElementById('tile5').innerHTML = playerTurn();
+            board.splice(4, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea5;
+        }
+    }); 
+    document.getElementById('tile6').addEventListener('click', e => {
+        if(board[5] === ' '){
+            let newArea6 = document.getElementById('tile6').innerHTML = playerTurn();
+            board.splice(5, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea6;
+        }
+    }); 
+    document.getElementById('tile7').addEventListener('click', e => {
+        if(board[6] === ' '){
+            let newArea7 = document.getElementById('tile7').innerHTML = playerTurn();
+            board.splice(6, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea7;
+        }
+    }); 
+    document.getElementById('tile8').addEventListener('click', e => {
+        if(board[7] === ' '){
+            let newArea8 = document.getElementById('tile8').innerHTML = playerTurn();
+            board.splice(7, 1, players[i]);
+            console.log(board);
+            correctBoard();
+            return newArea8;
+        }
+    }); 
+    document.getElementById('tile9').addEventListener('click', e => {
+        if(board[8] === ' '){
+            let newArea9 = document.getElementById('tile9').innerHTML = playerTurn();
+            board.splice(8, 1, players[i]);
+            correctBoard();
+            return newArea9;
+        }
+    }); 
+  }
+  //Initiate whichBox
+  whichBox();
 }
 
 //Makes the game begin
