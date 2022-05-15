@@ -2,18 +2,21 @@ h1 {
   color: blue;
   font-size: xx-large;
  display: inline-block;
+ 
 }
 body {
-
-
+  display: grid;
+  flex-direction: row;
 }
-#button {
+
+.button {
   color: yellow;
   background-color: darkblue;
   width: 100px;
   padding: 14px 28px;
   border-radius: 50% 20%;
   display: center;
+
    
 }
 
@@ -43,6 +46,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: aquamarine;
-  
+  background-color: aquamarine; 
 }
+
+
