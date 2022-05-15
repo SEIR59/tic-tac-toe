@@ -24,7 +24,9 @@ p {
 /* for the restart button I can't get to work */
 /* button {
   align-items: center;
-
+  margin-top: 10px;
+  color: purple;
+  border-color: purple;
 } */
 
 .gameboard {
@@ -45,4 +47,5 @@ p {
   height: 70px;
   width: 70px;
   cursor: pointer;
+  text-align: center;
 }
