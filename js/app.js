@@ -1,5 +1,6 @@
 const cells = document.querySelectorAll(".cell");
 const cellsarr = Array.from(cells)
+let cellsArray =[]
 const restartBtn = document.querySelector(".restart-btn");
 const nxtUp = document.querySelector(".next-up");
 let letter = 1;
@@ -15,6 +16,7 @@ let s1 = 0;
 let s2 = 0
 let winner = ""
 let winarr =[]
+
 
 //creates board at start of game
 for (let i = 0; i < cells.length; i++) {
@@ -67,7 +69,6 @@ function playHuman() {
     cell.addEventListener("click", function (e) {
       //console.log(e.target.classList)
       //console.log(`this is the board before move: ${board}`);
-      isMovesLeft();
       //isMovesLeft();
       if(!cell.classList.contains("picked")){
         if (letter === 1) {
@@ -91,13 +92,19 @@ function playHuman() {
           console.log(cell.classList)
           console.log(board)
         }
+        cellsArray.push("picked")
+        console.log(cellsArray)
+        //cells.every(isDraw);
+        if(cellsArray.length === 9){
+          winnerMsg.innerHTML = "It is a tie!"
+        }
       }
       //console.log(letter)
       displayNextUpMessage(letter);
       checkforWin();
       //console.log(winarr[0])
       if(winner){
-       winnerMsg.innerHTML = `this winner is ${winner}`
+        winnerMsg.innerHTML = `this winner is ${winner}`
       }
     });
   }
@@ -256,6 +263,7 @@ function restart() {
   nxtUp.innerHTML = "Next up: X";
   playHum.innerHTML = "Play Human"
   playComp.innerHTML = "Play Computer"
+  cellsArray = []
   for(const cell of cells){
     cell.classList.remove("picked")
     if(cell.classList.contains("user")){
@@ -299,17 +307,17 @@ function addPickedClass(a){
 }
 
 //add score
-function addScore(el){
-  if(el === "Score1"){
-    s1 = s1 + 1;
-    el.innerHTML = s1;
-  } else {
-    s2 = s2 + 1;
-    el.innerHTML = s2;
-  }
-  console.log(s1)
-  console.log(s2)
-}
+// function addScore(el){
+//   if(el === "Score1"){
+//     s1 = s1 + 1;
+//     el.innerHTML = s1;
+//   } else {
+//     s2 = s2 + 1;
+//     el.innerHTML = s2;
+//   }
+//   console.log(s1)
+//   console.log(s2)
+// }
 
 //create and add user class
 function setUser(a){
@@ -320,3 +328,9 @@ function setUser(a){
 function setComp(a){
   a.classList.add("comp");
 }
+
+//check if picked function
+function isDraw(arr){
+  return arr.classList.contains("picked")
+} 
+
