@@ -4,21 +4,6 @@ let oWinsCount = 0
 let xWinsGameOver = false
 let yWinsGameOver = false
 
-const displayWins = () => {
-    let xScoreDisplay = document.getElementById('xScore')
-    xScoreDisplay.innerText = `Number of games X has won: ${xWinsCount}`
-    let oScoreDisplay = document.getElementById('oScore')
-    oScoreDisplay.innerText = `Number of games O has won: ${oWinsCount}`
-}
-displayWins()
-
-
-const showTurn = () => {
-    const playerTurn = document.getElementById('playerTurn')
-    playerTurn.innerText = `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
-}
-showTurn()
-
 //assign variables to HTML button inputs
 const btnOne = document.getElementById('one')
 const two = document.getElementById('two')
@@ -38,6 +23,38 @@ const endGameText2 = document.getElementById('endGameText2')
 const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
+
+//this array is used to help computer keep player from winning
+const gameWinningCombos = [
+    [one, two, three],
+    [four, five, six],
+    [seven, eight, nine],
+    [one, four, seven],
+    [two, five, eight],
+    [three, six, nine],
+    [one, five, nine],
+    [three, five, seven]
+]
+let xCounter = 0;
+let oCounter = 0;
+
+
+
+const displayWins = () => {
+    let xScoreDisplay = document.getElementById('xScore')
+    xScoreDisplay.innerText = `Number of games X has won: ${xWinsCount}`
+    let oScoreDisplay = document.getElementById('oScore')
+    oScoreDisplay.innerText = `Number of games O has won: ${oWinsCount}`
+}
+displayWins()
+
+
+const showTurn = () => {
+    const playerTurn = document.getElementById('playerTurn')
+    playerTurn.innerText = `It is ${playCount % 2 === 0 ? `X's` : `O's`} turn`
+}
+showTurn()
+
 
 const enableButtons = () => {
     for (let i = 0; i < buttonsArr.length; i++) {
@@ -110,11 +127,15 @@ function changeBtn() {
 const computerChooses = () => {
     computerChoice = Math.floor(Math.random() * buttonsArr.length)
     computerBtn = buttonsArr[computerChoice]
+    computerChoosesWisely()
     if (computerBtn.value) {
+        //this loops through until computer chooses another option. I can call computerChoosesWisely() here over and over to make the computer smarter
+        //not calling choosesWisely makes the computer beatable
         while (computerBtn.value) {
             computerBtn.value == null
             computerChoice = Math.floor(Math.random() * buttonsArr.length)
             computerBtn = buttonsArr[computerChoice]
+            // computerChoosesWisely()
             continue
         }
     }
@@ -147,7 +168,6 @@ function changeBtnWithComputer() {
     // made this condition to make sure computer doesn't still choose after x wins
     //also make sure playCount isn't over 7, otherwise computer still chooses even after board is full
     !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : (xWinsGameOver ? player1Wins() : null)
-        ()
 }
 
 
@@ -284,18 +304,45 @@ let ORain;
 
 
 
-
-
-
-// ****** PLAY WITH THE COMPUTER MODE ******
-
+//this function is called when playing computer. it makes the computer try to keep player from winning
+function computerChoosesWisely() {
+    //loop through whole array
+    for (let i = 0; i < gameWinningCombos.length; i++) {
+        //loop through each item of smaller arrays
+        for (let j = 0; j < gameWinningCombos[i].length; j++) {
+            //if smaller array value is X:
+            if (gameWinningCombos[i][j].value === 'X') {
+                //increase the counter by 1
+                xCounter++
+                //if xcounter reaches 2
+                if (xCounter === 2) {
+                    //re-loop through smaller array
+                    for (let k = 0; k < gameWinningCombos[i].length; k++) {
+                        if (gameWinningCombos[i][k].value !== 'X') {
+                            return computerBtn = gameWinningCombos[i][k]
+                        }
+                    }
+                }
+            } else if (gameWinningCombos[i][j].value === 'O') {
+                oCounter++
+                if (oCounter === 2) {
+                    for (let k = 0; k < gameWinningCombos[i].length; k++) {
+                        if (gameWinningCombos[i][k].value !== 'O') {
+                            return computerBtn = gameWinningCombos[i][k]
+                        }
+                    } 
+                }
+            }
+        }
+        xCounter = 0
+        oCounter = 0
+    }
+}
 
 
 // ******** TO-DO LIST **********
 
 
-
-//add new color, pinkish or purple?
 //have main buttons shimmer
 //hover effects
 
