@@ -1,10 +1,11 @@
-let gameBoard = document.querySelector(".square");
+let squares = document.querySelectorAll(".square");
+squares = Array.from(squares);
+console.log(squares);
 
 let squareArr = ["", "", "", "", "", "", "", "", ""];
 let firstPlayer = "X";
 let secondPlayer = "O";
 let turn;
-// let lastClicked;
 
 // length of turns
 // for (i = 0; i <= 9; i++) {}
@@ -17,29 +18,27 @@ function currentTurn() {
   return result;
 }
 
-document.getElementById("box1").addEventListener("click", () => {
-  //   let currentPlayer = [firstPlayer, secondPlayer];
-  //   for (i = 0; i <= currentPlayer; i++) {
-  //     console.log(currentPlayer[i]);
-  //   }
-  document.getElementById("box1").innerHTML = "X";
+squares.forEach(function (square) {
+  square.addEventListener("click", function () {
+    square.innerText = firstPlayer;
+  });
 });
 
-document.getElementById("box2").addEventListener("click", () => {
-  //   let currentPlayer = [firstPlayer, secondPlayer];
-  //   for (i = 0; i <= currentPlayer; i++) {
-  //     console.log(currentPlayer[i]);
-  //   }
-  document.getElementById("box2").innerHTML = "O";
-});
+// document.getElementById("box1").addEventListener("click", () => {
+//   //   let currentPlayer = [firstPlayer, secondPlayer];
+//   //   for (i = 0; i <= currentPlayer; i++) {
+//   //     console.log(currentPlayer[i]);
+//   //   }
+//   document.getElementById("box1").innerHTML = "X";
+// });
 
-document.getElementById("box3").addEventListener("click", () => {
-  //   let currentPlayer = [firstPlayer, secondPlayer];
-  //   for (i = 0; i <= currentPlayer; i++) {
-  //     console.log(currentPlayer[i]);
-  //   }
-  document.getElementById("box3").innerHTML = "X";
-});
+// document.getElementById("box2").addEventListener("click", () => {
+//   //   let currentPlayer = [firstPlayer, secondPlayer];
+//   //   for (i = 0; i <= currentPlayer; i++) {
+//   //     console.log(currentPlayer[i]);
+//   //   }
+//   document.getElementById("box2").innerHTML = "O";
+// });
 
 // Trying to alternate X and O with one event listener
 // document.addEventListener("click", () => {
