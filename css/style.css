@@ -37,3 +37,12 @@ h1 {
   color: white;
   cursor: pointer;
 }
+
+.results {
+  text-align: center;
+  margin-top: 40px;
+}
+
+button {
+  
+}
