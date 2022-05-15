@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">container
 
 <head>
   <meta charset="UTF-8">
@@ -11,24 +11,22 @@
 <body>
   <h1>Tic-Tac-Toe</h1>
   <div class="grid-container">
-    <div class="box" id="box1">X</div>
-    <div class="box" id="box2">X</div>
-    <div class="box" id="box3">X</div>
-    <div class="box" id="box4">X</div>
-    <div class="box" id="box5">X</div>
-    <div class="box" id="box6">X</div>
-    <div class="box" id="box7">X</div>
-    <div class="box" id="box8">X</div>
-    <div class="box" id="box9">X</div>
-    <div class="strike" id="diagonal-1"></div>
+    <div data-index="1" class="box"></div>
+    <div data-index="2" class="box"></div>
+    <div data-index="3" class="box"></div>
+    <div data-index="4" class="box"></div>
+    <div data-index="5" class="box"></div>
+    <div data-index="6" class="box"></div>
+    <div data-index="7" class="box"></div>
+    <div data-index="8" class="box"></div>
+    <div data-index="9" class="box"></div>
+    <div class="strike" id=""></div>
   </div>
 
-  <div></div>
-  <input type="reset" value="Reset">
-  
-  
-
-
+  <div id="interface" class="hide">
+    <h2 id="interface-text">The Winner Is ...</h2>
+    <button id="reset">Reset Game</button>
+  </div>
 
   <script type="text/javascript" src="js/app.js"></script>
 </body>
