@@ -19,6 +19,9 @@
  */
 
 /** Players click string*/
+let player1WinCount = 0;
+let player2WinCount = 0;
+
 const player1 = [];
 const player2 = [];
 //default: player 1
@@ -36,7 +39,7 @@ const player2_img =
 const markerO = '<img src="image/circle.png" width="175px" height="175px">';
 const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
 
-const button = document.getElementById("button");
+const newGame = document.getElementById("button");
 
 const gridItem = document.querySelector(".grid-item");
 
@@ -53,6 +56,8 @@ const g9 = document.getElementById("grid-9");
 const msg = document.querySelector(".message");
 const player1_class = document.querySelector(".player1");
 const player2_class = document.querySelector(".player2");
+const player1_wins_count = document.querySelector("#player1_wins");
+const player2_wins_count = document.querySelector("#player2_wins");
 
 /** Display players in each cell */
 const displayPlayer = function (grid_item) {
@@ -69,7 +74,11 @@ const result = function () {
       return winCode.split("").every(isInWinCode);
     })
   ) {
+    switcher === "player1" ? player1WinCount++ : player2WinCount++;
+    //update message and win counts
     msg.innerText = `${switcher} Won!`;
+    player1_wins_count.textContent = player1WinCount;
+    player2_wins_count.textContent = player2WinCount;
   } else if (clickTimes === 9) {
     msg.innerText = "Cat's game!";
   }
@@ -141,7 +150,7 @@ g9.addEventListener("click", function () {
   switchPlayer(g9, "9");
 });
 
-button.addEventListener("click", function () {
+newGame.addEventListener("click", function () {
   //initialize
   msg.innerText = "Game Begins!";
   clickTimes = 0;

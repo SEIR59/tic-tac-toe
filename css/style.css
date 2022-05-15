@@ -1,9 +1,8 @@
 body {
   background-image: url("https://t4.ftcdn.net/jpg/03/95/37/19/360_F_395371923_x2IUqSOYDCQeBCx3auKcK3EbyzNjhlNV.jpg");
-  background-color: aquamarine;
-  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-/* need add @media to fix background image */
 
 h1 {
   color: white;
@@ -15,6 +14,9 @@ h2 {
   text-align: center;
   font-size: 40px;
   margin: 20px auto;
+}
+h3 {
+  color: white;
 }
 
 /* ******Class******** */
@@ -31,6 +33,7 @@ h2 {
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
   justify-content: center;
+  margin: 20px auto 200px auto;
 }
 
 .grid-item {
