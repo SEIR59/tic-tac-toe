@@ -10,31 +10,52 @@ console.log('Hello frontend');
 const playerSymbol = 'X';
 const aiSymbol = 'O';
 let turnCounter = 0;
-let  playerWins = 0;
+let currentTurn;
+let playerWins = 0;
 let aiWins = 0;
 let currentSymbol = 'X';
 
 // create reset function?
 function gameboard_reset() {
-    const aiSymbol = 'O';
-    let turnCounter = 0;
-    let currentSymbol = 'X';
+    turnCounter = 0;
+    currentSymbol = 'X';
 }
-
 
 
 const gameboard_squares = document.getElementsByClassName('gameboard-square');
-for (let i = 0; i < gameboard_squares.length; i++) {
-    gameboard_squares[i].addEventListener('click', function() {
-        gameboard_squares[i].innerHTML = currentSymbol;
-        turnCounter++
-        if (currentSymbol === 'X') {
-            currentSymbol = 'O';
-        } else {
-            currentSymbol = 'X';
-        }
-    });
+const turn_status = document.getElementById('turn-status');
+
+function gameboard_click(e) {
+    console.log('calling gameboard_click')
+    currentSquare = e.target;
+    currentSquare.innerHTML = currentSymbol;
+    currentSquare.classList.toggle('square-hover')
+    currentSquare.removeEventListener('click', gameboard_click);
+    turnCounter++;
+    turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
+    console.log(turnCounter)
+    
+    if (currentSymbol === 'X') {
+        currentSymbol = 'O';
+    } else {
+        currentSymbol = 'X';
+    }
+
+
 }
+
+for (let i = 0; i < gameboard_squares.length; i++) {
+    gameboard_squares[i].addEventListener('click', gameboard_click);
+}
+
+
+
+
+
+// for (let i = 0; i < gameboard_squares.length; i++) {
+//     gameboard_squares[i].addEventListener('click', function(){
+//     }); 
+// }
 
 
 // 2. set while loop to keep track of game while current session is Active?
