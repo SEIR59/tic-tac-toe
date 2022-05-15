@@ -8,12 +8,37 @@ const winningMessageText = document.querySelector('winningMessage')
 const playerX = 'x';
 const playerO = 'circle';
 const winningCombinations = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
+    //rows
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    //columns
+    [0,3,6],
     [1,4,7],
     [2,5,8],
-    [3,6,9],
-    [1,5,9],
-    [3,5,7],
-]
+    //diagonals
+    [0,4,8],
+    [2,4,6],
+];
+//create game board into array
+let cells = ['', '', '', '', '', '', '', '', '',];
+
+//to start the game
+//if it's a tie
+//to end the game
+//how to switch turns
+
+
+
+//add the click element to each box
+boxes.addEventListner('click', function(){
+
+
+} )
+
+
+
+
+
+
+
