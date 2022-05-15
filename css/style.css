@@ -21,7 +21,7 @@ h1 {
   cursor: pointer;
 }
 
-#xButton, #oButton {
+#xButton, #oButton, #restartButton {
   display: none
 }
 
