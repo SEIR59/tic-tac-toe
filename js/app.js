@@ -19,6 +19,8 @@ function gameBegins() {
   let playerXWin = false;
   let playerOWin = false;
   let playerDraw = false;
+  //Tie detection (Tie once at 9)
+  let b = 0;
 
   function whoWins() {
     if (playerXWin === true) {
@@ -26,10 +28,14 @@ function gameBegins() {
         "Player X Wins!!!");
         return theWinner;
     }
-    if (playerOWin === true) {
+    else if (playerOWin === true) {
       let theWinner = (document.getElementById("win-state").innerHTML =
         "Player O Wins!!!");
       return theWinner;
+    }else if(b === 9){
+        let theWinner = (document.getElementById("win-state").innerHTML =
+        "It's a tie!");
+        return theWinner;
     }
   }
   //Select player based on turn
@@ -56,6 +62,7 @@ function gameBegins() {
     playerXWin = false;
     playerOWin = false;
     i = 0;
+    b = 0;
     playerDraw = false;
     console.log(board);
     document.getElementById('tile1').innerHTML = " ";
@@ -112,7 +119,9 @@ function gameBegins() {
     correctBoard();
     whoWins();
     document.getElementById('tile1').addEventListener('click', e => {
+        b++;
         correctBoard();
+        whoWins();
         if(board[0] === ' ' && playerOWin === false && playerXWin === false){
             correctBoard();
             whoWins();
@@ -125,6 +134,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile2').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[1] === ' ' && playerOWin === false && playerXWin === false){
@@ -138,6 +148,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile3').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[2] === ' ' && playerOWin === false && playerXWin === false){
@@ -151,6 +162,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile4').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[3] === ' ' && playerOWin === false && playerXWin === false){
@@ -164,6 +176,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile5').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[4] === ' ' && playerOWin === false && playerXWin === false){
@@ -177,6 +190,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile6').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[5] === ' ' && playerOWin === false && playerXWin === false){
@@ -190,6 +204,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile7').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[6] === ' ' && playerOWin === false && playerXWin === false){
@@ -203,6 +218,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile8').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[7] === ' ' && playerOWin === false && playerXWin === false){
@@ -216,6 +232,7 @@ function gameBegins() {
         }
     }); 
     document.getElementById('tile9').addEventListener('click', e => {
+        b++;
         correctBoard();
         whoWins();
         if(board[8] === ' ' && playerOWin === false && playerXWin === false){
