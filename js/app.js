@@ -3,10 +3,10 @@ What do we need:
 Initiate the game - done
 Starting Board - done
 Correct Boards - done
-Keep track of moves (game turns)
-Pushing choice into board 
+Keep track of moves (game turns) - done
+Pushing choice into board -done
 Reset the game
-Can't change full piece 
+Can't change full piece - done
 */
 
 //Loads the entire game
@@ -23,6 +23,7 @@ function gameBegins() {
     if (playerXWin === true) {
       let theWinner = (document.getElementById("win-state").innerHTML =
         "Player X Wins!!!");
+        document.getElementById("player-turn").remove();
       return theWinner;
     }
     if (playerOWin === true) {
@@ -31,6 +32,40 @@ function gameBegins() {
       return theWinner;
     }
   }
+  //Select player based on turn
+  let i = 0;
+  function playerTurn() {
+    if (i % 2 === 0 && playerOWin === false && playerXWin === false) {
+        i++;
+        document.getElementById("player-turn").innerHTML = "Player X Goes";
+        console.log(i);
+        return players[1];
+    } else if(playerOWin === false && playerXWin === false){
+        document.getElementById("player-turn").innerHTML = "Player O Goes";
+        i--;
+        console.log(i);
+      return players[0];
+    } else {
+        document.getElementById("player-turn").innerHTML = " ";
+        return " "; 
+    }
+  }
+  function doReset(){
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
+    playerXWin = false;
+    playerOWin = false;
+    i = 0;
+    console.log(board);
+    document.getElementById('tile1').innerHTML = " ";
+    document.getElementById('tile2').innerHTML = " ";
+    document.getElementById('tile3').innerHTML = " ";
+    document.getElementById('tile4').innerHTML = " ";
+    document.getElementById('tile5').innerHTML = " ";
+    document.getElementById('tile6').innerHTML = " ";
+    document.getElementById('tile7').innerHTML = " ";
+    document.getElementById('tile8').innerHTML = " ";
+    document.getElementById('tile9').innerHTML = " ";
+};
   function correctBoard() {
     //Vertical check
     if (
@@ -46,6 +81,7 @@ function gameBegins() {
       (board[2] === "X" && board[4] === "X" && board[6] === "X")
     ) {
       playerXWin = true;
+      playerTurn();
       whoWins();
     }
     //Vertical check
@@ -62,106 +98,133 @@ function gameBegins() {
       (board[2] === "O" && board[4] === "O" && board[6] === "O")
     ) {
       playerOWin = true;
+      playerTurn();
       whoWins();
-    }
-  }
-  //Select player based on turn
-  let i = 0;
-  function playerTurn() {
-    if (i % 2 === 0) {
-        i++;
-        document.getElementById("player-turn").innerHTML = "Player X Goes";
-        console.log(i);
-        return players[1];
-    } else if (i % 2 !== 0) {
-        document.getElementById("player-turn").innerHTML = "Player O Goes";
-        i--;
-        console.log(i);
-      return players[0];
     }
   }
   /*Each box listened to, correct player added to tile, 
   cannot be changed when clicked another time*/
   function whichBox(){
     correctBoard();
+    whoWins();
     document.getElementById('tile1').addEventListener('click', e => {
-        if(board[0] === ' '){
+        correctBoard();
+        if(board[0] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
+            whoWins();
             let newArea1 = document.getElementById('tile1').innerHTML = playerTurn();
             board.splice(0, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea1;
         }
     }); 
     document.getElementById('tile2').addEventListener('click', e => {
-        if(board[1] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[1] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea2 = document.getElementById('tile2').innerHTML = playerTurn();
             board.splice(1, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea2;
         }
     }); 
     document.getElementById('tile3').addEventListener('click', e => {
-        if(board[2] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[2] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea3 = document.getElementById('tile3').innerHTML = playerTurn();
             board.splice(2, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea3;
         }
     }); 
     document.getElementById('tile4').addEventListener('click', e => {
-        if(board[3] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[3] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea4 = document.getElementById('tile4').innerHTML = playerTurn();
             board.splice(3, 1, players[i]);
             console.log(board);
+            correctBoard();
+            whoWins();
             return newArea4;
         }
     }); 
     document.getElementById('tile5').addEventListener('click', e => {
-        if(board[4] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[4] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea5 = document.getElementById('tile5').innerHTML = playerTurn();
             board.splice(4, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea5;
         }
     }); 
     document.getElementById('tile6').addEventListener('click', e => {
-        if(board[5] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[5] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea6 = document.getElementById('tile6').innerHTML = playerTurn();
             board.splice(5, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea6;
         }
     }); 
     document.getElementById('tile7').addEventListener('click', e => {
-        if(board[6] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[6] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea7 = document.getElementById('tile7').innerHTML = playerTurn();
             board.splice(6, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea7;
         }
     }); 
     document.getElementById('tile8').addEventListener('click', e => {
-        if(board[7] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[7] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea8 = document.getElementById('tile8').innerHTML = playerTurn();
             board.splice(7, 1, players[i]);
             console.log(board);
             correctBoard();
+            whoWins();
             return newArea8;
         }
     }); 
     document.getElementById('tile9').addEventListener('click', e => {
-        if(board[8] === ' '){
+        correctBoard();
+        whoWins();
+        if(board[8] === ' ' && playerOWin === false && playerXWin === false){
+            correctBoard();
             let newArea9 = document.getElementById('tile9').innerHTML = playerTurn();
             board.splice(8, 1, players[i]);
             correctBoard();
+            whoWins();
             return newArea9;
         }
+    }); 
+    document.getElementById('reset').addEventListener('click', e => {
+        doReset(); 
     }); 
   }
   //Initiate whichBox
