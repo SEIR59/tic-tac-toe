@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 :root {
   --gameboard-size: 320px;
   --gameboard-background-grid: #238697;
@@ -24,7 +26,6 @@ h1 {
   color: purple;
 }
 
-
 .gameboard-grid-template {
   display: grid;
   justify-content: center;
@@ -36,8 +37,11 @@ h1 {
   width: var(--gameboard-size);
   height: var(--gameboard-size);
   color: var(--gameboard-pieces);
+  font-size: 78px;
+  font-family: 'Shadows Into Light', sans-serif;
   background-color: var(--gameboard-background-grid);
   box-shadow: 0 0 4px 2px grey;
+  user-select: none;
 }
 
 .gameboard-square {
@@ -47,10 +51,13 @@ h1 {
   width: 100px;
   height: 100px;
   background-color: var(--gameboard-square-background);
+  transition: 
+    background-color ease-in-out 500ms;
 }
 
 .gameboard-square:hover {
-  background-color: red;
+  background-color: #bbfdf9;
 }
+
 
 
