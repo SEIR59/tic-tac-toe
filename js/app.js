@@ -10,6 +10,7 @@ const playComp = document.querySelector(".play-comp");
 // let possiblePicks = [0,1,2,3,4,5,6,7,8]
 const score1 = document.querySelector(".scoreX")
 const score2 = document.querySelector(".scoreO")
+const winnerMsg = document.querySelector(".winner-message")
 let s1 = 0;
 let s2 = 0
 let winner = ""
@@ -94,7 +95,10 @@ function playHuman() {
       //console.log(letter)
       displayNextUpMessage(letter);
       checkforWin();
-      console.log(winarr[0])
+      //console.log(winarr[0])
+      if(winner){
+       winnerMsg.innerHTML = `this winner is ${winner}`
+      }
     });
   }
 }
@@ -138,7 +142,10 @@ function playComputer(){
               updateBoard();
               //console.log(cellsarr)
               checkforWin();
-              console.log(winarr[0])
+              //console.log(winarr[0])
+              if(winner){
+                winnerMsg.innerHTML = `this winner is ${winner}`
+              }
             })
           }
 }
@@ -151,11 +158,9 @@ function checkforWin() {
       if (cells[0].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -163,11 +168,9 @@ function checkforWin() {
       if (cells[3].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -175,11 +178,9 @@ function checkforWin() {
       if (cells[6].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -188,11 +189,9 @@ function checkforWin() {
       if (cells[0].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -200,11 +199,9 @@ function checkforWin() {
       if (celss[1].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -212,11 +209,9 @@ function checkforWin() {
       if (cells[2].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -225,11 +220,9 @@ function checkforWin() {
       if (cells[0].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
-        addScore(score2)
       }
       //gameIsOver();
     }
@@ -237,118 +230,17 @@ function checkforWin() {
       if (cells[2].classList.contains("user")) {
         gameIsOver();
         winner = "X"
-        addScore(score1)
       } else {
         gameIsOver();
         winner = "O"
       }
-    } else if(!isMovesLeft()){
+    } else if (!isMovesLeft()){
         gameIsOver()
         winner = "It was a tie!"
-        addScore(score2)
     }
     //gameIsOver();
   }
 }
-// function checkforWin() {
-//   for (let i = 0; i < board.length; i++) {
-//     //check rows
-//     if (board[0] === board[1] && board[0] === board[2]) {
-//       if (board[0] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[0] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     else if (board[3] === board[4] && board[3] === board[5]) {
-//       if (board[3] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[3] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     if (board[6] === board[7] && board[6] === board[8]) {
-//       if (board[6] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[6] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     //check columns
-//     else if (board[0] === board[3] && board[0] === board[6]) {
-//       if (board[0] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[0] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     else if (board[1] === board[4] && board[1] === board[7]) {
-//       if (board[1] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[1] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     else if (board[2] === board[5] && board[2] === board[8]) {
-//       if (board[2] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[2] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     //check diagonalls
-//     else if (board[0] === board[4] && board[0] === board[8]) {
-//       if (board[0] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[0] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//         addScore(score2)
-//       }
-//     }
-//     else if (board[2] === board[4] && board[2] === board[6]) {
-//       if (board[2] === "X") {
-//         gameIsOver();
-//         winner = "X"
-//         addScore(score1)
-//       } else if (board[2] === "O") {
-//         gameIsOver();
-//         winner = "O"
-//       }
-//     } else if(!isMovesLeft()){
-//         gameIsOver();
-//         winner = "It was a tie!"
-//         addScore(score2)
-//     }
-//   }
-//   console.log(`${winner} was the winner!`)
-// }
 
 //Restart Btn
 restartBtn.addEventListener("click", function () {
@@ -361,13 +253,20 @@ function restart() {
     cell.innerHTML = "";
   });
   letter = 1;
-  winner = ""
   nxtUp.innerHTML = "Next up: X";
   playHum.innerHTML = "Play Human"
   playComp.innerHTML = "Play Computer"
   for(const cell of cells){
     cell.classList.remove("picked")
+    if(cell.classList.contains("user")){
+      cell.classList.remove("user")
+    } else if (cell.classList.contains("comp")){
+      cell.classList.remove("comp")
+    }
   }
+  winner = ""
+  winarr = []
+  winnerMsg.innerHTML = ""
 }
 //checks for if movesLeft
 function isMovesLeft() {
