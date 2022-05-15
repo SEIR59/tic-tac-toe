@@ -128,7 +128,12 @@ function changeBtnWithComputer() {
     disableBtns()
     currentBtn = event.target
 
-    currentBtn.value ? currentBtn.value == null : currentBtn.value = "X"
+    if (currentBtn.value) {
+        enableButtons()
+        return null
+    }
+    
+    currentBtn.value = "X"
         
     currentBtn.classList.add('active')
     playCount++
@@ -159,6 +164,8 @@ const player1Wins = () => {
     xWinsCount++
     endGameText.innerText = `X WINS`
     playerTurn.innerText = 'X WINS!!'
+    endGameText2.innerText = `Number of games X has won: ${xWinsCount}
+    Number of games O has won: ${oWinsCount}`
     displayWins()
     disableBtns()
     XRain = setInterval(makeRainingXs, 100)
@@ -173,6 +180,8 @@ const player2Wins = () => {
     oWinsCount++
     endGameText.innerText = `O WINS`
     playerTurn.innerText = 'O WINS!!'
+    endGameText2.innerText = `Number of games X has won: ${xWinsCount}
+    Number of games O has won: ${oWinsCount}`
     displayWins()
     disableBtns()
     ORain = setInterval(makeRainingOs, 100)
