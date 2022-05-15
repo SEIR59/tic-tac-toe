@@ -131,46 +131,47 @@ function playComputer(){
                     }
                   }
                   updateBoard();
-                  checkforWin();
                   console.log(cellsarr)
-              }
-            } 
-        })
+                }
+              } 
+              checkforWin();
+            })
       }
 }
 function checkforWin() {
+  let winner = ""
   for (let i = 0; i < board.length; i++) {
     //check rows
     if (board[0] === board[1] && board[0] === board[2]) {
       if (board[0] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
     else if (board[3] === board[4] && board[3] === board[5]) {
       if (board[3] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[3] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
     if (board[6] === board[7] && board[6] === board[8]) {
       if (board[6] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[6] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
@@ -178,33 +179,33 @@ function checkforWin() {
     else if (board[0] === board[3] && board[0] === board[6]) {
       if (board[0] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
     else if (board[1] === board[4] && board[1] === board[7]) {
       if (board[1] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[1] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
     else if (board[2] === board[5] && board[2] === board[8]) {
       if (board[2] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[2] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
@@ -212,29 +213,30 @@ function checkforWin() {
     else if (board[0] === board[4] && board[0] === board[8]) {
       if (board[0] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[0] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
         addScore(score2)
       }
     }
     else if (board[2] === board[4] && board[2] === board[6]) {
       if (board[2] === "X") {
         gameIsOver();
-        console.log("Player X wins!");
+        winner = "X"
         addScore(score1)
       } else if (board[2] === "O") {
         gameIsOver();
-        console.log("Player O wins!");
+        winner = "O"
       }
     } else if(!isMovesLeft()){
         gameIsOver();
-        console.log("it was a tie")
+        winner = "It was a tie!"
         addScore(score2)
     }
   }
+  console.log(`${winner} was the winner!`)
 }
 
 //Restart Btn
@@ -258,7 +260,7 @@ function restart() {
 //checks for if movesLeft
 function isMovesLeft() {
   for (let i = 0; i < board.length; i++) {
-    if (board.includes("")){
+    if (board[i].includes("")){
         return true
     } else{
         return false;
@@ -272,8 +274,9 @@ function gameIsOver(){
   if(gameOver){
     for(const cell of cells){
       addPickedClass(cell)
-      console.log(cell.classList)
+      //console.log(cell.classList)
     }
+    console.log("The game is over")
   }
 }
 
