@@ -57,3 +57,5 @@ function check() {
     }
 }
 
+document.querySelector("#restart").addEventListener('click', function(){
+
