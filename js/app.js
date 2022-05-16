@@ -51,6 +51,7 @@ const markerX = '<img src="image/x_mark.png" width="175px" height="175px">';
 const msg = document.querySelector(".message");
 
 const player1Data = [];
+let player1Win = false;
 const playersTrack = document.querySelector(".track");
 
 ///which is current mode
@@ -104,16 +105,25 @@ const result = function () {
     })
   ) {
     switcher === "player1" ? player1WinCount++ : secondWinCount++;
-    //update button "Two Players" to "One More"
-    twoPlayersButton.textContent = "One More";
+    //update button  to "One More"
+    (mode === "twoPlayers" ? twoPlayersButton : computerButton).textContent =
+      "One More";
     //update message and win counts
     msg.innerText = `${
-      switcher === "player1" ? "Player1" : "Player2"
+      switcher === "player1"
+        ? "Player1"
+        : switcher === "player2"
+        ? "Player2"
+        : "Computer"
     } Won! Click One More`;
     player1_wins_count.textContent = player1WinCount;
     second_wins_count.textContent = secondWinCount;
+    //update winStatus
+    switcher === "player1" ? (player1Win = true) : false;
   } else if (clickTimes === 9) {
-    twoPlayersButton.textContent = "One More";
+    (mode === "twoPlayers" ? twoPlayersButton : computerButton).textContent =
+      "One More";
+
     msg.innerText = "Cat's game! Click One More";
   }
 };
@@ -126,7 +136,7 @@ const switchPlayer = function (grid_item, grid_num) {
   if (switcher === "player1") {
     if (!grid_item.classList.contains("player2")) {
       grid_item.innerHTML = markerO;
-      grid_item.classList.add("player1");
+      //grid_item.classList.add("player1"); //not really used
       displayPlayer(grid_item);
       //store the grid number
       player1Data.push(grid_num);
@@ -159,9 +169,11 @@ const switchPlayer = function (grid_item, grid_num) {
   }
 
   //automatically call computerPlayer
-  if (mode === "computer") {
+  console.log("player1Win: " + player1Win);
+  if (mode === "computer" && player1Win === false) {
     console.log("call computerPlayer function");
-    computerPlayer();
+    ///set time out
+    setTimeout(computerPlayer, 1000);
   }
 };
 
@@ -201,7 +213,9 @@ const removeGridContent = function () {
       gridItem[i].removeChild(gridItem[i].firstChild);
     }
   }
+};
 
+const removeGridClass = function () {
   //remove player class
   // NOT WORK
   // console.log(gridItem[i]);
@@ -244,12 +258,14 @@ newGameButton.addEventListener("click", function () {
   //reset button names
   twoPlayersButton.textContent = "Two Players";
   computerButton.textContent = "Computer";
+  player1Win = false;
 
   //hide wins track
   playersTrack.classList.contains("hide") || playersTrack.classList.add("hide");
 
   //clean Grid content
   removeGridContent();
+  removeGridClass();
 });
 
 /** *******************TWO PLAYERS MODE***************************************** */
@@ -271,38 +287,53 @@ twoPlayersButton.addEventListener("click", function () {
 
   //clean Grid content
   removeGridContent();
+  removeGridClass();
 });
 
 /** Computer Game ************************************************************ */
+let computerPickIndexPool = [];
+
 const computerPlayer = function () {
   switcher = "computer";
-  //set computerPick as char
+  //run computerPick till not in the player1Data/computerData
   //range 0 ~ 5
   let computerPickIndex = Math.floor(Math.random() * 5);
   //range 1 ~ 6
-  let computerPick = computerPickIndex + 1;
-  //run computerPick till not in the player1Data/computerData
+  let computerPick = (computerPickIndex + 1).toString();
+
+  console.log("computer Data: " + computerData);
+  console.log("player1 Data: " + player1Data);
+  console.log(player1Data.indexOf(computerPick));
+  console.log(computerData.indexOf(computerPick));
+  console.log("clickTimes: " + clickTimes);
+
+  //This is Dangerous...
   while (
-    player1Data.indexOf(computerPick) != -1 &&
-    computerData.indexOf(computerPick) != -1 &&
-    clickTimes < 9
+    !(
+      player1Data.indexOf(computerPick) === -1 &&
+      computerData.indexOf(computerPick) === -1
+    ) &&
+    clickTimes < 5 ///computer didn't click so 5...
   ) {
     computerPickIndex = Math.floor(Math.random() * 5);
-    computerPick = computerPickIndex + 1;
+    computerPick = (computerPickIndex + 1).toString();
+    console.log("computerPickIndex: " + computerPickIndex);
   }
+
   //push computerPick's into computerData
   computerData.push(computerPick);
-  console.log(computerData);
+  console.log("computer Data: " + computerData);
   //show computerPick's grid
   gridItem[computerPickIndex].innerHTML = markerX;
   gridItem[computerPickIndex].classList.add = "computer"; //this is not working
   displayPlayer(gridItem[computerPickIndex]);
   msg.innerText = "Next: Player1";
-  //switch to user
-  switcher = "player1";
-
+  //need to QA
   //check computer result
   result(computerData);
+
+  //switch to user
+  switcher = "player1";
 };
 
 /*** Computer MODE************************************************************ */
@@ -315,6 +346,11 @@ computerButton.addEventListener("click", () => {
   clickTimes = 0;
   player1Data.length = 0;
   computerData.length = 0;
+  player1Win = false;
+
+  //clean Grid content
+  removeGridContent();
+  removeGridClass();
 
   //update second player
   player2orComputer.innerText = "Computer";
@@ -322,6 +358,6 @@ computerButton.addEventListener("click", () => {
   playersTrack.classList.contains("hide") &&
     playersTrack.classList.remove("hide");
 
-  //start Computer Game
-  computerPlayer();
+  //start Computer Game -Computer first
+  setTimeout(computerPlayer, 400);
 });
