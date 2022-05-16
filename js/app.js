@@ -21,6 +21,7 @@ let h2 = document.querySelectorAll(".h2")
 
 function playGame () {
     for (const box of boxes) {
+        // adds listener to each box of boxes
         box.addEventListener("click", function(){
             console.log("isthisworking")
             if ( currentPlayer === playerOne) {
@@ -28,28 +29,37 @@ function playGame () {
                 currentPlayer = comp;
                 h2.innerHTML = "Computer's Move";
                 console.log(currentPlayer);
+                moveNum += 1;
+                return box.id
+                console.log(moveNum);
+                if (moveNum >= 5) {
+                    checkWin();
+                }
             } else {
                 box.innerHTML = "O";
                 currentPlayer = playerOne;
-                
+                h2.innerHTML = "Your turn";
+                console.log(currentPlayer);
+                moveNum += 1;
+                console.log(moveNum);
             }
         })
     }
 }
+function checkWin () {
+for ( let i = 0; i < winningCombos.length; i++) {
+
+}
+    }
+
+
+
+
 console.log(currentPlayer);
 console.log(h2);
 playGame(); 
 
-// boxes.forEach((box) => box.addEventListener("click", clickedBox)) {
-//     if ( currentPlayer === playerOne) {   
-//         console.log(playerOne);
-        // moveNum += 1;
-        // console.log (moveNum);
-        // currentPlayer === comp;
-        // console.log(currentPlayer);
-        // h2.innerText = "Computer's Move";
-    // }
-// }
+
 
 
 
