@@ -163,8 +163,10 @@ function playComputer(){
               //console.log(cellsarr)
               checkforWin();
               //console.log(winarr[0])
-              if(winner){
-                winnerMsg.innerHTML = `this winner is ${winner}`
+              if(winner === "X"){
+                winnerMsg.innerHTML = `The Packers win! The Bears still suck!`
+              } else if (winner === "O") {
+                winnerMsg.innerHTML = `The Bears win, but they still suck!`
               }
             })
           }
