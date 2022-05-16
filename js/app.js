@@ -1,10 +1,9 @@
+// set variables
 let player = "you";
 let totalMove = 0;
 let yourMove = [];
 let computerMove = [];
-let h1 = document.querySelector("h1");
-
-winningCondition = [
+let winningCondition = [
   [1, 2, 3],
   [1, 5, 9],
   [3, 5, 7],
@@ -14,11 +13,15 @@ winningCondition = [
   [2, 5, 8],
   [3, 6, 9],
 ];
+let h1 = document.querySelector("h1");
 let boxes = document.querySelectorAll(".box");
 let newGameButton = document.querySelector("button");
 
+// use forEach function to add click event handler to each box element
 boxes.forEach((box) =>
   box.addEventListener("click", (event) => {
+    // game logic place either 'X' or 'O' when click box element depends on who is playing
+    // when moves are equal or more than 3, check winning condition
     if (!event.target.innerText) {
       if (player === "you") {
         totalMove += 1;
@@ -43,6 +46,7 @@ boxes.forEach((box) =>
   })
 );
 
+// check if player/computer's moves contain winning codintions
 function checkWinner(playerMove) {
   for (let i = 0; i < winningCondition.length; i++) {
     debugger;
@@ -53,6 +57,9 @@ function checkWinner(playerMove) {
         console.log(winning);
       }
     }
+
+    // if someone wins, trigger newGame() function alert winner and start a new game
+    // only check tie condition when total moves equal to 9 and all winning condition has been checked
     if (winning[0] === 1 && winning[1] === 1 && winning[2] === 1) {
       newGame();
       return;
@@ -77,6 +84,7 @@ function reset() {
   window.location.reload();
 }
 
+// start a new game when click the button
 newGameButton.addEventListener("click", () => {
   reset();
 });
