@@ -14,6 +14,8 @@ let currentTurn;
 let playerWins = 0;
 let aiWins = 0;
 let currentSymbol = 'X';
+let aiChoice;
+let isTie = false;
 
 const square_1 = document.getElementById('square1');
 const square_2 = document.getElementById('square2');
@@ -57,59 +59,61 @@ reset_btn.addEventListener('click', gameboard_complete_reset);
 
 ////*     functions     *////
 
-// set / reset gameboard
-  // remove playerx class
-  // add event listeners back
-  // clear board
-  // reset counters -- creawte function for setting these elements
 
 // on square click
 function gameboard_click(e) {
     currentSquare = e.target;
     currentSquare.innerHTML = currentSymbol;
     currentSquare.classList.toggle('square-hover')
-    if (turnCounter % 2 === 0) {
-        currentSquare.classList.add('player1-choice');
-    } else {
-        currentSquare.classList.add('player2-choice');
-    }
+    currentSquare.classList.add('player1-choice');
     currentSquare.removeEventListener('click', gameboard_click);
+
     turnCounter++;
-    if (vsAi === true) {
-        if (turnCounter % 2 === 0) {
-            turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
-        } else {
-            turn_status.innerText =  'It\'\s the Ai\'\s turn!'
-        }
-    } else {
-        turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
-    }
+    
+    turn_status.innerText =  'It\'\s the Ai\'\s turn!'
+
     console.log(turnCounter)
     
     // check win condition
-    checkWinCondition();
+    let gameOver = checkWinCondition();
 
-    if (currentSymbol === 'X') {
-        currentSymbol = 'O';
-    } else {
-        currentSymbol = 'X';
+    if (gameOver === false) {
+        aiTurn();
     }
 
-    // if you did not win, allow the compute to check and then check win condition again.
-    // computer move -- random for now
-    if (vsAi === true) {
-        // ai chooses randomly
-        // make ai randomly pick 1 - 9 until it get's an empty space
-        // while (true) {
-        //     let aiChoice = Math.floor(Math.random() * 9);
-        //     if (gameboard_squares[aiChoice] === "") {
-        //         // wait a few seconds, randomize the length between 2 - 4 seconds?
+}
 
-        //         // change square
+function aiTurn() {
+        
+    let waitRandom = (Math.floor(Math.random() * 4) + 1) * 1000;
+    let spotCheck = 0;
+    console.log('Ai is thinking...');
+    setTimeout(function(){
+
+        while (true) {
+            aiChoice = Math.floor(Math.random() * 9)
+            console.log(aiChoice);
+            console.log(gameboard_squares[aiChoice]);
+            if (gameboard_squares[aiChoice].innerHTML === '') {
+                console.log('we made it into here');
+                gameboard_squares[aiChoice].innerHTML = currentSymbol;
+                gameboard_squares[aiChoice].classList.toggle('square-hover')
+                gameboard_squares[aiChoice].classList.add('player2-choice');
+                gameboard_squares[aiChoice].removeEventListener('click', gameboard_click);
+                gameboard_squares[aiChoice]
                 
-        //     }
-        // }
-    }
+                turnCounter++;
+                turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
+                break;
+            }
+            spotCheck++;
+            if (spotCheck > 8) {
+                console.log('break check-loop...')
+                break;
+            }
+        }
+        checkWinCondition();
+    },waitRandom)
 }
 
 function gameboard_complete_reset() {
@@ -120,6 +124,7 @@ function gameboard_complete_reset() {
     player1Score.innerHTML = 0;
     aiWins = 0;
     player2Score.innerHTML = 0;
+    spotCheck = 0;
     setBoard()
 }
 function gameboard_reset() {
@@ -127,6 +132,7 @@ function gameboard_reset() {
     vsAi = true;
     turnCounter = 0;
     currentSymbol = 'X';
+    spotCheck = 0;
     setBoard()
  }
 
@@ -136,42 +142,59 @@ function gameboard_reset() {
     let winner = false;
     if (square_1.innerHTML === currentSymbol && square_2.innerHTML === currentSymbol && square_3.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_4.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_6.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_7.innerHTML === currentSymbol && square_8.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_1.innerHTML === currentSymbol && square_4.innerHTML === currentSymbol && square_7.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_2.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_8.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_3.innerHTML === currentSymbol && square_6.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_1.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_9.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     } else if (square_3.innerHTML === currentSymbol && square_5.innerHTML === currentSymbol && square_7.innerHTML === currentSymbol) {
         winner = true;
-        someoneWon(winner)
+        someoneWon(winner, isTie);
+        return true;
     }
     if (turnCounter === 9 && winner === false) {
         console.log('its a tie!');
-        someoneWon(winner)
+        isTie = true;
+        someoneWon(winner, isTie);
+        return true;
+    } else {
+        if (currentSymbol === 'X') {
+            currentSymbol = 'O';
+        } else {
+            currentSymbol = 'X';
+        }
     }
+    return false;
 }
 
-function someoneWon(tie) {
+function someoneWon(winner, tie) {
     // flip board
     gameboard.classList.add('winnerwinner');
 
 
     //update score of player that one, remove remaining event listeners.
-    if (!tie) {
+    if (tie) {
         // change text to tie!
         turn_status.innerHTML = 'It\'\s a tie!';
     } else if (turnCounter % 2 === 0) {
