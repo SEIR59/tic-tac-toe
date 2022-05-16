@@ -64,8 +64,8 @@ reset_btn.addEventListener('click', gameboard_complete_reset);
 function gameboard_click(e) {
     currentSquare = e.target;
     currentSquare.innerHTML = currentSymbol;
-    currentSquare.classList.toggle('square-hover')
     currentSquare.classList.add('player1-choice');
+    currentSquare.classList.remove('square-hover')
     currentSquare.removeEventListener('click', gameboard_click);
 
     turnCounter++;
@@ -104,16 +104,16 @@ function aiTurn() {
             if (gameboard_squares[aiChoice].innerHTML === '') {
                 console.log('we made it into here');
                 gameboard_squares[aiChoice].innerHTML = currentSymbol;
-                gameboard_squares[aiChoice].classList.toggle('square-hover')
+                gameboard_squares[aiChoice].classList.remove('square-hover')
                 gameboard_squares[aiChoice].classList.add('player2-choice');
                 gameboard_squares[aiChoice].removeEventListener('click', gameboard_click);
                 
                 turnCounter++;
-                turn_status.innerText = 'It\'\s player $1\'\s turn!'
+                turn_status.innerText = 'It\'\s player 1\'\s turn!'
                 break;
             }
             spotCheck++;
-            if (spotCheck > 8) {
+            if (spotCheck > 100) {
                 console.log('break check-loop...')
                 break;
             }
@@ -160,6 +160,7 @@ function gameboard_reset() {
     // check if there are three of the same symbol in a row anywhere
     console.log("checking win conditions")
     let winner = false;
+    isTie = false;
     if (square_1.innerHTML === currentSymbol && square_2.innerHTML === currentSymbol && square_3.innerHTML === currentSymbol) {
         winner = true;
         someoneWon(winner, isTie);
