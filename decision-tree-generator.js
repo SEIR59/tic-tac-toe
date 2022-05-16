@@ -1,3 +1,6 @@
+
+//README - This is a copy of the advancedComputer function in app.js. Sorry it's so messy, first time doing this.
+
 let squares = {}
 let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
 
@@ -127,7 +130,7 @@ let gameTree = nextMove(treeBase)
 //console.log('All variations are... Should be a factorial')
 //console.log(allVariations)
 
-let myPath = '1574628'
+let myPath = '21539'
 
 const findGameTreeNode = (path) => {
     let branch = gameTree[5]
@@ -150,7 +153,7 @@ const findGameTreeNode = (path) => {
 }
 
 const pickOptimalNode = (branch) => {
-    console.log(branch)
+    //console.log(branch)
     let bestNode = branch[0][0]
     let xKillExists = false
     let bestNodeScore = branch[0][4]
@@ -183,6 +186,8 @@ const pickOptimalNode = (branch) => {
             }
         }
     }
+    console.log(bestNode, xKillExists, bestNodeScore)
+    console.log(worstNode, oKillExists, worstNodeScore)
     if (turn === 1) {
         if (xKillExists === false && oKillExists === true) {
             myPath = worstNode
@@ -202,4 +207,4 @@ const pickOptimalNode = (branch) => {
     }
 }
 
-console.log(squares[pickOptimalNode(findGameTreeNode(myPath))])
+console.log(pickOptimalNode(findGameTreeNode(myPath)))

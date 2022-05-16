@@ -11,9 +11,11 @@ main{
   height: 100vh;
   width: 100vw;
   display: flex;
-  justify-content: space-around;
+  flex-flow:row nowrap;
+  justify-content: space-evenly;
   align-items: center;
 }
+
 #gamecontainer{
   border-radius: calc(var(--dimension)*.01);
   background: blue;
@@ -22,8 +24,8 @@ main{
   align-items: center;
   width: calc(var(--dimension)*.8);
   height: calc(var(--dimension)*.8);
-
 }
+
 #gametitle{
   border-radius: calc(var(--dimension)*.01);
   background:blue;
@@ -64,14 +66,16 @@ main{
   color: black;
 }
 #scoreboard{
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+  height: calc(var(--dimension)*.8);
   order:1;
-  align-self: top;
+
 }
 h1{
   text-decoration: underline;
-  display: flex;
-  flex-flow: column nowrap;
-  margin:0 auto;
+  margin:0 0;
 }
 #resetbtn{
   width:calc(var(--dimension)*.5);
@@ -86,9 +90,18 @@ display: flex;
 flex-flow: column nowrap;
 justify-content: center;
 align-items: space-between;
-gap: calc(var(--dimension)*.05)
+gap: calc(var(--dimension)*.05);
+height: calc(var(--dimension)*.8);
 }
 .slider{
+  display: flex;
+  justify-content: left;
+  border-radius: calc(var(--dimension)*.1);
+  background: grey;
+  width: auto;
+  height: calc(var(--dimension)*.1)
+}
+.xSlider{
   display: flex;
   justify-content: left;
   border-radius: calc(var(--dimension)*.1);

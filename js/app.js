@@ -3,14 +3,21 @@
 //function to do things when a player makes a move. 
 //IDs are structured as codes to win conditions. ID[0:2]-> verticles, ID[3:5]->horazontals, ID[6:7]->diagonals. Contains '1' in position if it helps that win condition. Sum of 3 in an array position means 3 connected, which = win.
 //ID example: X chooses top left, middle, and bottom right. ID[6:7] for the divs are top left '10', middle '11, bottom right '10'. After all moves, X[6] === 3, which is a win, diagonal.
-const playerMove = (location) => {
+const playerMove = (lLocation) => {
+    let location = ''
+    if (lLocation == undefined) {
+        location = ''
+    } else {
+        location = lLocation
+    }
     let title = document.getElementById('title')
     let board = document.getElementById('gameboard')
     let gameOptionExit = 0
     //function to mark a move and respond to that marking.
     const markMove = (spot) => {
+       
         let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
-        myPath+=(ids.indexOf(spot.id)+1)
+        myPath += (ids.indexOf(spot.id) + 1)
 
         let id = spot.id.split('').map(function (x) { return Number(x) })
         if (currentTurn === 0) {
@@ -48,11 +55,7 @@ const playerMove = (location) => {
             for (let i = 0; i < id.length; i++) {
                 O[i] += id[i];
                 if (O[i] === 3) {
-                    if (gameOption === 0) {
-                        winnerFound('O')
-                    } else {
-                        winnerFound('Computer')
-                    }
+                    winnerFound('O')
                     gameOptionExit++
                     return
                 }
@@ -67,9 +70,14 @@ const playerMove = (location) => {
         }
     }
     //if a player clicks an available square, do stuff based off game option
-    if (location.innerText === '') {
+    if ( location.innerText === '' || location === '') {
+        
         //mark player move
-        markMove(location)
+        if (firstPlayer === 0 || (firstPlayer === 1 && currentTurn === 1) ) {
+            console.log('text')
+            markMove(location)
+        }
+
         //if game option is 0, proceed with standard game flow.
 
         // gameOption 1 - vs Computer
@@ -78,10 +86,12 @@ const playerMove = (location) => {
             const theMove = () => {
                 boardClickOn(true)
                 gameOptionClickOn(true)
+                document.getElementById('xSlider').classList.remove('clickOff')
                 markMove(document.getElementById(simpleComputerMoveID()))
             }
             boardClickOn(false)
             gameOptionClickOn(false)
+            document.getElementById('xSlider').classList.add('clickOff')
             setTimeout(theMove, 1000)
             //gameOption 2 - vs algorithm
         } else if (gameOption === 2 && gameOptionExit === 0) {
@@ -89,9 +99,11 @@ const playerMove = (location) => {
                 boardClickOn(true)
                 gameOptionClickOn(true)
                 markMove(document.getElementById(advancedComputer(myPath)))
+                document.getElementById('xSlider').classList.remove('clickOff')
             }
             boardClickOn(false)
             gameOptionClickOn(false)
+            document.getElementById('xSlider').classList.add('clickOff')
             setTimeout(advancedMove, 1000)
 
         }
@@ -104,13 +116,19 @@ const winnerFound = (winner) => {
     //check who won, log a message, and update scores.
     if (winner === 'X') {
         console.log(`${winner}'s win!`)
-        currentScore[0]++
+        if (firstPlayer === 0) {
+            currentScore[0]++
+        } else {
+            currentScore[1]++
+        }
     } else if (winner === 'O') {
         console.log(`${winner}'s win!`)
-        currentScore[1]++
-    } else if (winner === 'Computer') {
-        console.log(`${winner}'s win!`)
-        currentScore[1]++
+        if (firstPlayer === 0) {
+            currentScore[1]++
+        } else {
+            currentScore[0]++
+        }
+
     } else {
         console.log('Tie')
         document.getElementById('title').innerText = `Booo. Tie.`
@@ -127,13 +145,14 @@ const winnerFound = (winner) => {
 
 //function to update the text of the scoreboard with the new score values
 const updateScoreboard = () => {
-    document.getElementById('sbX').innerText = `Player X: ${currentScore[0]}`
+    document.getElementById('sbX').innerText = `Player 1: ${currentScore[0]}`
     if (gameOption === 0) {
-        document.getElementById('sbO').innerText = `Player O: ${currentScore[1]}`
-    } else {
+        document.getElementById('sbO').innerText = `Player 2: ${currentScore[1]}`
+    } else if (gameOption === 1) {
         document.getElementById('sbO').innerText = `Computer: ${currentScore[1]}`
+    } else {
+        document.getElementById('sbO').innerText = `Algo: ${currentScore[1]}`
     }
-
     document.getElementById('sbT').innerText = `Ties: ${currentScore[2]}`
 }
 
@@ -157,6 +176,9 @@ const clearMoves = () => {
     for (let i = 0; i < allSquares.length; i++) {
         availableSquares.push(allSquares[i].id)
     }
+    if (firstPlayer === 1) {
+        playerMove()
+    }
 }
 
 //function to toggle board click listening. true = on, false = off.
@@ -168,12 +190,15 @@ const boardClickOn = (bool) => {
         board.classList.add('clickOff')
     }
 }
+
 //function to shift the clicked slider button right and all others left.
-const moveSliderButton = () => {
+const moveSliderButton = (othertarget) => {
     const target = event.target.id
 
     //internal functino to move the button
     const toggleDirection = (id) => {
+        document.getElementById('xSlider').classList.add('clickOff')
+        setTimeout(document.getElementById('xSlider').classList.remove('clickOff'), 1200)
         let ele = document.getElementById(id)
         let style = getComputedStyle(ele).justifyContent
         let btns = document.getElementsByClassName('slider')
@@ -213,11 +238,35 @@ const moveSliderButton = () => {
 
 //function to run on game startup. Start listeners and input default settings.
 const initializeGame = () => {
+    const clickOn = () =>{
+        document.getElementById('xSlider').classList.remove('clickOff')
+    }
     let board = document.getElementById('gameboard')
     updateScoreboard()
     document.getElementById('PvPSlider').style.justifyContent = 'right'
     document.getElementById('resetbtn').addEventListener('click', clearMoves)
     document.getElementById('gameOptions').addEventListener('click', moveSliderButton)
+    document.getElementById('xSlider').addEventListener('click', () => {
+        if (document.getElementById('xSlider').classList.contains('clickOff')) {
+            return
+        } else {
+            if (document.getElementById('xSlider').classList.contains('right')) {
+                document.getElementById('xSlider').classList.remove('right')
+                document.getElementById('xSlider').classList.add('clickOff')
+                document.getElementById('xSlider').style.justifyContent = 'left'
+                firstPlayer = 0
+                setTimeout(clickOn, 1200)
+            } else {
+                document.getElementById('xSlider').classList.add('right')
+                document.getElementById('xSlider').classList.add('clickOff')
+                document.getElementById('xSlider').style.justifyContent = 'right'
+                firstPlayer = 1
+                setTimeout(clickOn, 1200)
+            }
+            clearMoves()
+        }
+    }
+    )
     board.addEventListener('click', () => {
         if (board.classList.contains('clickOff')) {
             return
@@ -225,9 +274,9 @@ const initializeGame = () => {
             playerMove(event.target)
         }
     })
-    for (let i = 0; i < allSquares.length; i++) {
-        availableSquares.push(allSquares[i].id)
-    }
+for (let i = 0; i < allSquares.length; i++) {
+    availableSquares.push(allSquares[i].id)
+}
 }
 
 //function to pick a random square to mark. Returns move div's ID.
@@ -246,12 +295,14 @@ const gameOptionClickOn = (bool) => {
 }
 
 const advancedComputer = (myPath) => {
+    //I apologize for how messy the below code is going to be. It's my first time making something like this...
+    //The computer is beatable - I haven't added logic to defend against one specific tactic.
     let squares = {}
     let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
     for (let i = 0; i < ids.length; i++) {
         squares[i + 1] = ids[i].split('').map(x => Number(x))
     }
-    console.log(squares)
+    //console.log(squares)
 
     //change this to change how many variations are created
     const allSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -457,6 +508,7 @@ let O = [0, 0, 0, 0, 0, 0, 0, 0]
 let tieCheck = 0;
 let currentScore = [0, 0, 0]
 let myPath = ''
+let firstPlayer = 0;
 //#endregion 
 
 //#region Initialize button(s) and listeners
