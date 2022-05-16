@@ -9,18 +9,18 @@ const srcTwo = "image/527-5271560_png-file-svg-x-vector.png";
 let p1 = 2;
 //function chaning grid image and the flag variable
 function takeTurn_1(e) {
-     
+
     if (p1 === 1) {
         document.getElementById("r1").src = srcOne;
         document.getElementById("b1").setAttribute("disabled", "disabled");
         p1 = 0;
-       
+        oChoices.push(1);
     }
-    else if(p1 === 0) {
+    else if (p1 === 0) {
         document.getElementById("r1").src = srcTwo;
         document.getElementById("b1").setAttribute("disabled", "disabled");
         p1 = 1;
-        
+        xChoices.push(1);
     }
 };
 function takeTurn_2() {
@@ -28,11 +28,13 @@ function takeTurn_2() {
         document.getElementById("r2").src = srcOne;
         document.getElementById("b2").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(2);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r2").src = srcTwo;
         document.getElementById("b2").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(2);
     }
 };
 function takeTurn_3() {
@@ -40,11 +42,13 @@ function takeTurn_3() {
         document.getElementById("r3").src = srcOne;
         document.getElementById("b3").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(3);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r3").src = srcTwo;
         document.getElementById("b3").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(3);
     }
 };
 function takeTurn_4() {
@@ -52,11 +56,13 @@ function takeTurn_4() {
         document.getElementById("r4").src = srcOne;
         document.getElementById("b4").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(4);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r4").src = srcTwo;
         document.getElementById("b4").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(4);
     }
 };
 function takeTurn_5() {
@@ -64,11 +70,13 @@ function takeTurn_5() {
         document.getElementById("r5").src = srcOne;
         document.getElementById("b5").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(5);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r5").src = srcTwo;
         document.getElementById("b5").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(5);
     }
 };
 function takeTurn_6() {
@@ -76,11 +84,13 @@ function takeTurn_6() {
         document.getElementById("r6").src = srcOne;
         document.getElementById("b6").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(6);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r6").src = srcTwo;
         document.getElementById("b6").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(6);
     }
 };
 function takeTurn_7() {
@@ -88,11 +98,13 @@ function takeTurn_7() {
         document.getElementById("r7").src = srcOne;
         document.getElementById("b7").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(7);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r7").src = srcTwo;
         document.getElementById("b7").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(7);
     }
 };
 function takeTurn_8() {
@@ -100,11 +112,13 @@ function takeTurn_8() {
         document.getElementById("r8").src = srcOne;
         document.getElementById("b8").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(8);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r8").src = srcTwo;
         document.getElementById("b8").setAttribute("disabled", "disabled");
         p1 = 1;
+        xChoices.push(8);
     }
 };
 function takeTurn_9() {
@@ -112,19 +126,166 @@ function takeTurn_9() {
         document.getElementById("r9").src = srcOne;
         document.getElementById("b9").setAttribute("disabled", "disabled");
         p1 = 0;
+        oChoices.push(9);
     }
-    else if(p1 === 0){
+    else if (p1 === 0) {
         document.getElementById("r9").src = srcTwo;
         document.getElementById("b9").setAttribute("disabled", "disabled");
+        p1 = 1;
+        xChoices.push(9);
+    }
+};
+
+
+
+
+/*-----FUNCTION__COMMENTARY-----*/
+
+function saying() {
+
+    const commentary = document.getElementById("turn");
+
+    if (p1 === 1) {
+        commentary.innerText = "O player's turn!";
+        commentary.style.fontSize = "24px"
+    }
+    else if (p1 === 0) {
+        commentary.innerText = "X player's turn!";
+        commentary.style.fontSize = "24px"
+    }
+    else if (p1 === 3) {
+        commentary.innerText = "O player Won!";
+        commentary.style.fontSize = "54px"
+    }
+    else if (p1 === 4){
+        commentary.innerText = "X player Won!";
+        commentary.style.fontSize = "54px"
+    }
+    else if (p1 === 5){
+        commentary.innerText = "Draw!";
+        commentary.style.fontSize = "54px"
+    }
+    else if (p1 === 2) {
+        commentary.innerText = "O player's turn!";
+        commentary.style.fontSize = "24px"
         p1 = 1;
     }
 };
 
+// function saying2() {
+
+//     const commentary = document.getElementById("turn");
+
+   
+//      if (p1 === 3) {
+//         commentary.innerText = "O player Won!";
+//         commentary.style.fontSize = "54px"
+//     }
+//     else if (p1 === 4){
+//         commentary.innerText = "X player Won!";
+//         commentary.style.fontSize = "54px"
+//     }
+   
+// };
+
+
+
+/*-----FUNCTION__who won???-----*/
+let oChoices = [];
+let xChoices = [];
+let winChoices = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+
+function whoWin() {
+    function multiCheck(arr, values) {
+        return values.every(value => {
+            return arr.includes(value);
+        });
+    };
+
+    if (multiCheck(xChoices, winChoices[0]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[1]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[2]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[3]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[4]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[5]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[6]) === true) {
+        p1 = 4;
+        saying();
+    }
+    else if (multiCheck(xChoices, winChoices[7]) === true) {
+        p1 = 4;
+        saying();
+    }
+   
+   
+    //O wining check starts here
+    else if (multiCheck(oChoices, winChoices[0]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[1]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[2]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[3]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[4]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[5]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[6]) === true) {
+        p1 = 3;
+        saying();
+    }
+    else if (multiCheck(oChoices, winChoices[7]) === true) {
+        p1 = 3;
+        saying();
+    }
+
+    //Draw condition
+    else if (xChoices.length >=4 && oChoices.length>=4 && p1 != 3 && p1 !=4 ) {
+        p1 = 5;
+        saying();
+    }
+ 
+
+};
+
 /*-----FUNCTION__RESET ALL GRID BUTTONS-----*/
 
-function resetGame(){
-    console.log("rrrr");
-    p1 = 1;
+function resetGame() {
+    console.log("reset");
+
+    p1 = 2;
+ 
     //going back to the default white image
     document.getElementById("r1").src = srcZero;
     document.getElementById("r2").src = srcZero;
@@ -145,92 +306,48 @@ function resetGame(){
     document.getElementById("b7").removeAttribute("disabled");
     document.getElementById("b8").removeAttribute("disabled");
     document.getElementById("b9").removeAttribute("disabled");
+
+    console.log(p1);
+    oChoices = [];
+    xChoices = [];
+    saying();
+    
+  
 }
 
 
-/*-----commentary-----*/
-function saying(){
 
-const commentary = document.getElementById("turn");
-
-if (p1 === 1){
-    commentary.innerText = "O player's turn!";
-}else if(p1 === 0){
-   commentary.innerText = "X player's turn!";
-}else if (p1 === 2){
-    p1 = 1;
-}
-};
-
-
-/*-----FUNCTION__who won???-----*/
-
-
-
-
-
-
-// function call(){
-//     console.log("call");
-// };
-
-
-// photo.setAttribute("src","srcOne")
-// console.log(photo.src);
-
-
-
-// const choosing1 = function (e){
-// photo.src = srcOne;
-
-// console.log(photo.src);
-// };
-// const choosing2 = function(e){
-//  photo.src = srcTwo;
-// };
-
-
-
-// document.querySelector('.rectangle').addEventListener('click', placing2);
-// document.getElementsByClassName('rectangle').addEventListener('click', placing);
-
-
-// document.querySelector('#r1').addEventListener('click',()=>{
-//     takeTurn_1();
-// });
-// document.querySelector('#r2').addEventListener('click',()=>{
-//     takeTurn_2();
-// });
-
-
+//
+/*-----EVENTLISTENER BUTTONS-----*/
+//
 
 /*-----ADDING EVENT LISTNER TO GRID BUTTON-----*/
 document.querySelector('#b1').addEventListener('click', (e) => {
-    takeTurn_1(); saying();
+    takeTurn_1(); saying(); whoWin();
 });
 document.querySelector('#b2').addEventListener('click', (e) => {
-    takeTurn_2(); saying();
+    takeTurn_2(); saying(); whoWin();
 });
 document.querySelector('#b3').addEventListener('click', (e) => {
-    takeTurn_3(); saying();
+    takeTurn_3(); saying(); whoWin();
 });
 document.querySelector('#b4').addEventListener('click', (e) => {
-    takeTurn_4(); saying();
+    takeTurn_4(); saying(); whoWin();
 });
 document.querySelector('#b5').addEventListener('click', (e) => {
-    takeTurn_5(); saying();
+    takeTurn_5(); saying(); whoWin();
 });
 document.querySelector('#b6').addEventListener('click', (e) => {
-    takeTurn_6(); saying();
+    takeTurn_6(); saying(); whoWin();
 });
 document.querySelector('#b7').addEventListener('click', (e) => {
-    takeTurn_7(); saying();
+    takeTurn_7(); saying(); whoWin();
 });
 document.querySelector('#b8').addEventListener('click', (e) => {
-    takeTurn_8(); saying();
+    takeTurn_8(); saying(); whoWin();
 });
 document.querySelector('#b9').addEventListener('click', (e) => {
-    takeTurn_9(); saying();
+    takeTurn_9(); saying(); whoWin();
 });
 
 /*-----ADDING EVENT LISTNER TO RESET BUTTON-----*/
