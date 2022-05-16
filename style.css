@@ -1,0 +1,170 @@
+
+
+.start-game.hide{
+    display: none;
+}
+.start{
+    background: url(./assets/start.png);
+    
+    width: 150px;
+    height:60px;
+    background-size:cover;
+    border: none;
+    transition: transform .2s;
+}
+.start:hover{
+    transform:scale(1.2);
+    cursor: pointer;
+}
+.startAgain{
+    background: url(./assets/start.png);
+    width: 150px;
+    height:60px;
+    background-size:cover;
+    border: none;
+    transition: transform .2s;
+}
+.startAgain:hover{
+    transform:scale(1.2);
+    cursor: pointer;
+}
+
+.start-game .profile .img >img {
+    cursor: pointer;
+    
+}
+#xX{
+    transition: transform .2s;
+
+}
+#xX:hover {
+    transform: rotate(45deg) scale(1.3);
+   
+}
+#oO{
+    transition: transform .2s;
+
+}
+#oO:hover {
+    transform: rotate(-45deg) scale(1.3);
+   
+}
+
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-size:cover;
+    background:url(./assets/1x/background.png);
+    
+        
+}
+.start-game {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: url(./assets/environment/background.png);
+    background-size: contain;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.profile{
+    margin-top: -320px;
+}
+
+
+
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    row-gap: 3px;
+    column-gap: 3px;
+    margin-top: 300px;
+    position: center;
+    
+    
+
+
+
+}
+.block{
+    width:150px;
+    height:150px;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.block.x,.block.y{
+    cursor: not-allowed;
+}
+.board.x .block:not(.x):not(.y):hover{
+    background:url(./assets/sprites/x.png)no-repeat ;
+    background-size: contain;
+    opacity: 0.4;
+}
+.board.y .block:not(.x):not(.y):hover{
+    background:url(./assets/sprites/o.png)no-repeat ;
+    background-size: contain;
+    opacity: 0.4;
+}
+
+
+.block.x{
+    background: url(./assets/sprites/x.png)no-repeat;
+}
+.block.y{
+    background: url(./assets/sprites/o.png)no-repeat;
+}
+
+.lose-game{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    background: url(./assets/environment/background.png);
+    width: 100%;
+    height: 100%;
+}
+.winGame show{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    background: url(./assets/environment/background.png);
+    width: 100%;
+    height: 100%;
+}
+
+.loseGame,.winGame{
+    display: none;
+}
+
+.loseGame.show,.winGame.show {
+   display: flex; 
+}
+
+
+.img{
+    display: flex;
+}
+
+.img .selected{
+    transform: rotate(45deg) scale(1.5)
+
+
+   
+  
+  
+}
+

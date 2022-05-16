@@ -1,14 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-  <h1>Hello Front-End</h1>
 
-  <script type="text/javascript" src="js/app.js"></script>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    
+
+   
+<!--menue-->
+
+    <div class="start-game" data-id="b">
+        <div class="banner"><img src="./assets/1x/menu3.png" alt=""></div>
+        
+        <div class="profile">
+
+            <div class="img">
+
+                
+                    <img src="./assets/1x/playerx2.png" class="id jam" id="xX" data-id="x" alt="">
+                
+
+               
+                    <img src="./assets/1x/playero2.png" class="id boy" id="oO" data-id="y" alt="">
+                
+
+            </div>  
+        </div>
+
+        <button class="start" id="srtBtn"></button>
+            
+    </div>
+
+    <!--game play-->
+
+   <div class="container">
+       
+       <div class="board" id="board">
+           <div class="block jamb" data-id="I"data-cell data-index="1"></div>
+           <div class="block jamb" data-id="II"data-cell data-index="2"></div>
+           <div class="block jamb" data-id="III"data-cell data-index="3"></div>
+           <div class="block jamb" data-id="IV"data-cell data-index="4"></div>
+           <div class="block jamb" data-id="V"data-cell data-index="5"></div>
+           <div class="block jamb" data-id="VI"data-cell data-index="6"></div>
+           <div class="block jamb" data-id="VII"data-cell data-index="7"></div>
+           <div class="block jamb" data-id="IIV"data-cell data-index="8"></div>
+           <div class="block jamb" data-id="IIIV"data-cell data-index="9"></div>
+           <div class="strike" id="iWon"></div>
+        </div>
+   </div> 
+
+   <!--outcome messages-->
+   <div class="loseGame">
+       <div class="lose">
+           <img src="./assets/banners/youlose.png" alt="">
+       </div>
+       <button class="startAgain" id="srtAgn">
+    </button>
+   </div>
+
+   <div class="winGame" >
+    <div class="win">
+        <img src="./assets/banners/youwin.png" alt="">
+    </div>
+    <button class="startAgain" id="srtAgn"></button>
+</div>
+   
+   
+<script  src="./app.js"></script>
+   
 </body>
+
 </html>
+   
+ 
+   
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+    
