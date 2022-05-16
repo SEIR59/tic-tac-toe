@@ -1,6 +1,7 @@
 let squares = document.querySelectorAll(".square");
 let message = document.querySelector(".message");
 let button = document.querySelector("button");
+// Need this for the array to compare choices
 let choices = ["", "", "", "", "", "", "", "", ""];
 
 squares = Array.from(squares);
@@ -19,6 +20,7 @@ const winCombo = [
   [2, 5, 8],
 ];
 
+// Main function of the game
 function gameRules(square, i) {
   if (square.innerHTML.trim() != "") return;
   square.innerHTML = firstPlayer;
@@ -42,11 +44,12 @@ function gameRules(square, i) {
     }
   }
 }
-// THIS GOES THROUGH EACH SQUARE AND ADDS AN EVENTLISTENER AND GIVES AN INDEX
+// This goes through each square, addas an EventListener, and gives an index
 squares.forEach((square, i) => {
   square.addEventListener("click", () => gameRules(square, i));
 });
 
+// EXCESS CODE GRAVEYARD BELOW. Realized where the code could be more dry
 // button.addEventListener("click", () => {
 //   squares.innerHTML = "X";
 // });
