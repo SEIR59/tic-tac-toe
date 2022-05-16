@@ -105,7 +105,7 @@ boxes.forEach(box => {
             let currentBox = this.id;
             let currentValue = document.getElementById(currentBox).innerHTML;
             if (turn === 1) {
-                if (currentValue !== (p2 && p1)) {
+                if ((currentValue !== p2) && (currentValue !== p1)) {
                     document.getElementById(currentBox).innerHTML = p1;
                     document.getElementById(currentBox).style.color = "dodgerblue";
                     if (checkForWin(p1)) {
@@ -125,7 +125,7 @@ boxes.forEach(box => {
                 }
             }
             else if (turn === 2) {
-                if (currentValue !== p1) {
+                if ((currentValue !== p1) && (currentValue !== p2)) {
                     document.getElementById(currentBox).innerHTML = p2;
                     document.getElementById(currentBox).style.color = "lightcoral";
                     if (checkForWin(p2)) {
