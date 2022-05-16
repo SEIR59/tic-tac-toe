@@ -39,4 +39,21 @@ function check() {
         [0, 4, 8],
         [2, 4, 6]
     ];
+    for( i = 0; i < win.length; i++) {
+        if( 
+            tiles[win[i][0]].innerHTML == "X" && tiles[win[i][1]].innerHTML == "X" && tiles[win[i][2]].innerHTML == "X"
+        ) {
+            
+            result  = "X";
+            changeContent(`Win ${result} !`)
+            
+        } else if (
+            tiles[win[i][0]].innerHTML == "0" && tiles[win[i][1]].innerHTML == "0" && tiles[win[i][2]].innerHTML == "0"
+        ) {
+        
+            result = "0";
+            changeContent(`Win ${result} !`)        
+        }
+    }
+}
 
