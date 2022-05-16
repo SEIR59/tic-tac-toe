@@ -1,3 +1,25 @@
 h1 {
-  color: purple;
+  color: rgb(73, 67, 158);
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+.gameBoxs {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  height: 400px;
+  width: 400px;
+}
+
+div > div {
+  padding:10px;
+  background-color: rgb(73, 67, 158);
+}
+
+input {
+  width: 100px;
+  height: 100px;
+  align-items: center;
+
+}
+
