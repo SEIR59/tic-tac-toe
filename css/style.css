@@ -1,20 +1,27 @@
 body {
   text-align: center;
   background-color: white;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
   display: grid;
-  
+  font-family: 'Merienda', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Shadows Into Light', cursive;
+background-image: url(/imgs/Sunset.jpg);
 }
-
+h1 {
+  font-size: 100px;
+  margin-bottom: -20px;
+}
 #gameboard {
   display: grid;
 grid-template-columns: repeat(3, 1fr);
 grid-template-rows: repeat(3, 1fr);
-height: 300px;
-width: 300px;
-justify-self: center;
+height: 600px;
+width: 600px;
+justify-items: center;
 align-items: center;
+border-radius: 6px;
 
 
   
@@ -24,41 +31,91 @@ align-items: center;
   border: solid;
   border-width: 3px;
   cursor: pointer;
-  height: 90px;
-  width: 90px;
-  background-color: black;
-  font-size: 60px;
+  height: 0px;
+  width: 0px;
+  font-size: 150px;
   color: white;
-  align-items: center;
+  align-content: center;
   justify-content: center;
+  background-color: transparent;
 }
 
 
-.divgrid:hover {
-  font-size: 80px;
-  height: 100px;
-  width: 100px;
-  transition: 100ms;
-  overscroll-behavior: auto;
-  background-color: limegreen;
-  color: white;
+/* #first{
+  background-image: url(/imgs/Milo.jpg);
+  object-fit: cover;
+  height: 185px;
+  width: 185px;
 }
+#second{
+  background-image: url(/imgs/lana.jpg);
+}
+#third{
+  background-image: url(/imgs/juhn.jpg);
+}
+#fourth{
+  background-image: url(/imgs/dandan.jpg);
+}
+#fifth{
+  background-image: url(/imgs/spenge.jpg);
+}
+#sixth{
+  background-image: url(/imgs/Brynlin.jpg);
+}
+#seventh{
+  background-image: url(/imgs/chicken1.jpg);
+}
+#eighth{
+  background-image: url(/imgs/roganator.jpg);
+
+}
+#ninth{
+  background-image: url(/imgs/chicken2.jpg);
+} */
 
 
 button {
   background-color: white;
+  font-family: 'Merienda', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Shadows Into Light', cursive;
 }
 
 #reset-button { 
   cursor: pointer;
   width: 300px;
   justify-self: center;
+  border-radius: 20px;
 }
 
 button:hover{
   cursor: pointer;
-  width: 400px;
-  height: 40px;
-  background-color: black;
-  color: white;
+ 
 }
+
+p{
+  color: white;
+  padding-top: 50px;
+  font-size: 40px;
+  margin-bottom: 5px;
+
+}
+#anarchy{
+  height: 85px;
+  width: 85px;
+  
+}
+
+img{
+  height: 185px;
+  width: 185px;
+  border-radius: 6px;
+
+}
+
+
+
+
+
+
+
