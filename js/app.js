@@ -4,9 +4,12 @@ const boxes = document.querySelectorAll(".box");
 const playerX = "X";
 const playerO = "O";
 let choice = playerX;
-
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 const gameChoices = Array(boxes.length);
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
 gameChoices.fill(null);
+
 
 const line = document.getElementById("strike");
 const interface = document.getElementById("interface");
@@ -48,6 +51,8 @@ function boxClick(event) {
 }
 // this function check all avaliable outcomes of the game and displays gameWon box of text that tells the user who won and allows them to reset the game. 
 function checkForWin() {
+
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
     for (const winCondtion of winCondtions) {
         const { lineOf, strikeClass } = winCondtion;
         const boxValue1 = gameChoices[lineOf[0] - 1];
@@ -62,7 +67,7 @@ function checkForWin() {
 
 
     }
-
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
     const gameTie = gameChoices.every((box) => box !== null);
     if (gameTie) {
         gameWon(null);
