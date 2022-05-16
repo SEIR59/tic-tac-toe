@@ -18,6 +18,7 @@ let boxes = document.querySelectorAll(".box");
 let newGameButton = document.querySelector("button");
 
 // use forEach function to add click event handler to each box element
+// used ternary operator as an alternative to if statement to make codes more clear
 boxes.forEach((box) =>
   box.addEventListener("click", (event) => {
     // game logic place either 'X' or 'O' when click box element depends on who is playing
