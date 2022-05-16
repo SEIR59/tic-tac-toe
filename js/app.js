@@ -106,12 +106,18 @@ const winnerFound = (winner) => {
         allSquares[i].style.background = 'purple'
     }
     updateScoreboard()
+    gameOptionClickOn()
 }
 
 //function to update the text of the scoreboard with the new score values
 const updateScoreboard = () => {
     document.getElementById('sbX').innerText = `Player X: ${currentScore[0]}`
-    document.getElementById('sbO').innerText = `Player O: ${currentScore[1]}`
+    if (gameOption === 0){
+        document.getElementById('sbO').innerText = `Player O: ${currentScore[1]}`
+    }else{
+        document.getElementById('sbO').innerText = `Computer: ${currentScore[1]}`
+    }
+    
     document.getElementById('sbT').innerText = `Ties: ${currentScore[2]}`
 }
 
@@ -211,6 +217,8 @@ const initializeGame = () => {
 const simpleComputerMoveID = () => {
     return availableSquares.splice(Math.floor(Math.random() * availableSquares.length), 1)
 }
+
+//function to delay game option change so that timeouts on computer moves don't mark a fresh board.
 const gameOptionClickOn = (bool) => {
     let board = document.getElementById('gameOptions')
     if (bool === false) {
@@ -219,7 +227,7 @@ const gameOptionClickOn = (bool) => {
         board.classList.remove('clickOff')
     }
 }
-// #endregion 
+// #endregion
 
 //#region Variables to track turns of players and their movements
 let currentTurn = 0
