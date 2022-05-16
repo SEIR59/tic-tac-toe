@@ -48,4 +48,16 @@ p {
   width: 70px;
   cursor: pointer;
   text-align: center;
+  font-size: 15px;
+  
+  margin: 2px;
+}
+
+.square:hover{
+  cursor: pointer;
+  background-color: rgb(254,1,154);
+}
+
+.square:disabled{
+  cursor: no-drop;
 }

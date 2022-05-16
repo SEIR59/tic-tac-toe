@@ -2,13 +2,13 @@
 const gameBoardElement = document.querySelector('gameBoard');
 const boxes = document.querySelectorAll('.square');
 // const restartButton = document.querySelector('#restart').addEventListener('click', restart);
-const resultText = document.querySelector('result');
+const resultText = document.querySelector('.result');
 
 //declaring the player and computer and winning combinations
 const playerX = 'X';
 const playerO = 'O';
 // forces player x to always start
-let currentPlayer = '';
+let currentPlayer = 'X';
 const winningCombinations = [
     //rows
     [0,1,2],
@@ -28,8 +28,8 @@ let boxesArray = ['', '', '', '', '', '', '', '', '',];
 // const playGame = (element, index) =>{
 //     element.value = currentPlayer;
 //     element.disabled = true;
-//     boxesArray[index] = currentPlayer;
-    // currentPlayer = currentPlayer == 'X' ? 'X' : 'O';
+    //  boxesArray[index] = currentPlayer;
+    //  currentPlayer = currentPlayer == 'X' ? 'X' : 'O';
     // resultText.innerHTML = `Player ${currentPlayer}'s Turn`;
 
 // for (let i = 0; i < winningCombinations.length; i++){
@@ -46,29 +46,45 @@ for (const square of boxes) {
   square.addEventListener("click", function () {
     // currentPlayer = currentPlayer == 'X' ? 'X' : 'O';
     // resultText.innerHTML = `Player ${currentPlayer}'s Turn`;
-    square.innerHTML = currentPlayer;
+    // square.innerHTML = currentPlayer;
+    console.log(currentPlayer);
     if (currentPlayer === "X") {
       square.innerHTML = "X";
-      currentPlayer = "O";
+     currentPlayer = "O";
+     displayPlayerTurn();
     } else {
       square.innerHTML = "O";
-      currentPlayer = "X";
+    currentPlayer = "X";
+    displayPlayerTurn();
     }
   });
 }
 
+//display message for who's turn it is
+function displayPlayerTurn(){
+    if(currentPlayer === "X"){
+        resultText.innerHTML = `Player ${currentPlayer}'s turn.`;
+    } else {
+        resultText.innerHTML = `Player ${currentPlayer}'s turn.`;
+    }
+}
+    
 
 
-
-
-
-
-
-
-//how to switch turns
-// function swapTurns(){
-//     playerOTurn = !playerOTurn
+//display winner
+// function displayWinner(){
+// if(currentPlayer = "X"){
+//     resultText.innerHTML = `Player ${currentPlayer}'s the winner!`;
+// } else {
+//     resultText.innerHTML = `Player ${currentPlayer}'s the winner!`;
 // }
+// }
+// displayWinner();
+
+
+
+
+
 
 
 
