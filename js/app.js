@@ -42,10 +42,10 @@ const gameWinningCombos = [
 
 
 const displayWins = () => {
-    let xScoreDisplay = document.getElementById('xScore')
-    xScoreDisplay.innerText = `Number of games X has won: ${xWinsCount}`
-    let oScoreDisplay = document.getElementById('oScore')
-    oScoreDisplay.innerText = `Number of games O has won: ${oWinsCount}`
+    let xScoreDisplay = document.getElementById('xScoreNumber')
+        xScoreDisplay.innerText = `${xWinsCount}`
+    let oScoreDisplay = document.getElementById('oScoreNumber')
+        oScoreDisplay.innerText = `${oWinsCount}`
 }
 displayWins()
 
