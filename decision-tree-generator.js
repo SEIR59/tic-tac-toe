@@ -130,7 +130,7 @@ let gameTree = nextMove(treeBase)
 //console.log('All variations are... Should be a factorial')
 //console.log(allVariations)
 
-let myPath = '21539'
+let myPath = '158'
 
 const findGameTreeNode = (path) => {
     let branch = gameTree[5]
@@ -156,16 +156,22 @@ const pickOptimalNode = (branch) => {
     //console.log(branch)
     let bestNode = branch[0][0]
     let xKillExists = false
+    let xNextKillExists = false
+    let xNextKillNode = ''
     let bestNodeScore = branch[0][4]
     let worstNode = branch[0][0]
     let oKillExists = false
+    let oNextKillExists = false
+    let oNextKillNode = ''
     let worstNodeScore = branch[0][4]
+
     //1 for O's turn
     //console.log('This branch 00 = ' ,branch[0][0])
     let turn = branch[0][0].length % 2
     //look for best nodes
     for (let i = 0; i < branch.length; i++) {
         //if an x win within 1 move, pick that as bestNode
+        console.log(branch[i])
         if (branch[i][2].includes(3)) {
             bestNode = branch[i][0]
             bestNodeScore = 11000
@@ -177,32 +183,56 @@ const pickOptimalNode = (branch) => {
             oKillExists = true
             //if no wins within 1 move, evaluate options. pick highest/lowest win combos
         } else {
-            if (branch[i][4] > bestNodeScore) {
-                bestNode = branch[i][0]
-                bestNodeScore = branch[i][4]
-            } else if (branch[i][4] < worstNodeScore) {
-                worstNode = branch[i][0]
-                worstNodeScore = branch[i][4]
+            //check children for death on next move.
+            for (let j = 0; j < branch[i][5].length; j++) {
+                if (branch[i][5][j][2].includes(3)) {
+                    xNextKillExists = true
+                    xNextKillNode = branch[i][5][j][0]
+                } else if (branch[i][5][j][3].includes(3)) {
+                    oNextKillExists = true
+                    oNextKillNode = branch[i][5][j][0]
+                }
+
+                if (branch[i][4] > bestNodeScore) {
+                    bestNode = branch[i][0]
+                    bestNodeScore = branch[i][4]
+                } else if (branch[i][4] < worstNodeScore) {
+                    worstNode = branch[i][0]
+                    worstNodeScore = branch[i][4]
+                }
             }
         }
-    }
-    console.log(bestNode, xKillExists, bestNodeScore)
-    console.log(worstNode, oKillExists, worstNodeScore)
-    if (turn === 1) {
-        if (xKillExists === false && oKillExists === true) {
-            myPath = worstNode
-            return worstNode[worstNode.length - 1]
+        //console.log(branch)
+        console.log(bestNode, xKillExists, bestNodeScore)
+        console.log(worstNode, oKillExists, worstNodeScore)
+        if (turn === 0) {
+            if (oKillExists === true) {
+                myPath = worstNode
+                return worstNode[worstNode.length - 1]
+            } else if (xKillExists === true) {
+                myPath = bestNode
+                return bestNode[bestNode.length - 1]
+            } else if (xNextKillExists === true) {
+                myPath = xNextKillNode
+                return xNextKillNode[xNextKillNode.length - 1]
+            } else {
+                myPath = worstNode
+                return worstNode[worstNode.length - 1]
+            }
         } else {
-            myPath = bestNode
-            return bestNode[bestNode.length - 1]
-        }
-    } else {
-        if (xKillExists === true && oKillExists === false) {
-            myPath = bestNode
-            return bestNode[bestNode.length - 1]
-        } else {
-            myPath = worstNode
-            return worstNode[worstNode.length - 1]
+            if (xKillExists === true) {
+                myPath = bestNode
+                return bestNode[bestNode.length - 1]
+            }else if(oKillExists ===true){
+                myPath = worstNode
+                return worstNode[worstNode.length - 1]
+            }else if(oNextKillExists === true){
+                myPath = oNextKillNode
+                return oNextKillNode[oNextKillNode.length-1]
+            } else {
+                myPath = bestNode
+                return bestNode[bestNode.length - 1]
+            }
         }
     }
 }
