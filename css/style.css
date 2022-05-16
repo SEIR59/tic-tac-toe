@@ -1,3 +1,73 @@
 h1 {
-  color: purple;
+  font-size: 80px;
+  
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+#reset-btn {
+  padding: 10px;
+  border-radius: 20px;
+  font-family: 'Indie Flower', cursive;
+  background-color: rgb(231, 94, 167);
+  font-weight: bold;
+  
+}
+
+.board {
+  display: grid; 
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px;
+  position: relative;
+  cursor: pointer;
+  
+}
+.right-border {
+  border-right: 5px solid black;
+}
+
+.bottom-border {
+  border-bottom: 5px solid black;
+}
+
+.square {
+  background-color: rgba(137, 43, 226, 0.147);
+  font-size: 70px;
+  padding: 30px;
+  text-align: center;
+  grid-gap: 5px;
+  
+}
+
+.x-hover:hover::after {
+  content: "X";
+  opacity: .5;
+}
+
+.o-hover:hover::after {
+  content: "O";
+  opacity: .5;
+}
+
+#game-winner {
+  text-align: center;
+  border: solid 10px rgb(231, 94, 167);
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-top: 30px;
+  width: 25%;
+  background-color: rgba(137, 43, 226, 0.147) ;
+}
+
+h2 {
+  font-size: 35px;
+  margin-top: -15px;
+}
+
+
