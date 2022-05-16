@@ -64,4 +64,5 @@ document.querySelector("#restart").addEventListener('click', function(){
     changeContent("player X's turn");
     
 });
+changeContent("player X's turn");
 
