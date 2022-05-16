@@ -18,6 +18,8 @@ let currentTurn = 'player1';
 
 
 const test = document.querySelectorAll('.test');
+const btn = document.querySelector('.btn');
+
 const currPlay = document.querySelector('#player-turn');
 console.log(currPlay);
 
@@ -69,13 +71,12 @@ for(let i = 0; i < 9; i++){
         } 
         else if(isPlayerTwoWinner){
             currPlay.innerHTML = "Player Two Wins"
-        } 
-
-        // else {
-        //     currPlay.innerHTML = "Cat's Game"
-        // }
+        }
+        
+        btn.addEventListener("click", (event) => {
+            test[i].innerHTML = " ";
+        });
 
     })
-    
     
 }
