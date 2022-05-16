@@ -120,10 +120,9 @@ const result = function () {
     second_wins_count.textContent = secondWinCount;
     //update winStatus
     switcher === "player1" ? (player1Win = true) : false;
-  } else if (clickTimes === 9) {
+  } else if (mode === "twoPlayers" ? clickTimes === 9 : clickTimes === 4) {
     (mode === "twoPlayers" ? twoPlayersButton : computerButton).textContent =
       "One More";
-
     msg.innerText = "Cat's game! Click One More";
   }
 };
@@ -291,15 +290,16 @@ twoPlayersButton.addEventListener("click", function () {
 });
 
 /** Computer Game ************************************************************ */
-let computerPickIndexPool = [];
+// let computerPickIndexPool = [1,2,3,4,5,6,7,8,9];
 
 const computerPlayer = function () {
   switcher = "computer";
   //run computerPick till not in the player1Data/computerData
-  //range 0 ~ 5
-  let computerPickIndex = Math.floor(Math.random() * 5);
-  //range 1 ~ 6
+  //range 0 ~ 8
+  let computerPickIndex = Math.floor(Math.random() * 8 + 1);
+  //range 1 ~ 9
   let computerPick = (computerPickIndex + 1).toString();
+  //remove computerPick & Player1Pick from computer Pool
 
   console.log("computer Data: " + computerData);
   console.log("player1 Data: " + player1Data);
@@ -307,7 +307,7 @@ const computerPlayer = function () {
   console.log(computerData.indexOf(computerPick));
   console.log("clickTimes: " + clickTimes);
 
-  //This is Dangerous...
+  //This is Dangerous.. --ideally to use IndexPool
   while (
     !(
       player1Data.indexOf(computerPick) === -1 &&
@@ -315,7 +315,7 @@ const computerPlayer = function () {
     ) &&
     clickTimes < 5 ///computer didn't click so 5...
   ) {
-    computerPickIndex = Math.floor(Math.random() * 5);
+    computerPickIndex = Math.floor(Math.random() * 8 + 1);
     computerPick = (computerPickIndex + 1).toString();
     console.log("computerPickIndex: " + computerPickIndex);
   }
