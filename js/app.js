@@ -15,26 +15,34 @@ let currentPlayer = "X";
 for (const box of boxes) {
   box.addEventListener("click", function () {
     //to tell computer that class disable is not longer a choice to click
+    //used the class "disable" to determin if a square had been populated or not so if the box does not contain disable, then the player could still populate it
     if (!box.classList.contains("disable")) {
       console.log(currentPlayer);
       // box.classList.add("test");
       disableClick(box);
       console.log(box.classList);
-      checkWin();
+      
       //player choice x or o
       if (currentPlayer === "X") {
         box.innerHTML = "X";
-        box.classList.add("playerX");
+        //adding the player class isn't happening and I don't know why
+        //realized I was adding the wrong class to each player
+        // box.classList.add("X");
+        //Bryce helped me figure this out
+        document.getElementById(event.target.id).classList.add("X");
         currentPlayer = "O";
         displayPlayerTurn();
       } else {
         box.innerHTML = "O";
-        box.classList.add("playerO");
+        // box.classList.add("O");
+        document.getElementById(event.target.id).classList.add("O");
         currentPlayer = "X";
         displayPlayerTurn();
       }
     }
+    checkWin();
   });
+  
 }
 
 // to disable the boxes so you can't change the player choice
@@ -53,7 +61,7 @@ function displayPlayerTurn() {
 
 function checkWin() {
   console.log("checkWin ran");
-
+//it shows it's running
   for (i = 0; i < boxes.length; i++) {
     //for win combo 1 - row 1
     if (
@@ -64,12 +72,13 @@ function checkWin() {
         boxes[1].classList.contains("O") &&
         boxes[2].classList.contains("O"))
     ) {
+      console.log("found a win");
       if (boxes[0].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 2 - row 2
@@ -83,10 +92,10 @@ function checkWin() {
     ) {
       if (boxes[3].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 3 - row 3
@@ -100,10 +109,10 @@ function checkWin() {
     ) {
       if (boxes[6].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 4 - column 1
@@ -117,10 +126,10 @@ function checkWin() {
     ) {
       if (boxes[0].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 5 - column 2
