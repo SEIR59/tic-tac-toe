@@ -24,7 +24,7 @@ const smallGameBoardPic = document.getElementsByClassName('smallGameBoardPic')
 
 const buttonsArr = [one, two, three, four, five, six, seven, eight, nine]
 
-//this array is used to help computer keep player from winning
+//this array is used to help computer play 'intelligently'
 const gameWinningCombos = [
     //horizontals
     [one, two, three],
@@ -38,8 +38,6 @@ const gameWinningCombos = [
     [one, five, nine],
     [three, five, seven]
 ]
-let xCounter = 0;
-let oCounter = 0;
 
 
 
@@ -128,8 +126,6 @@ function changeBtn() {
 //*** The following two functions are used to play against computer
 
 const computerChooses = () => {
-    // computerChoice = Math.floor(Math.random() * buttonsArr.length)
-    // computerBtn = buttonsArr[computerChoice]
     computerChoosesWisely()
     if (computerBtn.value) {
         //this loops through until computer chooses another option that hasn't been chosen yet.
@@ -145,7 +141,7 @@ const computerChooses = () => {
     playGame()
     showTurn()
 
-    yWinsGameOver ? player2Wins() : setTimeout(enableButtons, 500)
+    yWinsGameOver ? player2Wins() : setTimeout(enableButtons, 700)
 }
 
 function changeBtnWithComputer() {
@@ -166,7 +162,7 @@ function changeBtnWithComputer() {
 
     // made this condition to make sure computer doesn't still choose after x wins
     //also make sure playCount isn't over 7, otherwise computer still chooses even after board is full
-    !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 500) : (xWinsGameOver ? player1Wins() : null)
+    !xWinsGameOver && playCount <= 7 ? setTimeout(computerChooses, 600) : (xWinsGameOver ? player1Wins() : null)
 }
 
 
@@ -206,27 +202,30 @@ const player2Wins = () => {
 }
 
 
-function playGame() {
-    if (((one.value == "X") && (two.value == "X") && (three.value == "X")) ||
-        ((four.value == "X") && (five.value == "X") && (six.value == "X")) ||
-        ((seven.value == "X") && (eight.value == "X") && (nine.value == "X")) ||
-        ((one.value == "X") && (four.value == "X") && (seven.value == "X")) ||
-        ((two.value == "X") && (five.value == "X") && (eight.value == "X")) ||
-        ((three.value == "X") && (six.value == "X") && (nine.value == "X")) ||
-        ((one.value == "X") && (five.value == "X") && (nine.value == "X")) ||
-        ((three.value == "X") && (five.value == "X") && (seven.value == "X")))
-        return xWinsGameOver = true
+//the following functions decide who wins
+let xCounter = 0;
+let oCounter = 0;
 
-    if (((one.value == "O") && (two.value == "O") && (three.value == "O")) ||
-        ((four.value == "O") && (five.value == "O") && (six.value == "O")) ||
-        ((seven.value == "O") && (eight.value == "O") && (nine.value == "O")) ||
-        ((one.value == "O") && (four.value == "O") && (seven.value == "O")) ||
-        ((two.value == "O") && (five.value == "O") && (eight.value == "O")) ||
-        ((three.value == "O") && (six.value == "O") && (nine.value == "O")) ||
-        ((one.value == "O") && (five.value == "O") && (nine.value == "O")) ||
-        ((three.value == "O") && (five.value == "O") && (seven.value == "O"))) {
-        disableBtns()
-        return yWinsGameOver = true
+function playGame() {
+    xCounter = 0;
+    oCounter = 0;
+    for (let i = 0; i <= gameWinningCombos.length - 1; i++) {
+        if (gameWinningCombos[i][0].value === 'X' &&
+            gameWinningCombos[i][1].value === 'X' &&
+            gameWinningCombos[i][2].value === 'X') {
+            for (let j = 0; j <= gameWinningCombos[i].length - 1; j++) {
+                gameWinningCombos[i][j].className = 'winner'
+            }
+            return xWinsGameOver = true
+        } else
+            if (gameWinningCombos[i][0].value === 'O' &&
+                gameWinningCombos[i][1].value === 'O' &&
+                gameWinningCombos[i][2].value === 'O') {
+                for (let j = 0; j <= gameWinningCombos[i].length - 1; j++) {
+                    gameWinningCombos[i][j].className = 'winner'
+                }
+                return yWinsGameOver = true
+            }
     }
 
     if (playCount >= 9) {
@@ -258,6 +257,54 @@ function resetGame() {
 }
 
 
+//this function is called when playing computer. it makes the computer try to keep player from winning
+function computerChoosesWisely() {
+    //loop through whole array
+    for (let i = 0; i <= gameWinningCombos.length - 1; i++) {
+        //loop through each element of winning combos
+        for (let j = 0; j <= gameWinningCombos[i].length - 1; j++) {
+            if (gameWinningCombos[i][j].value === 'O') {
+                oCounter++
+            }
+        }
+        //if 2/3 of smaller array are "Os", loop through array and make 3rd element an 'O' if it's not an 'X':
+        if (oCounter === 2) {
+            for (let k = 0; k <= gameWinningCombos[i].length - 1; k++) {
+                if (!gameWinningCombos[i][k].value) {
+                    //resetting the counter here keeps it from getting over 2 the next time the function is called 
+                    //due to the return below breaking out of the function
+                    return computerBtn = gameWinningCombos[i][k]
+                }
+            }
+        }
+        oCounter = 0
+    }
+    //if we get to this loop then the computer couldn't win, now it looks to play defense with identical loops for X
+    for (let i = 0; i <= gameWinningCombos.length - 1; i++) {
+        for (let j = 0; j <= gameWinningCombos[i].length - 1; j++) {
+            if (gameWinningCombos[i][j].value === 'X') {
+                xCounter++
+            }
+        }
+        if (xCounter === 2) {
+            //re-loop through smaller array
+            for (let k = 0; k <= gameWinningCombos[i].length - 1; k++) {
+                if (!gameWinningCombos[i][k].value) {
+                    //resetting the counter here keeps it from getting over 2 the next time the function is called 
+                    //due to the return below breaking out of the function
+                    return computerBtn = gameWinningCombos[i][k]
+                }
+            }
+        }
+        xCounter = 0
+    }
+    //add this here to prevent endless While loop in event of (O-O-X) for example
+    computerChoice = Math.floor(Math.random() * buttonsArr.length)
+    return computerBtn = buttonsArr[computerChoice]
+}
+
+
+
 playLocalBtn.addEventListener('click', () => {
     resetGame()
     playLocally()
@@ -268,10 +315,8 @@ playComputerBtn.addEventListener('click', () => {
 })
 
 
-
-
-
-
+// ******************************************************************************************************
+// the following two functions create the falling xs or os when game is over
 const colorsArr = ['#d5ff61', 'white', '#e6b800']
 
 function makeRainingXs() {
@@ -285,6 +330,7 @@ function makeRainingXs() {
     fallingX.innerText = 'X'
     document.body.appendChild(fallingX)
 }
+//declaring this here lets me use it to setInterval in a higher up function
 let XRain;
 
 
@@ -303,87 +349,6 @@ let ORain;
 
 
 
-// //this function is called when playing computer. it makes the computer try to keep player from winning
-// function computerChoosesWisely() {
-//     //loop through whole array
-//     for (let i = 0; i < gameWinningCombos.length; i++) {
-//         //loop through each item of smaller arrays
-//         for (let j = 0; j < gameWinningCombos[i].length; j++) {
-//             if (gameWinningCombos[i][j].value === 'O') {
-//                 oCounter++
-//             } else if (gameWinningCombos[i][j].value === 'X') {
-//                 xCounter++
-//             }
-//         }
-//         //if 2/3 of smaller array are "Os" (I put this first so that the computer will choose to win before choosing to block X)
-//         if (oCounter === 2) {
-//             for (let k = 0; k < gameWinningCombos[i].length; k++) {
-//                 if (gameWinningCombos[i][k].value !== 'O') {
-//                     computerBtn = gameWinningCombos[i][k]
-//                 }
-//             }
-//             return computerBtn
-//         } else if (xCounter === 2) {
-//             //re-loop through smaller array
-//             for (let k = 0; k < gameWinningCombos[i].length; k++) {
-//                 if (gameWinningCombos[i][k].value !== 'X') {
-//                     computerBtn = gameWinningCombos[i][k]
-//                 }
-//             }
-//             return computerBtn
-//         }
-//         xCounter = 0
-//         oCounter = 0
-//     }
-// }
-
-
-//this function is called when playing computer. it makes the computer try to keep player from winning
-function computerChoosesWisely() {
-    //loop through whole array
-    for (let i = 0; i <= gameWinningCombos.length -1; i++) {
-        //loop through each element of winning combos
-        for (let j = 0; j <= gameWinningCombos[i].length -1; j++) {
-            if (gameWinningCombos[i][j].value === 'O') {
-                oCounter++
-            }
-        }
-        //if 2/3 of smaller array are "Os", loop through array and make 3rd element an 'O' if it's not an 'X':
-        if (oCounter === 2) {
-            for (let k = 0; k <= gameWinningCombos[i].length -1; k++) {
-                if (!gameWinningCombos[i][k].value) {
-                    oCounter = 0
-                    return computerBtn = gameWinningCombos[i][k]
-                }
-            }
-        }
-        console.log('os:' + oCounter)
-        oCounter = 0
-    }
-    //if we get to this loop then the computer couldn't win, now it looks to play defense with identical loops for X
-    for (let i = 0; i <= gameWinningCombos.length -1; i++) {
-        for (let j = 0; j <= gameWinningCombos[i].length -1; j++) {
-            if (gameWinningCombos[i][j].value === 'X') {
-                xCounter++
-            }
-        }
-        if (xCounter === 2) {
-            //re-loop through smaller array
-            for (let k = 0; k <= gameWinningCombos[i].length -1; k++) {
-                if (!gameWinningCombos[i][k].value) {
-                    xCounter = 0
-                    return computerBtn = gameWinningCombos[i][k]
-                }
-            }
-        }
-        console.log('xs:' + xCounter)
-        xCounter = 0
-    }
-    //add this here to prevent endless While loop in event of (O-O-X) for example
-    console.log('Os:' + oCounter + 'xs:' + xCounter)
-    computerChoice = Math.floor(Math.random() * buttonsArr.length)
-    return computerBtn = buttonsArr[computerChoice]
-}
 
 // ******** TO-DO LIST **********
 
