@@ -8,9 +8,12 @@ let currentPlayer = O;
 
 
 const squareClicked = (e) => {
-    const id = e.target.id
+    const id = e.target.id;
   
 e.target.innerText = currentPlayer;  
+   
+  currentPlayer = 
+    (currentPlayer === O) ? X : O;
   };
 
 squares.forEach((square) => square.addEventListener("click", squareClicked));
