@@ -147,11 +147,11 @@ function saying() {
 
     if (p1 === 1) {
         commentary.innerText = "O player's turn!";
-        commentary.style.fontSize = "24px"
+        commentary.style.fontSize = "28px"
     }
     else if (p1 === 0) {
         commentary.innerText = "X player's turn!";
-        commentary.style.fontSize = "24px"
+        commentary.style.fontSize = "28px"
     }
     else if (p1 === 3) {
         commentary.innerText = "O player Won!";
@@ -165,28 +165,20 @@ function saying() {
         commentary.innerText = "Draw!";
         commentary.style.fontSize = "54px"
     }
+    else if (p1 === 6){
+        commentary.innerText = "O player won 3 games in a row! O player is the winner.";
+        commentary.style.fontSize = "54px"
+    }
+    else if (p1 === 7){
+        commentary.innerText = "X player won 3 games in a row! X player is the winner.";
+        commentary.style.fontSize = "54px"
+    }
     else if (p1 === 2) {
         commentary.innerText = "O player's turn!";
-        commentary.style.fontSize = "24px"
+        commentary.style.fontSize = "28px"
         p1 = 1;
     }
 };
-
-// function saying2() {
-
-//     const commentary = document.getElementById("turn");
-
-   
-//      if (p1 === 3) {
-//         commentary.innerText = "O player Won!";
-//         commentary.style.fontSize = "54px"
-//     }
-//     else if (p1 === 4){
-//         commentary.innerText = "X player Won!";
-//         commentary.style.fontSize = "54px"
-//     }
-   
-// };
 
 
 
@@ -194,6 +186,7 @@ function saying() {
 let oChoices = [];
 let xChoices = [];
 let winChoices = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+
 
 function whoWin() {
     function multiCheck(arr, values) {
@@ -205,34 +198,50 @@ function whoWin() {
     if (multiCheck(xChoices, winChoices[0]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[1]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[2]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[3]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[4]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[5]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[6]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
     else if (multiCheck(xChoices, winChoices[7]) === true) {
         p1 = 4;
         saying();
+        xWinCounts +=1;
+        final();
     }
    
    
@@ -240,44 +249,79 @@ function whoWin() {
     else if (multiCheck(oChoices, winChoices[0]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[1]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[2]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[3]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[4]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[5]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[6]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
     else if (multiCheck(oChoices, winChoices[7]) === true) {
         p1 = 3;
         saying();
+        oWinCounts +=1;
+        final();
     }
 
     //Draw condition
-    else if (xChoices.length >=4 && oChoices.length>=4 && p1 != 3 && p1 !=4 ) {
+    else if (xChoices.length+oChoices.length === 9 && p1 != 3 && p1 !=4) {
         p1 = 5;
         saying();
     }
  
 
 };
+
+/*-----FUNCTION__Track Player's win-----*/
+let oWinCounts = 0
+let xWinCounts = 0
+
+function final(){
+if (oWinCounts - xWinCounts === 3){
+    p1 = 6;
+    saying();
+}
+else if (xWinCounts - oWinCounts === 3){
+    p1 = 7;
+    saying();
+}
+}
+
+
+
+
 
 /*-----FUNCTION__RESET ALL GRID BUTTONS-----*/
 

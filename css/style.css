@@ -19,9 +19,11 @@ h1 {
   text-align: center;
 }
 .commentary{
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 600;
   margin:auto;
   text-align: center;
+  color: purple;
 }
 
 .grid{
@@ -64,7 +66,7 @@ img{
   text-align: center;
   display: block;
   margin:100px auto;
-  border: 0.5px solid black;
+  border: 3px solid purple;
   border-radius: 15px;
 }
 
