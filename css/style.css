@@ -56,3 +56,15 @@ body {
   border-radius: 5px;
   margin: 25px;
 }
+
+#board {
+  background-color: lightblue;
+  width: 650px;
+  height: 650px;
+  margin: 0 auto;
+  color: lightcoral;
+  display: grid;
+  border-radius: 15px;
+  grid-template: repeat(3, 1fr)/ repeat(3, 1fr)
+
+}
