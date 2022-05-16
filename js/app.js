@@ -74,8 +74,15 @@ function gameboard_click(e) {
 
     console.log(turnCounter)
     
+    for (let i = 0; i < gameboard_squares.length; i++) {
+        gameboard_squares[i].removeEventListener('click', gameboard_click);
+        if (gameboard_squares[i].classList.contains('square-hover')) {
+            gameboard_squares[i].classList.remove('square-hover');
+        }
+    }
     // check win condition
     let gameOver = checkWinCondition();
+
 
     if (gameOver === false) {
         aiTurn();
@@ -100,10 +107,9 @@ function aiTurn() {
                 gameboard_squares[aiChoice].classList.toggle('square-hover')
                 gameboard_squares[aiChoice].classList.add('player2-choice');
                 gameboard_squares[aiChoice].removeEventListener('click', gameboard_click);
-                gameboard_squares[aiChoice]
                 
                 turnCounter++;
-                turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
+                turn_status.innerText = 'It\'\s player $1\'\s turn!'
                 break;
             }
             spotCheck++;
@@ -112,7 +118,21 @@ function aiTurn() {
                 break;
             }
         }
-        checkWinCondition();
+        if (checkWinCondition() === false) {
+            for (let i = 0; i < gameboard_squares.length; i++) {
+                if (gameboard_squares[i].innerHTML === '') {
+                    gameboard_squares[i].addEventListener('click', gameboard_click);
+                    if (!gameboard_squares[i].classList.contains('square-hover')) {
+                        gameboard_squares[i].classList.add('square-hover');
+                    }
+                }
+            }
+        }
+
+
+
+
+
     },waitRandom)
 }
 
