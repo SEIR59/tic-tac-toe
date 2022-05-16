@@ -9,6 +9,9 @@ const playerMove = (location) => {
     let gameOptionExit = 0
     //function to mark a move and respond to that marking.
     const markMove = (spot) => {
+        let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
+        myPath+=(ids.indexOf(spot.id)+1)
+
         let id = spot.id.split('').map(function (x) { return Number(x) })
         if (currentTurn === 0) {
             spot.innerText = 'X'
@@ -68,16 +71,29 @@ const playerMove = (location) => {
         //mark player move
         markMove(location)
         //if game option is 0, proceed with standard game flow.
+
         // gameOption 1 - vs Computer
         if (gameOption === 1 && gameOptionExit === 0) {
             //simple computer move, which removes its move from available squares
             const theMove = () => {
                 boardClickOn(true)
+                gameOptionClickOn(true)
                 markMove(document.getElementById(simpleComputerMoveID()))
             }
             boardClickOn(false)
             gameOptionClickOn(false)
             setTimeout(theMove, 1000)
+            //gameOption 2 - vs algorithm
+        } else if (gameOption === 2 && gameOptionExit === 0) {
+            const advancedMove = () => {
+                boardClickOn(true)
+                gameOptionClickOn(true)
+                markMove(document.getElementById(advancedComputer(myPath)))
+            }
+            boardClickOn(false)
+            gameOptionClickOn(false)
+            setTimeout(advancedMove, 1000)
+
         }
     }
 }
@@ -112,12 +128,12 @@ const winnerFound = (winner) => {
 //function to update the text of the scoreboard with the new score values
 const updateScoreboard = () => {
     document.getElementById('sbX').innerText = `Player X: ${currentScore[0]}`
-    if (gameOption === 0){
+    if (gameOption === 0) {
         document.getElementById('sbO').innerText = `Player O: ${currentScore[1]}`
-    }else{
+    } else {
         document.getElementById('sbO').innerText = `Computer: ${currentScore[1]}`
     }
-    
+
     document.getElementById('sbT').innerText = `Ties: ${currentScore[2]}`
 }
 
@@ -130,6 +146,7 @@ const clearMoves = () => {
     X = [0, 0, 0, 0, 0, 0, 0, 0]
     O = [0, 0, 0, 0, 0, 0, 0, 0]
     currentTurn = 0;
+    myPath = ''
     boardClickOn(true)
     for (let i = 0; i < allSquares.length; i++) {
         allSquares[i].style.background = 'white'
@@ -227,6 +244,210 @@ const gameOptionClickOn = (bool) => {
         board.classList.remove('clickOff')
     }
 }
+
+const advancedComputer = (myPath) => {
+    let squares = {}
+    let ids = ['10010010', '01010000', '00110001', '10001000', '01001011', '00101000', '10000101', '01000100', '00100110']
+    for (let i = 0; i < ids.length; i++) {
+        squares[i + 1] = ids[i].split('').map(x => Number(x))
+    }
+    console.log(squares)
+
+    //change this to change how many variations are created
+    const allSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    //recursive function to generate all positions. Simply makes a path for marking squares 1->9 and provides array structure for analysis. Does include impossible variants.
+    const nextMove = (treeNode) => {
+        //names for treeNode variables
+
+        let path = treeNode[0].slice()
+        let rSq = treeNode[1].slice()
+        let xScore = treeNode[2]
+        let oScore = treeNode[3]
+        let nodeScore = treeNode[4]
+        let mySelf = [path, rSq, xScore, oScore, nodeScore]
+        //console.log( `I'm the tree node path` )
+        //console.log(treeNode[0])
+        //console.log(treeNode)
+
+        // Check for wins/losses/ties at the input node
+        if (xScore.includes(3)) {
+            //console.log( 'Found a win for X', treeNode)
+            //console.log(nodeScore)
+            mySelf[4] += 1
+            return mySelf
+        } else if (oScore.includes(3)) {
+            //console.log('found a win for O', treeNode)
+            //console.log(nodeScore)
+            mySelf[4] -= 1
+            return mySelf
+        } else if (treeNode[1].length === 0) {
+            //console.log(`It's a tie` , treeNode)
+            //allVariations.push(treeNode[0])
+            return mySelf
+        }
+
+        //console.log('Passed array length test')
+
+
+
+        //generate array of next moves from remaining squares and add scores
+        let nextNodes = []
+        while (rSq.length > 0) {
+            nextNodes.push([path + rSq.shift()])
+        }
+        //take the list of newly generated pathes and construct nodes
+        for (let i = 0; i < nextNodes.length; i++) {
+            let tempSq = treeNode[1].slice()
+            //console.log('im the temp squares')
+            //console.log(tempSq)
+            //iterate through each [path] and generate remaining squares for that node.
+            let nextSqNum = Number(nextNodes[i][0][nextNodes[i][0].length - 1])
+            tempSq.splice(tempSq.indexOf(nextSqNum), 1)
+            //push temp squares to the node after path values have been spliced out.
+            //new variables for constructing next node
+            let nextX = []
+            let nextO = []
+            let nextNodeScore = 0
+            //take previous X and O scores and add new score to them
+            let nextScore = squares[nextSqNum]
+            //console.log('next score is....')
+            //console.log(nextScore)
+
+            if (nextNodes[i][0].length % 2 === 1) {
+                //console.log('x turn')
+                //console.log(nextScore)
+                //console.log(xScore)
+                for (let j = 0; j < 8; j++) {
+                    nextX.push(nextScore[j] + xScore[j])
+                }
+                nextO = oScore
+            } else {
+                //console.log('o turn')
+                for (let j = 0; j < 8; j++) {
+                    nextO.push(nextScore[j] + oScore[j])
+                }
+                nextX = xScore
+
+            }
+            nextNodes[i].push(tempSq)
+            nextNodes[i].push(nextX)
+            //console.log('next x score is...')
+            //console.log(nextX)
+            nextNodes[i].push(nextO)
+            //console.log(nextO)
+            nextNodes[i].push(nextNodeScore)
+            //console.log('This new node is')
+            //console.log(nextNodes[i])
+        }
+        //once all nodes are made, apply same method to newly generated nodes.
+        //console.log(nextNodes)
+        treeNode.push(nextNodes)
+        mySelf.push(nextNodes)
+        //console.log('Next nodes are:')
+        //console.log(treeNode[5])
+        //if children exist (further nodes to explore), apply same method to them.
+        if (treeNode[5] !== undefined) {
+            for (let k = 0; k < nextNodes.length; k++) {
+                //console.log('Starting next function call')
+                //console.log(treeNode[5][k])
+                //set the node score equal to the sum of all children scores
+                //treeNode[4] += 
+                let nodeVal = Number(nextMove(treeNode[5][k])[4])
+                mySelf[4] += nodeVal
+                mySelf[5][k][4] = nodeVal
+                //console.log(mySelf[4], path)
+            }
+            //console.log('Parental Node Score' , nodeScore, path)
+        }
+        return mySelf
+    }
+
+    let treeBase = ['', allSquares, [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], 0]
+
+    //this forms a tree that branches into all combations+array structure for analysis.
+    //console.log(nextMove(treeBase)[5])
+    //console.log('children')
+    let gameTree = nextMove(treeBase)
+    //console.log(gameTree)
+    //console.log('All variations are... Should be a factorial')
+    //console.log(allVariations)
+
+    const findGameTreeNode = (path) => {
+        let branch = gameTree[5]
+        //console.log('game tree 5' , branch)
+        for (let i = 0; i < path.length; i++) {
+
+            for (let j = 0; j < branch.length; j++) {
+                //console.log(branch.length, branch[j])
+                //console.log(myPath.substring(0,i+1))
+                if (branch[j][0] == path.substring(0, i + 1)) {
+                    //console.log('Found ya')
+                    branch = branch[j][5]
+                    break
+                }
+            }
+        }
+        return branch
+        //console.log('This is branch')
+        //console.log(branch)
+    }
+
+    const pickOptimalNode = (branch) => {
+        //console.log(branch)
+        let bestNode = branch[0][0]
+        let xKillExists = false
+        let bestNodeScore = branch[0][4]
+        let worstNode = branch[0][0]
+        let oKillExists = false
+        let worstNodeScore = branch[0][4]
+        //1 for O's turn
+        //console.log('This branch 00 = ' ,branch[0][0])
+        let turn = branch[0][0].length % 2
+        //look for best nodes
+        for (let i = 0; i < branch.length; i++) {
+            //if an x win within 1 move, pick that as bestNode
+            if (branch[i][2].includes(3)) {
+                bestNode = branch[i][0]
+                bestNodeScore = 11000
+                xKillExists = true
+                //if an O win within 1 move, pick that as worstNode
+            } else if (branch[i][3].includes(3)) {
+                worstNode = branch[i][0]
+                worstNodeScore = -11000
+                oKillExists = true
+                //if no wins within 1 move, evaluate options. pick highest/lowest win combos
+            } else {
+                if (branch[i][4] > bestNodeScore) {
+                    bestNode = branch[i][0]
+                    bestNodeScore = branch[i][4]
+                } else if (branch[i][4] < worstNodeScore) {
+                    worstNode = branch[i][0]
+                    worstNodeScore = branch[i][4]
+                }
+            }
+        }
+        if (turn === 1) {
+            if (xKillExists === false && oKillExists === true) {
+                myPath = worstNode
+                return worstNode[worstNode.length - 1]
+            } else {
+                myPath = bestNode
+                return bestNode[bestNode.length - 1]
+            }
+        } else {
+            if (xKillExists === true && oKillExists === false) {
+                myPath = bestNode
+                return bestNode[bestNode.length - 1]
+            } else {
+                myPath = worstNode
+                return worstNode[worstNode.length - 1]
+            }
+        }
+    }
+    //return element id of square (see top of this function squares obj) that is best choice
+    return squares[(pickOptimalNode(findGameTreeNode(myPath)))].join('')
+}
 // #endregion
 
 //#region Variables to track turns of players and their movements
@@ -235,6 +456,7 @@ let X = [0, 0, 0, 0, 0, 0, 0, 0]
 let O = [0, 0, 0, 0, 0, 0, 0, 0]
 let tieCheck = 0;
 let currentScore = [0, 0, 0]
+let myPath = ''
 //#endregion 
 
 //#region Initialize button(s) and listeners

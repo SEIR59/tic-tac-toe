@@ -129,9 +129,6 @@ let gameTree = nextMove(treeBase)
 
 let myPath = '1574628'
 
-const pMove = (location) => {
-    myPath.push(location)
-}
 const findGameTreeNode = (path) => {
     let branch = gameTree[5]
     //console.log('game tree 5' , branch)
@@ -205,4 +202,4 @@ const pickOptimalNode = (branch) => {
     }
 }
 
-console.log(pickOptimalNode(findGameTreeNode(myPath)))
+console.log(squares[pickOptimalNode(findGameTreeNode(myPath))])
