@@ -61,6 +61,7 @@ function displayPlayerTurn() {
 
 function checkWin() {
   console.log("checkWin ran");
+  let foundWin = 0;
 //it shows it's running
   for (i = 0; i < boxes.length; i++) {
     //for win combo 1 - row 1
@@ -75,10 +76,12 @@ function checkWin() {
       console.log("found a win");
       if (boxes[0].classList.contains("X")) {
         winner = "X";
+        foundWin++;
         resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
         resultText.innerHTML = `Player O is the winner!`;
+        foundWin++;
       }
     }
     //win for combo 2 - row 2
@@ -143,10 +146,10 @@ function checkWin() {
     ) {
       if (boxes[1].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 6 - column 3
@@ -160,10 +163,10 @@ function checkWin() {
     ) {
       if (boxes[2].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 7 - diagonal 1
@@ -177,10 +180,10 @@ function checkWin() {
     ) {
       if (boxes[0].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
     //win for combo 8 - diagonal 2
@@ -194,14 +197,20 @@ function checkWin() {
     ) {
       if (boxes[2].classList.contains("X")) {
         winner = "X";
-        resultText2.innerHTML = `Player X is the winner!`;
+        resultText.innerHTML = `Player X is the winner!`;
       } else {
         winner = "O";
-        resultText2.innerHTML = `Player O is the winner!`;
+        resultText.innerHTML = `Player O is the winner!`;
       }
     }
   }
+if (foundWin === 1){
+  for (const box of boxes){
+    box.classList.add("disable")
+  }
 }
+}
+
 
 //tie - only will happen when all 9 boxes are clicked. every time a box is clicked, the array/variable = 1
 // let boxesClicked = 0;
