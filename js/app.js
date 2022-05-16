@@ -8,7 +8,7 @@ let currentTurn = 'player1';
 
 
 const gridClass = document.querySelectorAll('.grid-class');
-const btn = document.querySelector('.btn');
+// const btn = document.querySelector('.btn');
 
 const currPlay = document.querySelector('#player-turn');
 
@@ -54,16 +54,23 @@ function playGame() {
                     currPlay.innerHTML = "Cat's Game"
                 }
             }
-            const isPlayerOneWinner = checkForWinner(playerOneVal);
-            const isPlayerTwoWinner = checkForWinner(playerTwoVal);
-            if(isPlayerOneWinner){
-                currPlay.innerHTML = "Player One Wins"
-            } 
-            else if(isPlayerTwoWinner){
-                currPlay.innerHTML = "Player Two Wins"
-            }
+            checkPlayerWin();
         })  
     }
+}
+
+function checkPlayerWin() {
+    const isPlayerOneWinner = checkForWinner(playerOneVal);
+    const isPlayerTwoWinner = checkForWinner(playerTwoVal);
+
+    if(isPlayerOneWinner){
+        currPlay.innerHTML = "Player One Wins"
+    } 
+    else if(isPlayerTwoWinner){
+        currPlay.innerHTML = "Player Two Wins"
+    }
+
+    gridClass.style.pointerEvents = 'none';
 
 }
 
@@ -78,7 +85,7 @@ function playGame() {
 //         btn.addEventListener("click", (event) => {
 //             clicked = true;
 //             gridClass[i].innerHTML = " ";
-//             test[i].style.pointerEvents = 'auto';
+//             gridClass[i].style.pointerEvents = 'auto';
 //             playGame();
 //             currPlay.innerHTML = "Player One Turn";
 //         });
@@ -86,6 +93,6 @@ function playGame() {
 // }
 
 playGame();
-// reset();
+reset();
 
 
