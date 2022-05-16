@@ -47,55 +47,55 @@ p {
   border-width: 2px;
 }
 
-#box1 {
+#box0 {
   border-style: solid;
   border-width: 0px 2px 2px 0px;
   border-color: #818384;
 }
 
-#box2 {
+#box1 {
   border-style: solid;
   border-width: 0px 2px 2px 2px;
   border-color: #818384;
 }
 
-#box3 {
+#box2 {
   border-style: solid;
   border-width: 0px 0px 2px 2px;
   border-color: #818384;
 }
 
-#box4 {
+#box3 {
   border-style: solid;
   border-width: 2px 2px 2px 0px;
   border-color: #818384;
 }
 
-#box5 {
+#box4 {
   border-style: solid;
   border-width: 2px 2px 2px 2px;
   border-color: #818384;
 }
 
-#box6 {
+#box5 {
   border-style: solid;
   border-width: 2px 0px 2px 2px;
   border-color: #818384;
 }
 
-#box7 {
+#box6 {
   border-style: solid;
   border-width: 2px 2px 0px 0px;
   border-color: #818384;
 }
 
-#box8 {
+#box7 {
   border-style: solid;
   border-width: 2px 2px 0px 2px;
   border-color: #818384;
 }
 
-#box9 {
+#box8 {
   border-style: solid;
   border-width: 2px 0px 0px 2px;
   border-color: #818384;

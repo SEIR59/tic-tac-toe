@@ -1,24 +1,14 @@
 let squares = document.querySelectorAll(".square");
 let message = document.querySelector(".message");
+let button = document.querySelector("button");
+let choices = [];
 squares = Array.from(squares);
 console.log(squares);
 
 let firstPlayer = "X";
 let secondPlayer = "O";
 
-// length of turns
-// for (i = 0; i <= 9; i++) {}
-
-// Tried to alternate between Xs and Os using a for loop
-// let playerTurn = [firstPlayer, secondPlayer];
-// function currentTurn() {
-//   for (i = 0; i < playerTurn.length; i++) {
-//     return playerTurn[i];
-//   }
-//   return result;
-// }
-// console.log(currentTurn);
-
+function gameRules() {}
 squares.forEach(function (square) {
   square.addEventListener(
     "click",
@@ -56,6 +46,14 @@ for (i = 0; i < winCombo.length; i++) {
   }
 }
 
+// squares.forEach((square, i) => {
+//   square.addEventListener("click", () => ticTacToe(square, i));
+// });
+
+// button.addEventListener("click", () => {
+//   squares.innerHTML = "X";
+// });
+
 // Repetitive Code
 // document.getElementById("box1").addEventListener("click", () => {
 //   //   let currentPlayer = [firstPlayer, secondPlayer];
@@ -77,3 +75,16 @@ for (i = 0; i < winCombo.length; i++) {
 // document.addEventListener("click", () => {
 //   document.getElementById("box2").innerHTML = secondPlayer;
 // });
+
+// length of turns
+// for (i = 0; i <= 9; i++) {}
+
+// Tried to alternate between Xs and Os using a for loop
+// let playerTurn = [firstPlayer, secondPlayer];
+// function currentTurn() {
+//   for (i = 0; i < playerTurn.length; i++) {
+//     return playerTurn[i];
+//   }
+//   return result;
+// }
+// console.log(currentTurn);
