@@ -1,13 +1,3 @@
-const gridBox1 = document.getElementById('grid-box1');
-const gridBox2 = document.getElementById('grid-box2');
-const gridBox3 = document.getElementById('grid-box3');
-const gridBox4 = document.getElementById('grid-box4');
-const gridBox5 = document.getElementById('grid-box5');
-const gridBox6 = document.getElementById('grid-box6');
-const gridBox7 = document.getElementById('grid-box7');
-const gridBox8 = document.getElementById('grid-box8');
-const gridBox9 = document.getElementById('grid-box9');
-
 let playerOneVal = new Array()
 let playerTwoVal = new Array();
 
@@ -17,7 +7,9 @@ let winConditon = false
 let currentTurn = 'player1';
 
 
+const gridClass = document.querySelectorAll('.grid-class');
 const test = document.querySelectorAll('.test');
+// const test2 = document.querySelector('.test');
 const btn = document.querySelector('.btn');
 
 const currPlay = document.querySelector('#player-turn');
@@ -40,22 +32,23 @@ let checkForWinner = (playerArray) => {
 let moves = 0;
 
 for(let i = 0; i < 9; i++){
-    test[i].addEventListener('click', (event) => {
-        console.log(event);
+    gridClass[i].addEventListener('click', (event) => {
         if(currentTurn === 'player1'){
-            test[i].innerHTML = "X"
+            gridClass[i].innerHTML = "X"
             playerOneVal.push(i);
             console.log(`Player one val is: ${playerOneVal}`);
-            moves ++;
+            test[i].style.pointerEvents = 'none';
+            moves++;
             currentTurn = 'player2';
             currPlay.innerHTML = "Player Two Turn"
             if(moves === 9) {
                 currPlay.innerHTML = "Cat's Game"
             }
         } else if(currentTurn === 'player2'){
-            test[i].innerHTML = "O";
+            gridClass[i].innerHTML = "O";
             playerTwoVal.push(i);
             console.log(`Player two val is: ${playerTwoVal}`);
+            test[i].style.pointerEvents = 'none';
             moves++;
             currentTurn = 'player1'
             currPlay.innerHTML = "Player One Turn"
@@ -63,7 +56,6 @@ for(let i = 0; i < 9; i++){
                 currPlay.innerHTML = "Cat's Game"
             }
         }
-
         const isPlayerOneWinner = checkForWinner(playerOneVal);
         const isPlayerTwoWinner = checkForWinner(playerTwoVal);
         if(isPlayerOneWinner){
@@ -74,7 +66,7 @@ for(let i = 0; i < 9; i++){
         }
         
         btn.addEventListener("click", (event) => {
-            test[i].innerHTML = " ";
+            gridClass[i].innerHTML = " ";
         });
 
     })
