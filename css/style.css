@@ -3,28 +3,43 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #FFA1B3;
+  font-family: 'Comfortaa', Bold;
+  font-size: 30px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px;
+  background-color: #E3A0FF;
 }
 
 .grid-class {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 4px solid #F05FC3;
+  color: #F16C37;
+  font-size: 50px;
 }
 
 .heading {
+  color: #F16C37;
   
 }
 
 .bottom {
+  color: #F16C37;
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+button {
+  background-color: #E3A0FF;
+  border: 4px solid #F05FC3;
+  font-size: 30px;
+  color: #F16C37;
+  
 }
