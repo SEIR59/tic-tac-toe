@@ -1,6 +1,6 @@
 const squares = document.querySelectorAll(".square");
 
-const restart = document.getElementById("restart");
+// const restart = document.getElementById("restart"); //
 
 const WINNING_STRATEGY = [
 [0, 1, 2],
@@ -38,12 +38,12 @@ const endGame = (result) => {
   intro.innerText = result == "play again" ? "Play Again!" : currentPlayer + " is a winner!";
   squares.forEach((square) => square.removeEventListener("click", squareClicked));
   };
-const restartGame = ()=> {
-  currentPlayer = O;
-  gameboard.fill(null);
-  squares.forEach((square) => {
-    square.innerText ="";
-  });
+//const restartGame = ()=> { //
+ // currentPlayer = O; //
+ // gameboard.fill(null); //
+  // squares.forEach((square) => { //
+    // square.innerText =""; //
+ // }); //
  
   
   intro.innerText = "Hugs vs Kisses!";
@@ -103,5 +103,4 @@ if (currentPlayer == gameboard[2] && gameboard[2] == gameboard[4] && gameboard[2
   };
 
 squares.forEach((square) => square.addEventListener("click", squareClicked));
-restart.addEventListener("click", restartGame);
-}
+// restart.addEventListener("click", restartGame);//
