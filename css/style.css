@@ -396,21 +396,23 @@ span {
 
 @media screen and (max-width: 1330px){
   section button {
-    height: 220px;
-    width: 200px;
-    font-size: 30px;
+    width: 300px;
+    font-size: 40px;
   }
   #endGameText2 {
     bottom: 5px;
     width: 80vw;
     height: 25vh;
-    font-size: 40px;
+    font-size: 50px;
   }
   span {
     font-size: 50px;
   }
 }
 @media screen and (max-width: 870px){
+  #endGameText2 {
+    font-size: 38px;
+  }
   .scoreboard {
     display: none;
   }
@@ -421,7 +423,12 @@ span {
   }
   h1 {
     width: 70vw;
+    height: 140px;
     font-size: 50px;
     -webkit-text-stroke: none;
+  }
+  section button {
+    width: 200px;
+    font-size: 35px;
   }
 }
