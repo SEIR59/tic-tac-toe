@@ -6,7 +6,7 @@ body {
   color: purple;
   font-family: sans-serif;
   box-sizing: border-box;
-  fon-size: 1rem;
+  font-size: 1rem;
   
 }
 
@@ -16,7 +16,7 @@ body {
 
 h1 {
   font-size: 3rem;
-  color: mediumpurple;
+  color: blueviolet;
 }
 
 .container {
@@ -38,7 +38,7 @@ h1 {
 .square {
   height: 150px;
   width: 150px;
-   background-color: white;
+   background-color: aqua;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +51,7 @@ border: solid 1px indigo;
   padding: 10px 20px;
   color: blue;
   background-color: grey;
-  border-color: blue;
+  border-color: teal;
   border-radius: 5px;
   font-size: 1rem;
   
