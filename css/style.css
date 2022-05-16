@@ -57,7 +57,3 @@ p {
   cursor: pointer;
   background-color: rgb(254,1,154);
 }
-
-.square:disabled{
-  cursor: no-drop;
-}

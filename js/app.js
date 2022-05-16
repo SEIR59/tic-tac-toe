@@ -1,5 +1,4 @@
-
-const gameBoardElement = document.querySelector('gameBoard');
+// const gameBoardElement = document.querySelector('gameBoard');
 const boxes = document.querySelectorAll('.square');
 // const restartButton = document.querySelector('#restart').addEventListener('click', restart);
 const resultText = document.querySelector('.result');
@@ -42,23 +41,34 @@ let boxesArray = ['', '', '', '', '', '', '', '', '',];
 // }
 
 //to populate the x's and o's
-for (const square of boxes) {
-  square.addEventListener("click", function () {
-    // currentPlayer = currentPlayer == 'X' ? 'X' : 'O';
-    // resultText.innerHTML = `Player ${currentPlayer}'s Turn`;
-    // square.innerHTML = currentPlayer;
-    console.log(currentPlayer);
-    if (currentPlayer === "X") {
-      square.innerHTML = "X";
-     currentPlayer = "O";
-     displayPlayerTurn();
-    } else {
-      square.innerHTML = "O";
-    currentPlayer = "X";
-    displayPlayerTurn();
+for (const box of boxes) {
+  box.addEventListener("click", function (){
+    //to tell computer that class disable is not longer a choice to click
+    if (!box.classList.contains("disable")){
+        console.log(currentPlayer);
+        box.classList.add("test");
+        disableClick(box);
+        console.log(box.classList);
+        
+        //player choice x or o
+        if (currentPlayer === "X") {
+          box.innerHTML = "X";
+         currentPlayer = "O";
+         displayPlayerTurn();
+        } else {
+          box.innerHTML = "O";
+        currentPlayer = "X";
+        displayPlayerTurn();
+        }
     }
-  });
+  })
 }
+
+// to disable the boxes so you can't change the player choice
+function disableClick(a){
+    a.classList.add('disable');
+}
+
 
 //display message for who's turn it is
 function displayPlayerTurn(){
