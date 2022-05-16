@@ -3,12 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello Front-End</title>
+  <title>Tic Tac Toe</title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <h1>Hello Front-End</h1>
+  <h1>Play a game of Tic Tac Toe</h1>
+  <p>Players will alternate between X and O</p>
+  <p>player one is X player two is O</p>
+  <p>First player to match 3 of their respective letters wins!</p>
+  <p>It is currently player <span id="whichTurn"></span>'s turn</p>
 
-  <script type="text/javascript" src="js/app.js"></script>
+  <div class="board" id="board">
+    <button id='1'class="button">
+      <span id="1-text"></span>
+    </button>
+    <button id='2'class="button">
+      <span id="2-text"></span>
+    </button>
+    <button id='3'class="button">
+      <span id='3-text'></span>
+    </button>
+    <button id='4'class="button">
+      <span id='4-text'></span>
+    </button>
+    <button id='5'class="button">
+      <span id='5-text'></span>
+    </button>
+    <button id='6'class="button">
+      <span id='6-text'></span>
+    </button>
+    <button id='7'class="button">
+      <span id='7-text'></span>
+    </button>
+    <button id='8'class="button">
+      <span id='8-text'></span>
+    </button>
+    <button id='9'class="button">
+      <span id="9-text"></span>
+    </button>
+  </div>
+  <div class="winMessage" id="winMessage">
+    <div id="winMessageText"></div>
+  </div>
+ <h2 class="gameTurn"></h2>
+  <script defer type="text/javascript" src="js/app.js"></script>
 </body>
 </html>

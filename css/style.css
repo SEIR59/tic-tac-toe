@@ -1,3 +1,38 @@
-h1 {
-  color: purple;
+body {
+  background-color: lightslategray;
+}
+h1,h2 {
+  color: goldenrod;
+  text-align: center;
+
+}
+
+p {
+  text-align: center;
+  color: goldenrod;
+  font-size: 30px;
+  
+}
+#board {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  justify-content: center;
+  align-content: center;
+  color:goldenrod;
+  gap: 0px;
+  margin: 10px;
+  
+}
+span {
+  text-align: center;
+  font-size: 80px;
+  color: red;
+  
+}
+#winMessageText {
+  text-align: center;
+  color: goldenrod;
+  font-size: 25px;
+  font-weight: bold;
 }
