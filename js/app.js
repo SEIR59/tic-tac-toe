@@ -70,7 +70,7 @@ function checkPlayerWin() {
         currPlay.innerHTML = "Player Two Wins"
     }
 
-    gridClass.style.pointerEvents = 'none';
+    // gridClass.style.pointerEvents = 'none';
 
 }
 
