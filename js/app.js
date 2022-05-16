@@ -307,7 +307,7 @@ const advancedComputer = (myPath) => {
     //console.log(squares)
 
     //change this to change how many variations are created
-    const allSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const mySquares = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     //recursive function to generate all positions. Simply makes a path for marking squares 1->9 and provides array structure for analysis. Does include impossible variants.
     const nextMove = (treeNode) => {
@@ -416,7 +416,7 @@ const advancedComputer = (myPath) => {
         return mySelf
     }
 
-    let treeBase = ['', allSquares, [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], 0]
+    let treeBase = ['', mySquares, [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], 0]
 
     //this forms a tree that branches into all combations+array structure for analysis.
     //console.log(nextMove(treeBase)[5])
@@ -441,13 +441,26 @@ const advancedComputer = (myPath) => {
                 }
             }
         }
-        return branch
+        if (branch[0].length === 5){
+            return 0
+        }else{
+            return branch
+        }
+        
         //console.log('This is branch')
         //console.log(branch)
     }
 
     const pickOptimalNode = (branch) => {
         //console.log(branch)
+        
+        let remainingSquares = mySquares.slice()
+        if (branch === 0){
+            for ( let i = 0; i < myPath.length ; i++){
+                remainingSquares.splice(remainingSquares.indexOf(myPath[i],1))
+            }
+            return remainingSquares
+        }
         let bestNode = branch[0][0]
         let xKillExists = false
         let xNextKillExists = false
@@ -458,7 +471,6 @@ const advancedComputer = (myPath) => {
         let oNextKillExists = false
         let oNextKillNode = ''
         let worstNodeScore = branch[0][4]
-    
         //1 for O's turn
         //console.log('This branch 00 = ' ,branch[0][0])
         let turn = branch[0][0].length % 2
@@ -496,6 +508,7 @@ const advancedComputer = (myPath) => {
                     }
                 }
             }
+        }
             //console.log(branch)
             console.log(bestNode, xKillExists, bestNodeScore)
             console.log(worstNode, oKillExists, worstNodeScore)
@@ -529,7 +542,6 @@ const advancedComputer = (myPath) => {
                 }
             }
         }
-    }
     
     //return element id of square (see top of this function squares obj) that is best choice
     return squares[(pickOptimalNode(findGameTreeNode(myPath)))].join('')

@@ -130,7 +130,7 @@ let gameTree = nextMove(treeBase)
 //console.log('All variations are... Should be a factorial')
 //console.log(allVariations)
 
-let myPath = '158'
+let myPath = ''
 
 const findGameTreeNode = (path) => {
     let branch = gameTree[5]
@@ -202,6 +202,7 @@ const pickOptimalNode = (branch) => {
                 }
             }
         }
+    }
         //console.log(branch)
         console.log(bestNode, xKillExists, bestNodeScore)
         console.log(worstNode, oKillExists, worstNodeScore)
@@ -235,6 +236,6 @@ const pickOptimalNode = (branch) => {
             }
         }
     }
-}
+
 
 console.log(pickOptimalNode(findGameTreeNode(myPath)))
