@@ -92,6 +92,7 @@ section button:hover {
   color: #242c10;
   background: linear-gradient(#d5ff61, white, #d5ff61);
   border: 12px solid #d5ff61;
+  cursor: pointer;
 }
 
 h1 {
@@ -175,6 +176,7 @@ input {
 
 input.hover:hover {
   background-color: white;
+  cursor: pointer;
 }
 
 input.active {
