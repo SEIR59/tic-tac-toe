@@ -53,6 +53,9 @@ const msg = document.querySelector(".message");
 const player1Data = [];
 const playersTrack = document.querySelector(".track");
 
+///which is current mode
+let mode = "";
+
 //Players Win counts
 let player1WinCount = 0;
 let secondWinCount = 0;
@@ -84,12 +87,16 @@ const winCodes = ["123", "456", "789", "147", "258", "369", "159", "357"];
 const displayPlayer = function (grid_item) {
   grid_item.innerHTML += `<p class="display">${switcher}</p>`;
 };
-/** check result - if ties */
+/** check result - if ties or win ********************************/
 const result = function () {
   //if meet one of eight winCodes
   const isInWinCode = (currentValue) =>
-    (switcher === "player1" ? player1Data : player2Data).indexOf(currentValue) >
-    -1;
+    (switcher === "player1"
+      ? player1Data
+      : switcher === "player2"
+      ? player2Data
+      : computerData
+    ).indexOf(currentValue) > -1;
 
   if (
     winCodes.some((winCode) => {
@@ -111,7 +118,7 @@ const result = function () {
   }
 };
 
-/** Switch Player 1 or Player 2 */
+/** Switch Player 1 and Player 2/still need to consider computer here *****/
 const switchPlayer = function (grid_item, grid_num) {
   console.log("clicked");
   ++clickTimes;
@@ -124,28 +131,37 @@ const switchPlayer = function (grid_item, grid_num) {
       //store the grid number
       player1Data.push(grid_num);
     }
-    //update message
-    msg.innerText = "Next: Player2";
+
+    //update message - if no wins
+    msg.innerText = `Next: ${mode === "computer" ? "computer" : "Player2"}`;
     //checking results
     result(player1Data);
 
-    //switch player
-    switcher = "player2";
-  } else {
+    //switch player and update Next: ..
+    if (mode === "twoPlayers") {
+      switcher = "player2";
+    } else {
+      switcher = "computer";
+    }
+  } else if (mode === "twoPlayers") {
     if (!grid_item.classList.contains("player1")) {
       grid_item.innerHTML = markerX;
       grid_item.classList.add("player2");
       displayPlayer(grid_item);
       player2Data.push(grid_num);
     }
-
-    //update message
-    msg.innerText = "Next: Player1";
+    // //update message
+    msg.innerText = `Next: Player1`;
     //checking results
     result(player2Data);
-
     //switch player
     switcher = "player1";
+  }
+
+  //automatically call computerPlayer
+  if (mode === "computer") {
+    console.log("call computerPlayer function");
+    computerPlayer();
   }
 };
 
@@ -240,6 +256,7 @@ newGameButton.addEventListener("click", function () {
 twoPlayersButton.addEventListener("click", function () {
   //initialize
   console.log("Start Two Players Mode");
+  mode = "twoPlayers";
   twoPlayersButton.textContent = "Two Players";
   msg.innerText = "Two Players Game Begins!";
   clickTimes = 0;
@@ -256,16 +273,55 @@ twoPlayersButton.addEventListener("click", function () {
   removeGridContent();
 });
 
+/** Computer Game ************************************************************ */
+const computerPlayer = function () {
+  switcher = "computer";
+  //set computerPick as char
+  //range 0 ~ 5
+  let computerPickIndex = Math.floor(Math.random() * 5);
+  //range 1 ~ 6
+  let computerPick = computerPickIndex + 1;
+  //run computerPick till not in the player1Data/computerData
+  while (
+    player1Data.indexOf(computerPick) != -1 &&
+    computerData.indexOf(computerPick) != -1 &&
+    clickTimes < 9
+  ) {
+    computerPickIndex = Math.floor(Math.random() * 5);
+    computerPick = computerPickIndex + 1;
+  }
+  //push computerPick's into computerData
+  computerData.push(computerPick);
+  console.log(computerData);
+  //show computerPick's grid
+  gridItem[computerPickIndex].innerHTML = markerX;
+  gridItem[computerPickIndex].classList.add = "computer"; //this is not working
+  displayPlayer(gridItem[computerPickIndex]);
+  msg.innerText = "Next: Player1";
+  //switch to user
+  switcher = "player1";
+
+  //check computer result
+  result(computerData);
+};
+
 /*** Computer MODE************************************************************ */
 computerButton.addEventListener("click", () => {
   //initialize
   console.log("Start Computer Mode");
+  mode = "computer";
+  console.log(mode);
   msg.innerText = "Computer Mode Begins!";
   clickTimes = 0;
+  player1Data.length = 0;
+  computerData.length = 0;
 
   //update second player
   player2orComputer.innerText = "Computer";
   //reveal wins
   playersTrack.classList.contains("hide") &&
     playersTrack.classList.remove("hide");
+
+  //start Computer Game
+  computerPlayer();
 });
