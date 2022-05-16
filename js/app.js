@@ -13,11 +13,13 @@ const gridClass = document.querySelectorAll('.grid-class');
 const currPlay = document.querySelector('#player-turn');
 
 
+
 let checkForWinner = (playerArray) => {
     let isWinner = false
     if(playerArray.length < 3) return false;
     for(let i = 0; i < winsArr.length; i++){
         console.log(winsArr[i], "WIN CONDITION")
+        //.every checks if playerVal is in winsArr
          isWinner =  winsArr[i].every(playerVal => {
             console.log(winsArr[i].includes(playerVal), "FINAL")
             return playerArray.includes(playerVal)
