@@ -38,11 +38,21 @@ h1 {
   cursor: pointer;
 }
 
-.results {
+#endGameArea {
   text-align: center;
-  margin-top: 40px;
+  width: 50%;
+  margin-top: 50px;
 }
 
-button {
-  
+h1 {
+  color: red;
+  font-size: 20px;
+}
+
+.hidden{
+  display: none;
+}
+
+.visible {
+  display: block;
 }
