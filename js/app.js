@@ -147,35 +147,43 @@ function saying() {
 
     if (p1 === 1) {
         commentary.innerText = "O player's turn!";
-        commentary.style.fontSize = "28px"
+        commentary.style.fontSize = "34px"
+        commentary.style.color ="purple";
     }
     else if (p1 === 0) {
         commentary.innerText = "X player's turn!";
-        commentary.style.fontSize = "28px"
+        commentary.style.fontSize = "34px"
+        commentary.style.color ="purple";
     }
     else if (p1 === 3) {
         commentary.innerText = "O player Won!";
         commentary.style.fontSize = "54px"
+        commentary.style.color ="purple";
     }
     else if (p1 === 4){
         commentary.innerText = "X player Won!";
         commentary.style.fontSize = "54px"
+        commentary.style.color ="purple";
     }
     else if (p1 === 5){
         commentary.innerText = "Draw!";
         commentary.style.fontSize = "54px"
+        commentary.style.color ="purple";
     }
     else if (p1 === 6){
         commentary.innerText = "O player won 3 games in a row! O player is the winner.";
         commentary.style.fontSize = "54px"
+        commentary.style.color ="red";
     }
     else if (p1 === 7){
         commentary.innerText = "X player won 3 games in a row! X player is the winner.";
         commentary.style.fontSize = "54px"
+        commentary.style.color ="red";
     }
     else if (p1 === 2) {
         commentary.innerText = "O player's turn!";
-        commentary.style.fontSize = "28px"
+        commentary.style.fontSize = "34px"
+        commentary.style.color ="purple";
         p1 = 1;
     }
 };

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Butcherman&family=Creepster&family=Roboto:ital@1&display=swap');
 body{
   width:50%;
   height:100%;
@@ -6,12 +9,14 @@ body{
 }
 
 h1 {
+  font-family: 'Butcherman', cursive;
   font-size: 50px;
   margin-top: 50px;
   color: purple;
   text-align: center;
 }
 .greeting{
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   margin: 50px  auto;
   max-width: 500px;
@@ -19,7 +24,8 @@ h1 {
   text-align: center;
 }
 .commentary{
-  font-size: 28px;
+  font-family: 'Creepster', cursive;
+  font-size: 34px;
   font-weight: 600;
   margin:auto;
   text-align: center;
@@ -60,6 +66,7 @@ img{
 
 
 .reset{
+  font-family: 'Creepster', cursive;
   width:200px;
   height:45px;
   font-size: 22px;
