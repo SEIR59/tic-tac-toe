@@ -40,6 +40,12 @@ function setBoard() {
     if (!playAgain_btn.classList.contains('hidden')) {
         playAgain_btn.classList.add('hidden');
     }
+    if (player1Score.classList.contains('pointAdded')) {
+        player1Score.classList.remove('pointAdded');
+    }
+    if (player2Score.classList.contains('pointAdded')) {
+        player2Score.classList.remove('pointAdded');
+    }
     turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
 }
 
@@ -67,7 +73,6 @@ function gameboard_click(e) {
     } else {
         currentSquare.classList.add('player2-choice');
     }
-    console.log(gameboard_squares.classList);
     currentSquare.removeEventListener('click', gameboard_click);
     turnCounter++;
     if (vsAi === true) {
@@ -173,10 +178,12 @@ function someoneWon(tie) {
         turn_status.innerHTML = 'The Ai wins!';
         aiWins++;
         player2Score.innerHTML =  aiWins;
+        player2Score.classList.add('pointAdded');
     } else {
         turn_status.innerHTML = 'Player 1 wins!';
         playerWins++;
         player1Score.innerHTML = playerWins;
+        player1Score.classList.add('pointAdded');
     }
     
     // remove event listeners and change text to winner or tie.
@@ -189,11 +196,6 @@ function someoneWon(tie) {
 
     playAgain_btn.classList.remove('hidden');
 
-
-}
-
-
-function playAgain() {
 
 }
 /****     end functions     ****/
