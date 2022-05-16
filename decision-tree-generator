@@ -7,19 +7,19 @@ for (let i = 0; i < ids.length; i++) {
 //console.log(squares) works
 
 //change this to change how many variations are created
-const allSquares = [1, 2,3,4,5,6,7,8,9]
+const allSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const allVariations = []
 //recursive function to generate all positions. Simply makes a path for marking squares 1->9 and provides array structure for analysis. Does include impossible variants.
 const nextMove = (treeNode) => {
     //names for treeNode variables
-    
+
     let path = treeNode[0].slice()
     let rSq = treeNode[1].slice()
     let xScore = treeNode[2]
     let oScore = treeNode[3]
     let nodeScore = treeNode[4]
-    let mySelf = [path, rSq, xScore, oScore, nodeScore ]
+    let mySelf = [path, rSq, xScore, oScore, nodeScore]
     //console.log( `I'm the tree node path` )
     //console.log(treeNode[0])
     //console.log(treeNode)
@@ -28,12 +28,12 @@ const nextMove = (treeNode) => {
     if (xScore.includes(3)) {
         //console.log( 'Found a win for X', treeNode)
         //console.log(nodeScore)
-        mySelf[4] +=1
+        mySelf[4] += 1
         return mySelf
     } else if (oScore.includes(3)) {
         //console.log('found a win for O', treeNode)
         //console.log(nodeScore)
-        mySelf[4] -=1
+        mySelf[4] -= 1
         return mySelf
     } else if (treeNode[1].length === 0) {
         //console.log(`It's a tie` , treeNode)
@@ -108,7 +108,7 @@ const nextMove = (treeNode) => {
             //set the node score equal to the sum of all children scores
             //treeNode[4] += 
             let nodeVal = Number(nextMove(treeNode[5][k])[4])
-            mySelf[4]+=nodeVal
+            mySelf[4] += nodeVal
             mySelf[5][k][4] = nodeVal
             //console.log(mySelf[4], path)
         }
@@ -122,6 +122,62 @@ let treeBase = ['', allSquares, [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 
 //this forms a tree that branches into all combations+array structure for analysis.
 //console.log(nextMove(treeBase)[5])
 //console.log('children')
-console.log(nextMove(treeBase)[5])
+let gameTree = nextMove(treeBase)
+//console.log(gameTree)
 //console.log('All variations are... Should be a factorial')
 //console.log(allVariations)
+
+let myPath = '5127'
+
+const pMove = (location) => {
+    myPath.push(location)
+}
+const findGameTreeNode = (path) => {
+    let branch = gameTree[5]
+    //console.log('game tree 5' , branch)
+    for (let i = 0; i < path.length; i++) {
+
+        for (let j = 0; j < branch.length ; j++){
+            //console.log(branch.length, branch[j])
+            //console.log(myPath.substring(0,i+1))
+            if (branch[j][0] == path.substring(0,i+1)){
+                //console.log('Found ya')
+                branch = branch[j][5]
+                break
+            }
+        }
+    }
+    return branch
+    //console.log('This is branch')
+    //console.log(branch)
+}
+
+const pickOptimalNode = (branch) =>{
+    console.log(branch)
+    let bestNode = branch[0][0]
+    let bestNodeScore = branch[0][4]
+    let worstNode = branch[0][0]
+    let worstNodeScore = branch[0][4]
+    //1 for O's turn
+    //console.log('This branch 00 = ' ,branch[0][0])
+    let turn = branch[0][0].length%2
+
+    for (let i = 0 ; i < branch.length ; i++){
+        if (branch[i][4] > bestNodeScore){
+            bestNode  = branch[i][0]
+            bestNodeScore = branch[i][4]
+        }else if (branch[i][4] < worstNodeScore){
+            worstNode = branch[i][0]
+            worstNodeScore = branch[i][4]
+        }
+    }
+    if (turn === 1){
+        myPath = bestNode
+        return bestNode[bestNode.length-1]
+    } else{
+        myPath = worstNode
+        return worstNode[worstNode.length-1]
+    }
+}
+//console.log(findGameTreeNode(myPath))
+console.log(pickOptimalNode(findGameTreeNode(myPath)))
