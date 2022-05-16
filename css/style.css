@@ -6,17 +6,17 @@ body {
 }
 
 h1 {
-  color: purple;
+  color: rgb(254,1,154);
   text-align: center;
 }
 
 p {
   font-style: italic;
-  color: purple;
+  color: rgb(254,1,154);
   text-align: center;
 }
 .result {
-  color: purple;
+  color: rgb(254,1,154);
   text-align: center;
 
 }
@@ -41,7 +41,7 @@ p {
 }
 
 .square {
-  border: 2px solid purple;
+  border: 2px solid rgb(254,1,154);
   background-color: pink;
   border-width: 1px;
   height: 70px;
@@ -55,5 +55,9 @@ p {
 
 .square:hover{
   cursor: pointer;
+  background-color: rgb(254,1,154);
+}
+
+.disable {
   background-color: rgb(254,1,154);
 }
