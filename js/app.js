@@ -199,48 +199,56 @@ function whoWin() {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0; 
         final();
     }
     else if (multiCheck(xChoices, winChoices[1]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[2]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[3]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[4]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[5]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[6]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
     else if (multiCheck(xChoices, winChoices[7]) === true) {
         p1 = 4;
         saying();
         xWinCounts +=1;
+        oWinCounts = 0;
         final();
     }
    
@@ -250,48 +258,56 @@ function whoWin() {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[1]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[2]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[3]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[4]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[5]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[6]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
     else if (multiCheck(oChoices, winChoices[7]) === true) {
         p1 = 3;
         saying();
         oWinCounts +=1;
+        xWinCounts = 0;
         final();
     }
 
@@ -309,13 +325,17 @@ let oWinCounts = 0
 let xWinCounts = 0
 
 function final(){
-if (oWinCounts - xWinCounts === 3){
+if (oWinCounts === 3){
     p1 = 6;
     saying();
+    oWinCounts = 0;
+    console.log(oWinCounts);
 }
-else if (xWinCounts - oWinCounts === 3){
+else if (xWinCounts === 3){
     p1 = 7;
     saying();
+    xWinCounts = 0;
+    console.log(xWinCounts);
 }
 }
 
@@ -351,7 +371,9 @@ function resetGame() {
     document.getElementById("b8").removeAttribute("disabled");
     document.getElementById("b9").removeAttribute("disabled");
 
-    console.log(p1);
+    // console.log(p1);
+    console.log(oWinCounts);
+    console.log(xWinCounts);
     oChoices = [];
     xChoices = [];
     saying();
