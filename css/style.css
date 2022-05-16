@@ -19,7 +19,7 @@
 
 
 body {
-  margin: 100px 0;
+  margin: 75px 50px;
   font-family: 'Inconsolata', sans-serif;
   font-size: 36px;
   text-align: center;
@@ -28,7 +28,7 @@ body {
 
 h1 {
   margin-bottom: 100px;
-  color: purple;
+  color: var(--gameboard-pieces);
 }
 .wrapper-grid {
   display: grid;
@@ -112,6 +112,10 @@ h1 {
 
 .winnerwinner {
   transform: rotate(360deg);
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 

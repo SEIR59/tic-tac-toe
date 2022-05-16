@@ -4,7 +4,7 @@ const turn_status = document.getElementById('turn-status');
 const reset_btn = document.getElementById('reset-btn');
 const player1Score = document.getElementById('player1Score');
 const player2Score = document.getElementById('player2Score');
-
+const playAgain_btn = document.getElementById('playAgain-btn');
 
 let vsAi = true;
 const playerSymbol = 'X';
@@ -26,7 +26,7 @@ const square_8 = document.getElementById('square8');
 const square_9 = document.getElementById('square9');
 
 // add event listeners
-function setEventListeners() {
+function setBoard() {
     for (let i = 0; i < gameboard_squares.length; i++) {
         gameboard_squares[i].addEventListener('click', gameboard_click);
         gameboard_squares[i].innerHTML = '';
@@ -37,11 +37,16 @@ function setEventListeners() {
     if (gameboard.classList.contains('winnerwinner')) {
         gameboard.classList.remove('winnerwinner');
     }
+    if (!playAgain_btn.classList.contains('hidden')) {
+        playAgain_btn.classList.add('hidden');
+    }
+    turn_status.innerText = `It's player ${turnCounter % 2 + 1}'s turn!`
 }
 
-setEventListeners();
+setBoard();
 
-reset_btn.addEventListener('click', gameboard_reset);
+playAgain_btn.addEventListener('click', gameboard_reset);
+reset_btn.addEventListener('click', gameboard_complete_reset);
 
 
 ////*     functions     *////
@@ -102,20 +107,22 @@ function gameboard_click(e) {
     }
 }
 
-
+function gameboard_complete_reset() {
+    vsAi = true;
+    turnCounter = 0;
+    currentSymbol = 'X';
+    playerWins = 0;
+    player1Score.innerHTML = 0;
+    aiWins = 0;
+    player2Score.innerHTML = 0;
+    setBoard()
+}
 function gameboard_reset() {
     // reset game but keep scores
     vsAi = true;
     turnCounter = 0;
     currentSymbol = 'X';
-
-    // if it has class of playervalue remove it
-    
-    // add all toggle class if not have
-
-
-
-    setEventListeners()
+    setBoard()
  }
 
  function checkWinCondition() {
@@ -179,6 +186,8 @@ function someoneWon(tie) {
             gameboard_squares[i].classList.remove('square-hover');
         }
     }
+
+    playAgain_btn.classList.remove('hidden');
 
 
 }
