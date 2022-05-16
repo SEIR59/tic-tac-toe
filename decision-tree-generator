@@ -7,33 +7,38 @@ for (let i = 0; i < ids.length; i++) {
 //console.log(squares) works
 
 //change this to change how many variations are created
-const allSquares = [1,2,3,4,5]
+const allSquares = [1, 2,3,4,5,6,7,8,9]
 
 const allVariations = []
 //recursive function to generate all positions. Simply makes a path for marking squares 1->9 and provides array structure for analysis. Does include impossible variants.
 const nextMove = (treeNode) => {
     //names for treeNode variables
+    
     let path = treeNode[0].slice()
     let rSq = treeNode[1].slice()
     let xScore = treeNode[2]
     let oScore = treeNode[3]
     let nodeScore = treeNode[4]
+    let mySelf = [path, rSq, xScore, oScore, nodeScore ]
     //console.log( `I'm the tree node path` )
     //console.log(treeNode[0])
     //console.log(treeNode)
-    
-    if (xScore.includes(3) || oScore.includes(3)){
-        console.log('Found a win')
-        console.log( path, xScore , oScore)
-        return
-    }else{ 
-        //console.log('not a win')
-        //console.log(path, xScore , oScore)
-    }
-    if (treeNode[1].length === 0) {
-        console.log(`It's a tie`)
+
+    // Check for wins/losses/ties at the input node
+    if (xScore.includes(3)) {
+        //console.log( 'Found a win for X', treeNode)
+        //console.log(nodeScore)
+        mySelf[4] +=1
+        return mySelf
+    } else if (oScore.includes(3)) {
+        //console.log('found a win for O', treeNode)
+        //console.log(nodeScore)
+        mySelf[4] -=1
+        return mySelf
+    } else if (treeNode[1].length === 0) {
+        //console.log(`It's a tie` , treeNode)
         //allVariations.push(treeNode[0])
-        return
+        return mySelf
     }
 
     //console.log('Passed array length test')
@@ -92,6 +97,7 @@ const nextMove = (treeNode) => {
     //once all nodes are made, apply same method to newly generated nodes.
     //console.log(nextNodes)
     treeNode.push(nextNodes)
+    mySelf.push(nextNodes)
     //console.log('Next nodes are:')
     //console.log(treeNode[5])
     //if children exist (further nodes to explore), apply same method to them.
@@ -99,17 +105,23 @@ const nextMove = (treeNode) => {
         for (let k = 0; k < nextNodes.length; k++) {
             //console.log('Starting next function call')
             //console.log(treeNode[5][k])
-            nextMove(treeNode[5][k])
+            //set the node score equal to the sum of all children scores
+            //treeNode[4] += 
+            let nodeVal = Number(nextMove(treeNode[5][k])[4])
+            mySelf[4]+=nodeVal
+            mySelf[5][k][4] = nodeVal
+            //console.log(mySelf[4], path)
         }
+        //console.log('Parental Node Score' , nodeScore, path)
     }
-    return treeNode
+    return mySelf
 }
 
 let treeBase = ['', allSquares, [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], 0]
 
 //this forms a tree that branches into all combations+array structure for analysis.
 //console.log(nextMove(treeBase)[5])
-console.log('children')
-console.log(nextMove(treeBase))
+//console.log('children')
+console.log(nextMove(treeBase)[5])
 //console.log('All variations are... Should be a factorial')
 //console.log(allVariations)
