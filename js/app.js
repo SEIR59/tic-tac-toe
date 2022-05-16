@@ -11,10 +11,13 @@
  * DONE - detect winner
  *
  * Bonuses:
- * Implement your reset button without refreshing the whole page
- * Track player's wins over time
- * Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
- * Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
+ * DONE - Implement your reset button without refreshing the whole page
+ * DONE - Track player's wins over time
+ * DONE - Add a simple AI to support one player vs computer mode. In this case, "simple" just means having the computer pick a random empty square.
+ * DONE - Make your computer seem more human by adding a short time delay between your turn and the computer's turn.
+ *
+ * TO DO:
+ * 1) fix bug when switch "twoPlayers" and "computer" mode - now needs to refresh the website to switch
  *
  */
 
@@ -252,6 +255,8 @@ newGameButton.addEventListener("click", function () {
   player2Data.length = 0;
   computerData.length = 0;
   //clean wins count
+  player1WinCount = 0;
+  secondWinCount = 0;
   player1_wins_count.textContent = 0;
   second_wins_count.textContent = 0;
   //reset button names
