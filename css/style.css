@@ -49,8 +49,8 @@ border: solid 1px indigo;
 
 #restart {
   padding: 10px 20px;
-  color: black;
-  background-color: white;
+  color: blue;
+  background-color: grey;
   border-color: blue;
   border-radius: 5px;
   font-size: 1rem;
