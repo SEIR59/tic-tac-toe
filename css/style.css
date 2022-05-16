@@ -1,3 +1,98 @@
-h1 {
-  color: purple;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.board-container {
+  height: 100vh;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  justify-content: center;
+  align-content: center;
+}
+
+#header-text {
+  text-align: center;
+  background-color: black;
+  color: white;
+  font-family: 'Macondo', cursive;
+  font-size: 4em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+#announcement {
+  text-align: center;
+  background-color: black;
+  color: gray;
+  font-family: 'Macondo', cursive;
+  font-size: 4em;
+}
+
+#reset-button {
+  padding: 10px 40px;
+  font-size: 20px;
+  margin-top: 20px;
+  font-weight: bolder;
+}
+
+#reset-button:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+.box {
+  border: 3px solid white;
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+  color: white;
+  font-size: 150px;
+  text-align: center;
+}
+
+.box:hover {
+  background-color: gray;
+  transition: all .4s ease;
+  -webkit-transition: all .4s ease;
+}
+
+#box1, #box2, #box3 {
+  border-top: none;
+}
+
+#box1, #box4, #box7 {
+  border-left: none;
+}
+
+#box3, #box6 , #box9 {
+  border-right: none;
+}
+
+#box7, #box8, #box9 {
+  border-bottom: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.show {
+  display: inline-block;
+  color: white;
+  font-size: 10em;
+  width: 100%;
 }
