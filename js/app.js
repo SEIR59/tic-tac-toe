@@ -19,7 +19,7 @@ let checkForWinner = (playerArray) => {
     if(playerArray.length < 3) return false;
     for(let i = 0; i < winsArr.length; i++){
         console.log(winsArr[i], "WIN CONDITION")
-        //.every checks if playerVal is in winsArr
+        //.every checks if playerVal is in winsArr// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
          isWinner =  winsArr[i].every(playerVal => {
             console.log(winsArr[i].includes(playerVal), "FINAL")
             return playerArray.includes(playerVal)
@@ -29,7 +29,6 @@ let checkForWinner = (playerArray) => {
     return isWinner;
 }
 
-let moves = 0;
 
 function playGame() {
 
@@ -78,6 +77,10 @@ function checkPlayerWin() {
 
 
 // let clicked = false;
+
+//clear interval
+//stop interval
+
 
 // function reset() {
 //     playerOneVal.splice(0, playerOneVal.length);
