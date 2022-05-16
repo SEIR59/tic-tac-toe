@@ -58,4 +58,10 @@ function check() {
 }
 
 document.querySelector("#restart").addEventListener('click', function(){
+    window.location.reload();
+    result = "";
+    move = 0;
+    changeContent("player X's turn");
+    
+});
 
