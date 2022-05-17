@@ -1,3 +1,48 @@
+body {
+  background-image: image/green square
+}
 h1 {
-  color: purple;
+  color: white;
+  font-size: 50px;
+  font-family: palatino linotype;
+  font-style: italic
+}
+
+.canvas {
+  text-align: center;
+  background-color: rgba(151, 235, 212, 0.819);
+}
+
+.board {
+  width: 100vw;
+  height: 65vh;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-items: center;
+}
+
+.box {
+  justify-content: center;
+  display: flex;width: 160px;
+  height: 160px;
+  background-color: rgba(212, 176, 218, 0.782);
+  border: 1px solid rgb(157, 54, 140);
+  color: pink;
+  margin: 2px;
+  font-size: 4rem;
+  align-items: center;
+  
+}
+
+.alert {
+  color: rgb(251, 218, 168);
+  margin: 2px;
+}
+
+.playAgain {
+  font-size: 20px;
+  background-color: rgb(226, 178, 221);
 }
