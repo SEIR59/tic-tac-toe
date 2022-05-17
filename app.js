@@ -1,102 +1,53 @@
+//player turn 
+let turn = 1;
+let win = 1
+let clickCounter = 0;
+let winningCombo = [
+  [-1, -1, -1],
+  [-1, -1, -1],
+  [-1, -1, -1]
 
-const gameboard = document.getElementById("board");
-const boxes = Array.from(document.getElementsByClassName("box"));
-const restartBtn = document.getElementById("button");
-const playText = document.getElementById("titletext");
-const spaces = [null, null, null, null, null, null, null, null, null];
-const Otext = "O";
-const Xtext = "X";
-let currentPlayer = Otext;
+]
+function playerAction(elem, row, column) {
 
-//setting the board into different sections
-const drawBoard = () => {
-  boxes.forEach((box, index) => {
-    let styleString = "";
-    if (index < 3) {
-      styleString += `border-bottom: 3px solid var(--purple);`;
-    }
-    if (index % 3 === 0) {
-      styleString += `border-right: 3px solid var(--purple);`;
-    }
-    if (index % 3 === 2) {
-      styleString += `border-left: 3px solid var(--purple);`;
-    }
-    if (index > 5) {
-      styleString += `border-top: 3px solid var(--purple);`;
-    }
-    box.style = styleString;
+  if(elem.innerHTML !="") return;
+  if(win != -1) return;
+  clickCounter++;
 
-    box.addEventListener("click", boxClicked);
-  });
-};
-// how winning conditions work
-function boxClicked(e) {
-  const id = e.target.id;
-  if (!spaces[id]) {
-    spaces[id] = currentPlayer;
-    e.target.innerText = currentPlayer;
-    if (hasPlayerWon(currentPlayer)) {
-      playText.innerHTML = `${currentPlayer} wins!!`;
-      return;
-    }
-    currentPlayer = currentPlayer === Otext ? Xtext : Otext;
+  //winning conditions
+winningCombo[row][column] = turn; 
+// displayes either player 1 or player 2
+  if(turn == 1){
+    elem.innerHTML = "x";
+    document.getElementById("messagesection").innerHTML = "player 2 turn"; 
+    turn = 2;
   }
+  else if(turn == 2) {
+    elem.innerHTML = "O"
+    document.getElementById("messagesection").innerHTML = "player 1 turn";
+    turn = 1;
+  }
+  for(let i =0; i < 3; i++) {
+
+  //this checks the row
+  if(winningCombo[i][0] == winnningCombo[i][1] && winnningCombo[i][2]) win = winningCombo[i][0];
+  //this checks the column
+  if(winningCombo[0][i] == winnningCombo[1][i] && winnningCombo[2][i] ) win = winningCombo[0][i];
+  }
+  //this checks diagonal
+  if(winningCombo[0][0] == winningCombo[1][1] == winningCombo [2][2]) win = winningCombo[1][1];
+  if(winningCombo[0][2] == winningCombo[1][1] == winningCombo [2][0]) win = winningCombo[1][1];
+//displays winnert message
+if ( win != -1) {
+  document.getElementById("messaghesection").innerHTML = "player " + win + "has won!";
+
 }
+//displays tie messages
+  if (clickCounter == 9 && win == -1) {
+    document.getElementById("messagesection").innerHTML = " Tie Game!";
 
-
-//this is how you win from the top left across and bottom
-const hasPlayerWon = (player) => {
-  if (spaces[0] === player) {
-    if (spaces[1] === player && spaces[2] === player) {
-      console.log(`${player} wins up top`);
-      return true;
-    }
-    if (spaces[3] === player && spaces[6] === player) {
-      console.log(`${player} wins on the left`);
-      return true;
-    }
-    if (spaces[4] === player && spaces[8] === player) {
-      console.log(`${player} wins on the diagonal`);
-      return true;
-    }
   }
-  //from bottom check up and across
-  if (spaces[8] === player) {
-    if (spaces[2] === player && spaces[5] === player) {
-      console.log(`${player} wins on the right`);
-      return true;
-    }
-    if (spaces[7] === player && spaces[6] === player) {
-      console.log(`${player} wins on the bottom`);
-      return true;
-    }
-  }
-  //from middle check middle vertical and middle horizontal
-  if (spaces[4] === player) {
-    if (spaces[3] === player && spaces[5] === player) {
-      console.log(`${player} wins on the middle horizontal`);
-      return true;
-    }
-    if (spaces[1] === player && spaces[7] === player) {
-      console.log(`${player} wins on the middle vertical`);
-      return true;
-    }
-  }
-};
 
-//this restarts the game 
-restartBtn.addEventListener("click", () => {
-  spaces.forEach((space, index) => {
-    spaces[index] = null;
-  });
-  boxes.forEach((box) => {
-    box.innerText = "";
-  });
-  playText.innerHTML = `Let's Play!!`;
-
-  currentPlayer = O_TEXT;
-});
-
-drawBoard();
+}
 
 

@@ -1,55 +1,32 @@
-
 body {
-  margin: 0;
-  padding: 0;
+  background: blue;
+}
+.messagessection {
+  height: 50px;
+  text-align: center;
+  color: blue;
+  font-weight: bolder;
+  font-size: 20px;
+}
+.gameboard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+}
+.row {
+  height:32%
+}
+.col{
+  height: 100%;
+  width: 32%;
+  border: 3px solid black;
+  float: left;
+  font-weight: bolder;
   color: black;
-  font-family: sans-serif;
-}
-* {
-  box-sizing: border-box;
-}
-
-.titletext {
-  font-size: 54px;
-  text-transform: uppercase;
-}
-
-.container {
-  padding: 40px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
 
 }
-
-.board {
-  margin-top: 40px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 450px;
-}
-
-#box {
-  height: 150px;
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 150px;
-  color: black;
-}
-
-
-
-.button {
-  padding: 10px 20px;
-  border-radius: 10px;
-  background-color: blue;
-  color: white;
-  border-color: red;
-  font-size: 18px;
-  transition: 200ms;
-}
-
