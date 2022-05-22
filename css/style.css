@@ -1,5 +1,8 @@
 body {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #game-board {
@@ -7,4 +10,9 @@ body {
   grid-template-columns: 200px 200px 200px;
   grid-template-rows: 200px 200px 200px;
   position: relative;
+}
+
+.block {
+  border: solid 2px black;
+  text-align: center;
 }
