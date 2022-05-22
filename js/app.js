@@ -101,3 +101,5 @@ const startNewGame = () => {
 }
 
 newGame.addEventListener("click", startNewGame)
+
+
