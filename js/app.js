@@ -75,6 +75,7 @@ function winningCombo(){
             setTimeout(() => {
             alert("You Win!!!");
             }, 100)
+            return;
             
             
         }
