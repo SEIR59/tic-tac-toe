@@ -72,14 +72,32 @@ function winningCombo(){
         const c = gameBoard[winCombo[2]];
 
         if (a != null && a === b && a === c) {
+            setTimeout(() => {
             alert("You Win!!!");
-            return;
+            }, 100)
+            
+            
         }
-           
+        
+        
     }
+    const draw = gameBoard.every((block) => block != null);
+        if (draw) {
+            setTimeout(() => {
+                alert("Draw");
+                }, 100)
+        }
 }
 
 
 //create a draw function
 
 // lastly make the reset button erase the board and start over
+const startNewGame = () => {
+    turn = playerX;
+    gameBoard.fill(null);
+    blocks.forEach((block) => (block.innerText = ""));
+    console.log("Game Reset")
+}
+
+newGame.addEventListener("click", startNewGame)
