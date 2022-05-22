@@ -37,13 +37,20 @@ let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach(element =>{
     let boxtext = element.querySelector('.boxtext');
     element.addEventListener('click', ()=>{
-        if(boxtext.innerText === ''){
+        console.log(element.classList)
+        if(boxtext.innerText === '' && !element.classList.contains("pick")) { 
             boxtext.innerText = turn;
+            element.classList.add("pick")
             turn = changeTurn();
             checkWin();
             if (!isgameover){
                 document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
-            } 
+            } else {
+                for(box of boxes){
+                    box.classList.add("pick")
+                }
+            }
+            console.log(isgameover);
         }
     })
 })
