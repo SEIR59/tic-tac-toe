@@ -3,7 +3,7 @@ const boxes = document.querySelectorAll(".square");
 // const restartButton = document.querySelector('#restart').addEventListener('click', restart);
 let winner = "";
 const resultText = document.querySelector(".result");
-const resultText2 = document.querySelector(".result2");
+// const resultText2 = document.querySelector(".result2");
 
 //declaring the player and computer and winning combinations
 const playerX = "X";
@@ -11,10 +11,11 @@ const playerO = "O";
 // forces player x to always start
 let currentPlayer = "X";
 
+//------------------------------------------------------------------------------
 //to populate the x's and o's
 for (const box of boxes) {
   box.addEventListener("click", function () {
-    //to tell computer that class disable is not longer a choice to click
+    //to tell computer that class disable is no longer a choice to click
     //used the class "disable" to determin if a square had been populated or not so if the box does not contain disable, then the player could still populate it
     if (!box.classList.contains("disable")) {
       console.log(currentPlayer);
@@ -40,6 +41,7 @@ for (const box of boxes) {
         displayPlayerTurn();
       }
     }
+    //need to run checkWin after each box is clicked to see if the win happened
     checkWin();
   });
   
@@ -59,6 +61,7 @@ function displayPlayerTurn() {
   }
 }
 
+//-----------------------------------------------------------------------------
 function checkWin() {
   console.log("checkWin ran");
   let foundWin = 0;
@@ -207,6 +210,8 @@ function checkWin() {
 if (foundWin === 1){
   for (const box of boxes){
     box.classList.add("disable")
+  } else {
+    resultText.innerHTML = `It's a tie.`
   }
 }
 }
