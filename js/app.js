@@ -242,14 +242,58 @@ function checkWin() {
         boxes[5].classList.contains("O") &&
         boxes[7].classList.contains("O")) ||
       (boxes[1].classList.contains("O") &&
-      boxes[3].classList.contains("O") &&
-      boxes[4].classList.contains("O") &&
-      boxes[6].classList.contains("O") &&
-      boxes[8].classList.contains("O") &&
-      boxes[0].classList.contains("X") &&
-      boxes[2].classList.contains("X") &&
-      boxes[5].classList.contains("X") &&
-      boxes[7].classList.contains("X"))
+        boxes[3].classList.contains("O") &&
+        boxes[4].classList.contains("O") &&
+        boxes[6].classList.contains("O") &&
+        boxes[8].classList.contains("O") &&
+        boxes[0].classList.contains("X") &&
+        boxes[2].classList.contains("X") &&
+        boxes[5].classList.contains("X") &&
+        boxes[7].classList.contains("X"))
+    ) {
+      resultText.innerHTML = `It's a tie`;
+    }
+    if (
+      (boxes[2].classList.contains("X") &&
+        boxes[3].classList.contains("X") &&
+        boxes[4].classList.contains("X") &&
+        boxes[8].classList.contains("X") &&
+        boxes[0].classList.contains("O") &&
+        boxes[1].classList.contains("O") &&
+        boxes[5].classList.contains("O") &&
+        boxes[6].classList.contains("O") &&
+        boxes[7].classList.contains("O")) ||
+      (boxes[2].classList.contains("O") &&
+        boxes[3].classList.contains("O") &&
+        boxes[4].classList.contains("O") &&
+        boxes[8].classList.contains("O") &&
+        boxes[0].classList.contains("X") &&
+        boxes[1].classList.contains("X") &&
+        boxes[5].classList.contains("X") &&
+        boxes[6].classList.contains("X") &&
+        boxes[7].classList.contains("X"))
+    ) {
+      resultText.innerHTML = `It's a tie`;
+    }
+    if (
+      (boxes[0].classList.contains("X") &&
+        boxes[2].classList.contains("X") &&
+        boxes[5].classList.contains("X") &&
+        boxes[6].classList.contains("X") &&
+        boxes[7].classList.contains("X") &&
+        boxes[1].classList.contains("O") &&
+        boxes[3].classList.contains("O") &&
+        boxes[4].classList.contains("O") &&
+        boxes[8].classList.contains("O")) ||
+        (boxes[0].classList.contains("O") &&
+        boxes[2].classList.contains("O") &&
+        boxes[5].classList.contains("O") &&
+        boxes[6].classList.contains("O") &&
+        boxes[7].classList.contains("O") &&
+        boxes[1].classList.contains("X") &&
+        boxes[3].classList.contains("X") &&
+        boxes[4].classList.contains("X") &&
+        boxes[8].classList.contains("X"))
     ) {
       resultText.innerHTML = `It's a tie`;
     }
