@@ -22,7 +22,7 @@ for (const box of boxes) {
       // box.classList.add("test");
       disableClick(box);
       console.log(box.classList);
-      
+
       //player choice x or o
       if (currentPlayer === "X") {
         box.innerHTML = "X";
@@ -32,19 +32,20 @@ for (const box of boxes) {
         //Bryce helped me figure this out
         document.getElementById(event.target.id).classList.add("X");
         currentPlayer = "O";
+        // boxesClicked += 1;
         displayPlayerTurn();
       } else {
         box.innerHTML = "O";
         // box.classList.add("O");
         document.getElementById(event.target.id).classList.add("O");
         currentPlayer = "X";
+        // boxesClicked += 1;
         displayPlayerTurn();
       }
     }
     //need to run checkWin after each box is clicked to see if the win happened
     checkWin();
   });
-  
 }
 
 // to disable the boxes so you can't change the player choice
@@ -65,7 +66,7 @@ function displayPlayerTurn() {
 function checkWin() {
   console.log("checkWin ran");
   let foundWin = 0;
-//it shows it's running
+  //it shows it's running
   for (i = 0; i < boxes.length; i++) {
     //for win combo 1 - row 1
     if (
@@ -81,7 +82,7 @@ function checkWin() {
         winner = "X";
         foundWin++;
         resultText.innerHTML = `Player X is the winner!`;
-      } else {
+      } else if (boxes[0].classList.contains("O")) {
         winner = "O";
         resultText.innerHTML = `Player O is the winner!`;
         foundWin++;
@@ -206,19 +207,59 @@ function checkWin() {
         resultText.innerHTML = `Player O is the winner!`;
       }
     }
+    if (
+      (boxes[0].classList.contains("X") &&
+        boxes[1].classList.contains("X") &&
+        boxes[4].classList.contains("X") &&
+        boxes[5].classList.contains("X") &&
+        boxes[6].classList.contains("X") &&
+        boxes[6].classList.contains("X") &&
+        boxes[2].classList.contains("O") &&
+        boxes[3].classList.contains("O") &&
+        boxes[7].classList.contains("O") &&
+        boxes[8].classList.contains("O")) ||
+      (boxes[0].classList.contains("O") &&
+        boxes[1].classList.contains("O") &&
+        boxes[4].classList.contains("O") &&
+        boxes[5].classList.contains("O") &&
+        boxes[6].classList.contains("O") &&
+        boxes[6].classList.contains("O") &&
+        boxes[2].classList.contains("X") &&
+        boxes[3].classList.contains("X") &&
+        boxes[7].classList.contains("X") &&
+        boxes[8].classList.contains("X"))
+    ) {
+      resultText.innerHTML = `It's a tie`;
+    }
+    if (
+      (boxes[1].classList.contains("X") &&
+        boxes[3].classList.contains("X") &&
+        boxes[4].classList.contains("X") &&
+        boxes[6].classList.contains("X") &&
+        boxes[8].classList.contains("X") &&
+        boxes[0].classList.contains("O") &&
+        boxes[2].classList.contains("O") &&
+        boxes[5].classList.contains("O") &&
+        boxes[7].classList.contains("O")) ||
+      (boxes[1].classList.contains("O") &&
+      boxes[3].classList.contains("O") &&
+      boxes[4].classList.contains("O") &&
+      boxes[6].classList.contains("O") &&
+      boxes[8].classList.contains("O") &&
+      boxes[0].classList.contains("X") &&
+      boxes[2].classList.contains("X") &&
+      boxes[5].classList.contains("X") &&
+      boxes[7].classList.contains("X"))
+    ) {
+      resultText.innerHTML = `It's a tie`;
+    }
   }
-if (foundWin === 1){
-  for (const box of boxes){
-    box.classList.add("disable")
-  } else {
-    resultText.innerHTML = `It's a tie.`
+  if (foundWin === 1) {
+    for (const box of boxes) {
+      box.classList.add("disable");
+      console.log("foundWin");
+      //need to remove the eventListener to click the boxes
+      box.removeEventListener("click", addMove());
+    }
   }
 }
-}
-
-
-//tie - only will happen when all 9 boxes are clicked. every time a box is clicked, the array/variable = 1
-// let boxesClicked = 0;
-//  if winner = "" {
-//     resultText.innerHTML = `It's a tie.`;
-// then tie
