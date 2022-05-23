@@ -1,25 +1,64 @@
+:root {
+  ==cell-size: 1000px;
+
+  --color: green;
+  --color-set: blue;
+  --1: 10px;
+}
+
+body {
+  margin: 0;
+}
+
 h1 {
   color: rgb(73, 67, 158);
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.gameBoxs {
+.gameBoard {
+  width: 100vw;
+  height: 100vh;
   display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
   gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
   height: 400px;
   width: 400px;
 }
 
+.square {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed;
+}
+
+.gameBoard.x .square:not(.x):hover {
+  background: X;
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 div > div {
-  padding:10px;
+  padding: 10px;
   background-color: rgb(73, 67, 158);
 }
 
-input {
+/*input {
   width: 100px;
   height: 100px;
   align-items: center;
-
-}
-
+}*/
