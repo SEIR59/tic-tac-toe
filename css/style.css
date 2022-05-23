@@ -1,5 +1,5 @@
 body {
-  background-image: image/green square
+  background-image: url(greensquare.png)
 }
 h1 {
   color: white;
@@ -10,7 +10,7 @@ h1 {
 
 .canvas {
   text-align: center;
-  background-color: rgba(151, 235, 212, 0.819);
+ 
 }
 
 .board {
@@ -26,10 +26,10 @@ h1 {
 
 .box {
   justify-content: center;
-  display: flex;width: 160px;
-  height: 160px;
-  background-color: rgba(212, 176, 218, 0.782);
-  border: 1px solid rgb(157, 54, 140);
+  display: flex;width: 135px;
+  height: 120px;
+  background-color: rgba(230, 165, 235, 0.455);
+  border: 1px solid rgba(196, 129, 185, 0.55);
   color: pink;
   margin: 2px;
   font-size: 4rem;
