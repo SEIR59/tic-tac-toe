@@ -45,6 +45,7 @@ for (const box of boxes) {
     }
     //need to run checkWin after each box is clicked to see if the win happened
     checkWin();
+    
   });
 }
 
@@ -66,8 +67,6 @@ function displayPlayerTurn() {
 function checkWin() {
   console.log("checkWin ran");
   let foundWin = 0;
-  //it shows it's running
-  for (i = 0; i < boxes.length; i++) {
     //for win combo 1 - row 1
     if (
       (boxes[0].classList.contains("X") &&
@@ -89,7 +88,7 @@ function checkWin() {
       }
     }
     //win for combo 2 - row 2
-    if (
+    else if (
       (boxes[3].classList.contains("X") &&
         boxes[4].classList.contains("X") &&
         boxes[5].classList.contains("X")) ||
@@ -106,7 +105,7 @@ function checkWin() {
       }
     }
     //win for combo 3 - row 3
-    if (
+    else if (
       (boxes[6].classList.contains("X") &&
         boxes[7].classList.contains("X") &&
         boxes[8].classList.contains("X")) ||
@@ -123,7 +122,7 @@ function checkWin() {
       }
     }
     //win for combo 4 - column 1
-    if (
+    else if (
       (boxes[0].classList.contains("X") &&
         boxes[3].classList.contains("X") &&
         boxes[6].classList.contains("X")) ||
@@ -140,7 +139,7 @@ function checkWin() {
       }
     }
     //win for combo 5 - column 2
-    if (
+    else if (
       (boxes[1].classList.contains("X") &&
         boxes[4].classList.contains("X") &&
         boxes[7].classList.contains("X")) ||
@@ -157,7 +156,7 @@ function checkWin() {
       }
     }
     //win for combo 6 - column 3
-    if (
+   else if (
       (boxes[2].classList.contains("X") &&
         boxes[5].classList.contains("X") &&
         boxes[8].classList.contains("X")) ||
@@ -174,7 +173,7 @@ function checkWin() {
       }
     }
     //win for combo 7 - diagonal 1
-    if (
+    else if (
       (boxes[0].classList.contains("X") &&
         boxes[4].classList.contains("X") &&
         boxes[8].classList.contains("X")) ||
@@ -182,7 +181,7 @@ function checkWin() {
         boxes[4].classList.contains("O") &&
         boxes[8].classList.contains("O"))
     ) {
-      if (boxes[0].classList.contains("X")) {
+     if (boxes[0].classList.contains("X")) {
         winner = "X";
         resultText.innerHTML = `Player X is the winner!`;
       } else {
@@ -191,7 +190,8 @@ function checkWin() {
       }
     }
     //win for combo 8 - diagonal 2
-    if (
+    else if (
+      //don't need to write out both for x and o. just check if they are equal to each other.
       (boxes[2].classList.contains("X") &&
         boxes[4].classList.contains("X") &&
         boxes[6].classList.contains("X")) ||
@@ -206,98 +206,22 @@ function checkWin() {
         winner = "O";
         resultText.innerHTML = `Player O is the winner!`;
       }
+    }   
+    else if (
+    boxes[0].innerHTML !== "" &&
+    boxes[1].innerHTML !== "" &&
+    boxes[2].innerHTML !== "" &&
+    boxes[3].innerHTML !== "" &&
+    boxes[4].innerHTML !== "" &&
+    boxes[5].innerHTML !== "" &&
+    boxes[6].innerHTML !== "" &&
+    boxes[7].innerHTML !== "" &&
+    boxes[8].innerHTML !== "" ){
+      console.log("it's a tie");
+      foundWin++
+      resultText.innerHTML = `It's a tie. Try again.`;
     }
-    if (
-      (boxes[0].classList.contains("X") &&
-        boxes[1].classList.contains("X") &&
-        boxes[4].classList.contains("X") &&
-        boxes[5].classList.contains("X") &&
-        boxes[6].classList.contains("X") &&
-        boxes[6].classList.contains("X") &&
-        boxes[2].classList.contains("O") &&
-        boxes[3].classList.contains("O") &&
-        boxes[7].classList.contains("O") &&
-        boxes[8].classList.contains("O")) ||
-      (boxes[0].classList.contains("O") &&
-        boxes[1].classList.contains("O") &&
-        boxes[4].classList.contains("O") &&
-        boxes[5].classList.contains("O") &&
-        boxes[6].classList.contains("O") &&
-        boxes[6].classList.contains("O") &&
-        boxes[2].classList.contains("X") &&
-        boxes[3].classList.contains("X") &&
-        boxes[7].classList.contains("X") &&
-        boxes[8].classList.contains("X"))
-    ) {
-      resultText.innerHTML = `It's a tie`;
-    }
-    if (
-      (boxes[1].classList.contains("X") &&
-        boxes[3].classList.contains("X") &&
-        boxes[4].classList.contains("X") &&
-        boxes[6].classList.contains("X") &&
-        boxes[8].classList.contains("X") &&
-        boxes[0].classList.contains("O") &&
-        boxes[2].classList.contains("O") &&
-        boxes[5].classList.contains("O") &&
-        boxes[7].classList.contains("O")) ||
-      (boxes[1].classList.contains("O") &&
-        boxes[3].classList.contains("O") &&
-        boxes[4].classList.contains("O") &&
-        boxes[6].classList.contains("O") &&
-        boxes[8].classList.contains("O") &&
-        boxes[0].classList.contains("X") &&
-        boxes[2].classList.contains("X") &&
-        boxes[5].classList.contains("X") &&
-        boxes[7].classList.contains("X"))
-    ) {
-      resultText.innerHTML = `It's a tie`;
-    }
-    if (
-      (boxes[2].classList.contains("X") &&
-        boxes[3].classList.contains("X") &&
-        boxes[4].classList.contains("X") &&
-        boxes[8].classList.contains("X") &&
-        boxes[0].classList.contains("O") &&
-        boxes[1].classList.contains("O") &&
-        boxes[5].classList.contains("O") &&
-        boxes[6].classList.contains("O") &&
-        boxes[7].classList.contains("O")) ||
-      (boxes[2].classList.contains("O") &&
-        boxes[3].classList.contains("O") &&
-        boxes[4].classList.contains("O") &&
-        boxes[8].classList.contains("O") &&
-        boxes[0].classList.contains("X") &&
-        boxes[1].classList.contains("X") &&
-        boxes[5].classList.contains("X") &&
-        boxes[6].classList.contains("X") &&
-        boxes[7].classList.contains("X"))
-    ) {
-      resultText.innerHTML = `It's a tie`;
-    }
-    if (
-      (boxes[0].classList.contains("X") &&
-        boxes[2].classList.contains("X") &&
-        boxes[5].classList.contains("X") &&
-        boxes[6].classList.contains("X") &&
-        boxes[7].classList.contains("X") &&
-        boxes[1].classList.contains("O") &&
-        boxes[3].classList.contains("O") &&
-        boxes[4].classList.contains("O") &&
-        boxes[8].classList.contains("O")) ||
-        (boxes[0].classList.contains("O") &&
-        boxes[2].classList.contains("O") &&
-        boxes[5].classList.contains("O") &&
-        boxes[6].classList.contains("O") &&
-        boxes[7].classList.contains("O") &&
-        boxes[1].classList.contains("X") &&
-        boxes[3].classList.contains("X") &&
-        boxes[4].classList.contains("X") &&
-        boxes[8].classList.contains("X"))
-    ) {
-      resultText.innerHTML = `It's a tie`;
-    }
-  }
+
   if (foundWin === 1) {
     for (const box of boxes) {
       box.classList.add("disable");
@@ -307,3 +231,8 @@ function checkWin() {
     }
   }
 }
+
+// function checkTie(){
+//   boxes[0].innerHTML != "";
+//   console.log("checkign boxes number")
+// }
