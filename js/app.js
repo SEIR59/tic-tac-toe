@@ -165,7 +165,7 @@ function winCheck(){
   idSixth = idSixth.disabled
   idEighth = idEighth.disabled 
   idNinth = idNinth.disabled
-  window.alert('Player X won');
+  
 } else if((id2 ===  '⭕') && (id5 === '⭕') && (id8 === '⭕')) {
   console.log("winnerwinner")
   p.innerHTML = "Player ⭕ won";
@@ -197,7 +197,7 @@ function winCheck(){
   idSeventh = idSeventh.disabled
   idEighth = idEighth.disabled 
   
-  window.alert('Player X won');
+  
 } else if((id3 ===  '⭕') && (id5 === '⭕') && (id7 === '⭕')) {
   console.log("winnerwinner")
   p.innerHTML = "Player ⭕ won";
