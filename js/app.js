@@ -93,9 +93,10 @@ function gameStatus () {
 
 // Creating function that shows player "X" won.
 function xWon () {
-
+endGameBox.classList[0] = "visible"
+console.log(endGameBox.classList[0])
 }
-
+xWon();
 
 // Creating function that shows player "O" won.
 function oWon () {
@@ -103,7 +104,7 @@ function oWon () {
 }
 
 function draw () {
-    
+
 }
 
 // Creating function that the game ended with a draw.
