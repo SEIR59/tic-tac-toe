@@ -13,14 +13,15 @@ const endResults = document.getElementById("results");
 const gameReset = document.getElementById("again");
 
 
+// This is the function that will check which turn it is and place an x in the
 function boxClick (e) {
     boxClicked = e.target
-    if (playerXturn === true) { 
+    if (playerXturn === true && boxClicked.innerText === "") { 
         boxClicked.innerText = ('x');
         playerXturn = false;
         console.log(playerXturn)
         // playerTurn()
-    } else if(playerXturn === false) {
+    } else if(playerXturn === false && boxClicked.innerText === "") {
         boxClicked.innerText = ('o')
         playerXturn = true;
         console.log(playerXturn)
