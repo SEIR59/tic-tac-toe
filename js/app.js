@@ -7,23 +7,41 @@ let playerXturn = true;
 // let gameState
 //Creating Variables for each of the elements for insertion.
 const squares = document.querySelectorAll(".square");
-console.log(squares[2])
 const endGameBox = document.getElementById("endGameArea")
 const endResults = document.getElementById("results");
 const gameReset = document.getElementById("again");
 
+//This will be our game status checker to see if there are winning conditions met and if so to then end the game. If not it will be reinvoked after each click.
+function gameStatus () {
+    const topLeft = squares[0]
+    const topMiddle = squares[1]
+    const topRight = squares[2]
+    console.log(topLeft);
+    
+    const middleLeft = squares[3]
+    const middleMid = squares[4]
+    const middleRight = squares[5]
+    console.log(middleMid)
+    const bottomLeft = squares[6]
+    const bottomMid = squares[7]
+    const bottomRight = squares[8]
+}
+gameStatus();
 
-// This is the function that will check which turn it is and place an x in the
+
+// This is the function that will check which turn it is and place an x in the designated clicked square.
 function boxClick (e) {
-    boxClicked = e.target
+    let boxClicked = e.target
     if (playerXturn === true && boxClicked.innerText === "") { 
-        boxClicked.innerText = ('x');
+        boxClicked.innerText = ('X');
         playerXturn = false;
+        gameStatus();
         console.log(playerXturn)
         // playerTurn()
     } else if(playerXturn === false && boxClicked.innerText === "") {
-        boxClicked.innerText = ('o')
+        boxClicked.innerText = ('O')
         playerXturn = true;
+        gameStatus();
         console.log(playerXturn)
     }
     // playerTurn()
