@@ -73,14 +73,41 @@ function gameStatus () {
         console.log("the x's have won")
     } else if(topRight.innerText === "O" && middleMiddle.innerText === "O" && bottomLeft.innerText === "O") {
         console.log("the o's have won")
-    } else if (squares.innerText !== "") {
-        return;
-    } else {
-    console.log("Draw! Nobody Wins. YAY!")
-    }
-    
+    } 
+    // If each square of all of squares has either an X or an O, we want it to display a draw.
+    else if (
+        topLeft.innerText !== "" &&
+        topMiddle.innerText !== "" &&
+        topRight.innerText !== "" &&
+        middleLeft.innerText !== "" &&
+        middleMiddle.innerText !== "" &&
+        middleRight.innerText !== "" &&
+        bottomLeft.innerText !== "" &&
+        bottomMiddle.innerText !== "" &&
+        bottomRight.innerText !== ""
+      ) {
+    console.log("game is a draw! nobody wins")
+      }
 }
 // gameStatus();
+
+// Creating function that shows player "X" won.
+function xWon () {
+
+}
+
+
+// Creating function that shows player "O" won.
+function oWon () {
+
+}
+
+function draw () {
+    
+}
+
+// Creating function that the game ended with a draw.
+
 
 
 // This is the function that will check which turn it is and place an x in the designated clicked square.
