@@ -12,26 +12,22 @@ const endGameBox = document.getElementById("endGameArea")
 const endResults = document.getElementById("results");
 const gameReset = document.getElementById("again");
 
-function playerTurn () {
-    if (playerXturn === true) {
-        playerXturn = false;
-        console.log(playerXturn)
-    } else if (playerXturn === false) {
-        playerXturn = true;
-        console.log(playerXturn)
-    }
-}
 
 function boxClick (e) {
     boxClicked = e.target
     if (playerXturn === true) { 
-    boxClicked.innerText = ('x');
-    playerTurn()
-    } else (
-    boxClicked.innerText = ('o'))
-    playerTurn()
-
-    console.log("The click is working")
+        boxClicked.innerText = ('x');
+        playerXturn = false;
+        console.log(playerXturn)
+        // playerTurn()
+    } else if(playerXturn === false) {
+        boxClicked.innerText = ('o')
+        playerXturn = true;
+        console.log(playerXturn)
+    }
+    // playerTurn()
+    
+    // console.log("The click is working")
 }
 
 
@@ -41,6 +37,15 @@ squares.forEach((square) => {
 })
 
 
+// function playerTurn () {
+//     if (playerXturn === true) {
+//         playerXturn = false;
+//         console.log(playerXturn)
+//     } else if (playerXturn === false) {
+//         playerXturn = true;
+//         console.log(playerXturn)
+//     }
+// }
 
 
 
