@@ -16,17 +16,22 @@ function gameStatus () {
     const topLeft = squares[0]
     const topMiddle = squares[1]
     const topRight = squares[2]
-    console.log(topLeft);
+
     
     const middleLeft = squares[3]
-    const middleMid = squares[4]
+    const middleMiddle = squares[4]
     const middleRight = squares[5]
-    console.log(middleMid)
+
     const bottomLeft = squares[6]
-    const bottomMid = squares[7]
+    const bottomMiddle = squares[7]
     const bottomRight = squares[8]
+
+    //checking the basic top row to see if win condition is met.
+    if (topLeft.innerText === "X" && topMiddle.innerText === "X" && topRight.innerText === "X") {
+        console.log("the x's hav won")
+    } return;
 }
-gameStatus();
+// gameStatus();
 
 
 // This is the function that will check which turn it is and place an x in the designated clicked square.
