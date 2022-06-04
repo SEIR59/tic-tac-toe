@@ -1,0 +1,46 @@
+
+
+const tile1 = document.querySelector("#sq1");
+const tile2 = document.querySelector("#sq2");
+const tile3 = document.querySelector("#sq3");
+const tile4 = document.querySelector("#sq4");
+const tile5 = document.querySelector("#sq5");
+const tile6 = document.querySelector("#sq6");
+const tile7 = document.querySelector("#sq7");
+const tile8 = document.querySelector("#sq8");
+const tile9 = document.querySelector("#sq9");
+
+// Grabbing the elements needed from the HTML in variables.
+const squares = Array.from(document.querySelectorAll(".square"));
+const displayPlayer = document.querySelector(".turn-display")
+const gameResults = document.querySelector(".results")
+const restartButton = document.querySelector("#again");
+
+//Assigning an array to represent values for my board.
+let board = 
+["", "", "", 
+"", "", "",
+"", "", ""];
+
+//Assigning a variable to indicate the player's turn and if the game is on-going.
+let playerTurn = "X";
+let gameStatus = true;
+
+//Assigning end game if playerX or playerO won or was a tie
+const playerXWon = "Player X Won"
+const playerOWon = "Player O Won"
+const endTie = "Its a Tie!"
+
+// Creating a variable that will be used as a comparison to check if a player has reached any of the following win conditions represented by the borad itself.
+
+const winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8]
+];
+    restartButton.addEventListener("click", boardReset)
