@@ -1,6 +1,7 @@
 //Creating Variables for each of the players:
 const playerX = "X";
 const playerY = "O";
+let playerXturn = true;
 
 // let currentPlayer = ;
 // let gameState
@@ -11,9 +12,25 @@ const endGameBox = document.getElementById("endGameArea")
 const endResults = document.getElementById("results");
 const gameReset = document.getElementById("again");
 
-function boxClick () {
-    // classList = e.target.classList
-    // classList.add('x');
+function playerTurn () {
+    if (playerXturn === true) {
+        playerXturn = false;
+        console.log(playerXturn)
+    } else if (playerXturn === false) {
+        playerXturn = true;
+        console.log(playerXturn)
+    }
+}
+
+function boxClick (e) {
+    boxClicked = e.target
+    if (playerXturn === true) { 
+    boxClicked.innerText = ('x');
+    playerTurn()
+    } else (
+    boxClicked.innerText = ('o'))
+    playerTurn()
+
     console.log("The click is working")
 }
 
