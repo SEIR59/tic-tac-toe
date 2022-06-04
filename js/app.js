@@ -93,7 +93,7 @@ function gameStatus () {
 
 // Creating function that shows player "X" won.
 function xWon () {
-endGameBox.classList[0] = "visible"
+endGameBox.classList.replace("hidden", "visible");
 console.log(endGameBox.classList[0])
 }
 xWon();
