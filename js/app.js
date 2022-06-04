@@ -26,10 +26,56 @@ function gameStatus () {
     const bottomMiddle = squares[7]
     const bottomRight = squares[8]
 
-    //checking the basic top row to see if win condition is met.
+    //checking the first top row to see if win condition is met.
     if (topLeft.innerText === "X" && topMiddle.innerText === "X" && topRight.innerText === "X") {
-        console.log("the x's hav won")
-    } return;
+        console.log("the x's have won")
+    } else if(topLeft.innerText === "O" && topMiddle.innerText === "O" && topRight.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the middle row to see if win condition is met.
+    if (middleLeft.innerText === "X" && middleMiddle.innerText === "X" && middleRight.innerText === "X") {
+        console.log("the x's have won")
+    } else if(middleLeft.innerText === "O" && middleMiddle.innerText === "O" && middleRight.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the bottom row to see if win condition is met.
+    if (bottomLeft.innerText === "X" && bottomMiddle.innerText === "X" && bottomRight.innerText === "X") {
+        console.log("the x's have won")
+    } else if(bottomLeft.innerText === "O" && bottomMiddle.innerText === "O" && bottomRight.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the first column to see if win condition is met.
+    if (topLeft.innerText === "X" && middleLeft.innerText === "X" && bottomLeft.innerText === "X") {
+        console.log("the x's have won")
+    } else if(topLeft.innerText === "O" && middleLeft.innerText === "O" && bottomLeft.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the second column to see if win condition is met.
+    if (topMiddle.innerText === "X" && middleMiddle.innerText === "X" && bottomMiddle.innerText === "X") {
+        console.log("the x's have won")
+    } else if(topMiddle.innerText === "O" && middleMiddle.innerText === "O" && bottomMiddle.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the third column to see if win condition is met.
+    if (topRight.innerText === "X" && middleRight.innerText === "X" && bottomRight.innerText === "X") {
+        console.log("the x's have won")
+    } else if(topRight.innerText === "O" && middleRight.innerText === "O" && bottomRight.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the first diagonal to see if win condition is met.
+    if (topLeft.innerText === "X" && middleMiddle.innerText === "X" && bottomRight.innerText === "X") {
+        console.log("the x's have won")
+    } else if(topLeft.innerText === "O" && middleMiddle.innerText === "O" && bottomRight.innerText === "O") {
+        console.log("the o's have won")
+    };
+    //checking the second diagonal to see if win condition is met.
+    if (topRight.innerText === "X" && middleMiddle.innerText === "X" && bottomLeft.innerText === "X") {
+        console.log("the x's have won")
+    } else if(topRight.innerText === "O" && middleMiddle.innerText === "O" && bottomLeft.innerText === "O") {
+        console.log("the o's have won")
+    };
+    
+    
 }
 // gameStatus();
 
@@ -41,13 +87,13 @@ function boxClick (e) {
         boxClicked.innerText = ('X');
         playerXturn = false;
         gameStatus();
-        console.log(playerXturn)
+        // console.log(playerXturn)
         // playerTurn()
     } else if(playerXturn === false && boxClicked.innerText === "") {
         boxClicked.innerText = ('O')
         playerXturn = true;
         gameStatus();
-        console.log(playerXturn)
+        // console.log(playerXturn)
     }
     // playerTurn()
     
