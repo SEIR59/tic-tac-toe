@@ -73,8 +73,11 @@ function gameStatus () {
         console.log("the x's have won")
     } else if(topRight.innerText === "O" && middleMiddle.innerText === "O" && bottomLeft.innerText === "O") {
         console.log("the o's have won")
-    };
-    
+    } else if (squares.innerText !== "") {
+        return;
+    } else {
+    console.log("Draw! Nobody Wins. YAY!")
+    }
     
 }
 // gameStatus();
