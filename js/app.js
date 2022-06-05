@@ -2,6 +2,7 @@
 const playerX = "X";
 const playerY = "O";
 let playerXturn = true;
+let endGameState = false;
 
 // let currentPlayer = ;
 // let gameState
@@ -10,6 +11,7 @@ const squares = document.querySelectorAll(".square");
 const endGameBox = document.getElementById("endGameArea")
 const endResults = document.getElementById("results");
 const gameReset = document.getElementById("again");
+const playersTurn = document.getElementById("game-status");
 
 //This will be our game status checker to see if there are winning conditions met and if so to then end the game. If not it will be reinvoked after each click.
 function gameStatus () {
@@ -29,50 +31,66 @@ function gameStatus () {
     //checking the first top row to see if win condition is met.
     if (topLeft.innerText === "X" && topMiddle.innerText === "X" && topRight.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topLeft.innerText === "O" && topMiddle.innerText === "O" && topRight.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the middle row to see if win condition is met.
     if (middleLeft.innerText === "X" && middleMiddle.innerText === "X" && middleRight.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(middleLeft.innerText === "O" && middleMiddle.innerText === "O" && middleRight.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the bottom row to see if win condition is met.
     if (bottomLeft.innerText === "X" && bottomMiddle.innerText === "X" && bottomRight.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(bottomLeft.innerText === "O" && bottomMiddle.innerText === "O" && bottomRight.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the first column to see if win condition is met.
     if (topLeft.innerText === "X" && middleLeft.innerText === "X" && bottomLeft.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topLeft.innerText === "O" && middleLeft.innerText === "O" && bottomLeft.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the second column to see if win condition is met.
     if (topMiddle.innerText === "X" && middleMiddle.innerText === "X" && bottomMiddle.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topMiddle.innerText === "O" && middleMiddle.innerText === "O" && bottomMiddle.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the third column to see if win condition is met.
     if (topRight.innerText === "X" && middleRight.innerText === "X" && bottomRight.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topRight.innerText === "O" && middleRight.innerText === "O" && bottomRight.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the first diagonal to see if win condition is met.
     if (topLeft.innerText === "X" && middleMiddle.innerText === "X" && bottomRight.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topLeft.innerText === "O" && middleMiddle.innerText === "O" && bottomRight.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     };
     //checking the second diagonal to see if win condition is met.
     if (topRight.innerText === "X" && middleMiddle.innerText === "X" && bottomLeft.innerText === "X") {
         console.log("the x's have won")
+        xWon();
     } else if(topRight.innerText === "O" && middleMiddle.innerText === "O" && bottomLeft.innerText === "O") {
         console.log("the o's have won")
+        oWon();
     } 
     // If each square of all of squares has either an X or an O, we want it to display a draw.
     else if (
@@ -94,17 +112,22 @@ function gameStatus () {
 // Creating function that shows player "X" won.
 function xWon () {
 endGameBox.classList.replace("hidden", "visible");
-console.log(endGameBox.classList[0])
+endResults.innerText = "Player X won the game!"
+endGameState = false;
 }
-xWon();
+// xWon();
 
 // Creating function that shows player "O" won.
 function oWon () {
-
+endGameBox.classList.replace("hidden", "visible");
+endResults.innerText = "Player O won the game!"
+endGameState = false;
 }
 
 function draw () {
-
+endGameBox.classList.replace("hidden", "visible");
+endResults.innerText = "It is a draw! Neither player won..."
+endGameState = false;
 }
 
 // Creating function that the game ended with a draw.
@@ -117,12 +140,14 @@ function boxClick (e) {
     if (playerXturn === true && boxClicked.innerText === "") { 
         boxClicked.innerText = ('X');
         playerXturn = false;
+        playersTurn.innerHTML = "<br>It is now player O's Turn.</br>"
         gameStatus();
         // console.log(playerXturn)
         // playerTurn()
     } else if(playerXturn === false && boxClicked.innerText === "") {
         boxClicked.innerText = ('O')
         playerXturn = true;
+        playersTurn.innerHTML = "<br>It is now player X's Turn.<br>"
         gameStatus();
         // console.log(playerXturn)
     }
@@ -131,10 +156,15 @@ function boxClick (e) {
     // console.log("The click is working")
 }
 
-
+// console.log(endGameState)
 // Creating an event listener that listens for the click of each of the boxes within that boxes "array" and executes the boxClick function.
 squares.forEach((square) => {
+if(endGameState = true) {
     square.addEventListener('click', boxClick);
+    console.log(endGameState)
+// } else if(endGameState = true) {
+//     return;
+}
 })
 
 
