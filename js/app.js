@@ -104,6 +104,7 @@ function gameStatus () {
         bottomMiddle.innerText !== "" &&
         bottomRight.innerText !== ""
       ) {
+          draw();
     console.log("game is a draw! nobody wins")
       }
 }
@@ -113,7 +114,9 @@ function gameStatus () {
 function xWon () {
 endGameBox.classList.replace("hidden", "visible");
 endResults.innerText = "Player X won the game!"
-endGameState = false;
+endGameState = true
+playersTurn.innerHTML = "";
+console.log(endGameState)
 }
 // xWon();
 
@@ -121,13 +124,17 @@ endGameState = false;
 function oWon () {
 endGameBox.classList.replace("hidden", "visible");
 endResults.innerText = "Player O won the game!"
-endGameState = false;
+endGameState = true;
+playersTurn.innerHTML = "";
+console.log(endGameState)
 }
 
 function draw () {
-endGameBox.classList.replace("hidden", "visible");
-endResults.innerText = "It is a draw! Neither player won..."
-endGameState = false;
+    endGameBox.classList.replace("hidden", "visible");
+    endResults.innerText = "It is a draw! Neither player won..."
+    endGameState = true;
+    playersTurn.innerHTML = "";
+    console.log(endGameState)
 }
 
 // Creating function that the game ended with a draw.
@@ -137,14 +144,14 @@ endGameState = false;
 // This is the function that will check which turn it is and place an x in the designated clicked square.
 function boxClick (e) {
     let boxClicked = e.target
-    if (playerXturn === true && boxClicked.innerText === "") { 
+    if (playerXturn === true && boxClicked.innerText === "" && endGameState === false) { 
         boxClicked.innerText = ('X');
         playerXturn = false;
         playersTurn.innerHTML = "<br>It is now player O's Turn.</br>"
         gameStatus();
         // console.log(playerXturn)
         // playerTurn()
-    } else if(playerXturn === false && boxClicked.innerText === "") {
+    } else if(playerXturn === false && boxClicked.innerText === "" & endGameState === false) {
         boxClicked.innerText = ('O')
         playerXturn = true;
         playersTurn.innerHTML = "<br>It is now player X's Turn.<br>"
@@ -158,56 +165,12 @@ function boxClick (e) {
 
 // console.log(endGameState)
 // Creating an event listener that listens for the click of each of the boxes within that boxes "array" and executes the boxClick function.
+if (endGameState === false) {
 squares.forEach((square) => {
-if(endGameState = true) {
     square.addEventListener('click', boxClick);
-    console.log(endGameState)
-// } else if(endGameState = true) {
-//     return;
-}
 })
+} else if(endGameState === true) {
 
+}
 
-// function playerTurn () {
-//     if (playerXturn === true) {
-//         playerXturn = false;
-//         console.log(playerXturn)
-//     } else if (playerXturn === false) {
-//         playerXturn = true;
-//         console.log(playerXturn)
-//     }
-// }
-
-
-
-
-
-
-
-
-
-
-// // Creating the state of the game in an array and we are nulling the board for resets.
-// const gameState = Array(squares.length);
-// gameState.fill(null);
-
-// // A quick loop that adds an Event Listener to each of our squares to then run the function squareClick.
-// squares.forEach(square=>square.addEventListener("click", squareClick));
-
-// // A function that checks if the endGameArea from our html is visible, stops the game from going further with return;
-// function squareClick(event) {
-//     if (endGameBox.classList.contains("visible")){
-//         return;
-//     }
-//     const square = event.target;
-//     const squareNumber = square.dataset.index;
-
-//     if(square.innerText != "") {
-//         return;
-//     }
-//     if(currentPlayer === player1) {
-//         square.innerText = player1;
-//         gameState[squareNumber-1] = player1
-//         currentPlayer = player2
-//     }
-// }
+console.log(endGameState)
